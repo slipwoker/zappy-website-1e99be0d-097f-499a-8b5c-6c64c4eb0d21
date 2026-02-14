@@ -1,0 +1,85 @@
+# Star Shoes — Generative Engine Optimization Map
+
+> A קמעונאות business.
+
+---
+
+## Pages
+
+### בית
+https://star-shoes-1e99be0d.zappy5.app
+
+### אודות
+https://star-shoes-1e99be0d.zappy5.app/about
+
+### לוקבוק
+https://star-shoes-1e99be0d.zappy5.app/lookbook
+
+### צור קשר
+https://star-shoes-1e99be0d.zappy5.app/contact
+
+### Products
+https://star-shoes-1e99be0d.zappy5.app/products
+המוצרים שלנו - Star Shoes
+
+### Cart
+https://star-shoes-1e99be0d.zappy5.app/cart
+עגלת הקניות שלך
+
+### Checkout
+https://star-shoes-1e99be0d.zappy5.app/checkout
+תשלום
+
+### Login
+https://star-shoes-1e99be0d.zappy5.app/login
+התחברות לקוחות
+
+### Account
+https://star-shoes-1e99be0d.zappy5.app/account
+החשבון שלי
+
+### Order Success
+https://star-shoes-1e99be0d.zappy5.app/order-success
+תודה על ההזמנה
+
+### Product Detail
+https://star-shoes-1e99be0d.zappy5.app/product/:slug
+פרטי המוצר - Star Shoes
+
+### Category
+https://star-shoes-1e99be0d.zappy5.app/category/:slug
+מוצרים - Star Shoes
+
+## Legal & Policy
+
+### Privacy Policy
+https://star-shoes-1e99be0d.zappy5.app/privacy
+Information about how user data is collected, stored, and protected.
+
+### Terms & Conditions
+https://star-shoes-1e99be0d.zappy5.app/terms
+Legal terms describing service usage, rights, and policies.
+
+### Accessibility Statement
+https://star-shoes-1e99be0d.zappy5.app/accessibility
+Information about WCAG compliance and accessibility features.
+
+---
+
+# Business Context (for LLM understanding)
+
+## About Star Shoes
+Star Shoes is a business in the קמעונאות industry.
+
+## Target Audience
+כל הגילאים שצריכים נעליים
+
+## Industry
+קמעונאות
+
+---
+
+# Additional Resources
+
+- **Sitemap**: https://star-shoes-1e99be0d.zappy5.app/sitemap.xml
+- **Robots.txt**: https://star-shoes-1e99be0d.zappy5.app/robots.txt

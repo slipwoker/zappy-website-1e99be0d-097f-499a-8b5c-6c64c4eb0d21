@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://star-shoes-1e99be0d.zappy5.app/sitemap.xml
