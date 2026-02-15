@@ -5749,6 +5749,26 @@ async function loadRelatedProducts(currentProduct, t) {
       if (window._zappyVariantFixed) return;
       window._zappyVariantFixed = true;
 
+      // CRITICAL: Remove the dynamically injected style tag that hides disabled variants
+      // The original initVariantSelection injects ".variant-option.disabled { display: none !important; }"
+      var oldStyleTag = document.getElementById('zappy-variant-state-css');
+      if (oldStyleTag) oldStyleTag.remove();
+      // Also search for any style tags containing the old display:none rule
+      document.querySelectorAll('style').forEach(function(s) {
+        if (s.textContent.indexOf('.variant-option.disabled') !== -1 && s.textContent.indexOf('display: none') !== -1) {
+          s.remove();
+        }
+      });
+      // Inject the correct CSS: show disabled with strikethrough, not display:none
+      if (!document.getElementById('zappy-variant-fix-css')) {
+        var fixStyle = document.createElement('style');
+        fixStyle.id = 'zappy-variant-fix-css';
+        fixStyle.textContent = '.variant-option.disabled { display: flex !important; opacity: 0.3 !important; position: relative !important; cursor: pointer !important; } .variant-option.disabled:not(.color-swatch)::after { content: ""; position: absolute; top: 50%; left: 4px; right: 4px; height: 1px; background: currentColor; transform: rotate(-12deg); pointer-events: none; } .variant-option.color-swatch.disabled::before { content: ""; position: absolute; top: 50%; left: 10%; right: 10%; height: 1.5px; background: rgba(0,0,0,0.6); transform: rotate(-45deg); pointer-events: none; z-index: 1; }';
+        document.head.appendChild(fixStyle);
+      }
+      // Remove any inline display:none on variant options set by the old code
+      variantButtons.forEach(function(btn) { btn.style.display = ''; });
+
       var selectedAttributes = {};
 
       function getAttributeKeys() {
