@@ -5242,6 +5242,60 @@ body.accessibility-widget-visible ._access-menu {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* ==ZAPPY V2 E-COMMERCE THEME CSS== */
 /* ═══════════════════════════════════════════════════════════════════════════ */
 /* V2 E-COMMERCE CSS - Clean V2 Variables Only                                  */
@@ -5581,7 +5635,6 @@ main.page-container.ecommerce-page,
 .checkout-accordion-icon {
   flex-shrink: 0;
   color: var(--text-dark);
-  stroke: var(--text-dark);
 }
 .checkout-accordion-title {
   font-size: 22px;
@@ -6450,7 +6503,7 @@ main.page-container.ecommerce-page,
 .product-gallery-thumb:hover,
 .product-gallery-thumb.active { border-color: var(--primary); }
 .product-info { display: flex; flex-direction: column; gap: 16px; }
-.product-info .product-variants { margin-top: 20px; }
+.product-info .product-variants { margin-top: 0; }
 .product-info .product-add-row { margin-top: 20px; }
 .product-info .product-details-accordion { margin-top: 16px; }
 .product-info h1 { font-size: 2rem; color: var(--text-dark); margin: 0; line-height: 1.2; }

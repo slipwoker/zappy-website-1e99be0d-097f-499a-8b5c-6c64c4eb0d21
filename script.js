@@ -544,6 +544,24 @@ window.onload = function() {
 ;
 
 ;
+
+;
+
+;
+
+;
+
+;
+
+;
+
+;
+
+;
+
+;
+
+;
 /* ==ZAPPY E-COMMERCE JS START== */
 // E-commerce functionality
 (function() {
@@ -4908,13 +4926,13 @@ function renderProductDetail(container, product, t) {
         </div>
         ` : ''}
         ${product.sku ? '<div class="product-sku" id="product-sku-display">' + t.sku + ': ' + product.sku + '</div>' : ''}
+        ${variantSelectorHtml}
         <div class="product-stock ${baseInStock ? 'in-stock' : 'out-of-stock'}" id="product-stock-display">
           ${baseInStock 
             ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>' + t.inStock
             : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>' + t.outOfStock
           }
         </div>
-        ${variantSelectorHtml}
         <div class="product-add-row">
           ${isCatalogMode ? '' : `
           <div class="product-quantity">
@@ -4943,18 +4961,27 @@ function renderProductDetail(container, product, t) {
             `}
           </div>
         </div>
-        ${(product.description || (product.custom_fields?.specifications?.length > 0)) ? `
+        ${product.description ? `
         <div class="product-details-accordion">
           <div class="product-details-divider"></div>
           <button type="button" class="product-details-header" onclick="toggleProductDetails(this)">
-            <span>${t.productDetails || t.specifications || 'Product Details'}</span>
+            <span>${t.productDetails || 'Product Details'}</span>
+            <span class="product-details-toggle">−</span>
+          </button>
+          <div class="product-details-body">
+            <div class="product-description">${product.description}</div>
+          </div>
+        </div>
+        ` : ''}
+        ${(product.custom_fields?.specifications?.length > 0) ? `
+        <div class="product-details-accordion collapsed">
+          <div class="product-details-divider"></div>
+          <button type="button" class="product-details-header" onclick="toggleProductDetails(this)">
+            <span>${t.specifications || 'Specifications'}</span>
             <span class="product-details-toggle">+</span>
           </button>
           <div class="product-details-body">
-            ${product.description ? '<div class="product-description">' + product.description + '</div>' : ''}
-            ${(product.custom_fields?.specifications?.length > 0) ? `
             <div class="product-specifications">
-              <h3>${t.specifications}</h3>
               <table class="specs-table">
                 ${product.custom_fields.specifications.map(spec => `
                   <tr>
@@ -4964,7 +4991,6 @@ function renderProductDetail(container, product, t) {
                 `).join('')}
               </table>
             </div>
-            ` : ''}
           </div>
         </div>
         ` : ''}
@@ -5019,59 +5045,89 @@ function initVariantSelection(product, t) {
   const variants = product.variants || [];
   let selectedAttributes = {};
   
+  // Inject variant disabled/out-of-stock CSS (ensures it works even for pre-existing sites)
+  if (!document.getElementById('zappy-variant-state-css')) {
+    var vstyle = document.createElement('style');
+    vstyle.id = 'zappy-variant-state-css';
+    vstyle.textContent = '.variant-option.disabled { display: none !important; }' +
+      '.variant-option.out-of-stock { opacity: 0.6; position: relative; }' +
+      '.variant-option.out-of-stock:not(.color-swatch)::after { content: ""; position: absolute; top: 50%; left: 4px; right: 4px; height: 1px; background: currentColor; transform: rotate(-12deg); pointer-events: none; }' +
+      '.variant-option.color-swatch.out-of-stock::before { content: ""; position: absolute; top: 50%; left: 2px; right: 2px; height: 1.5px; background: currentColor; transform: rotate(-45deg); pointer-events: none; z-index: 1; }';
+    document.head.appendChild(vstyle);
+  }
+  
   // Get all variant option buttons
   const variantButtons = document.querySelectorAll('.variant-option');
   
-  // Function to check if a specific attribute value is available given a single other selection
-  function isOptionAvailableWith(attrKey, attrValue, otherAttrKey, otherAttrValue) {
-    return variants.some(variant => {
-      if (!variant.attributes || variant.is_active === false) return false;
-      return variant.attributes[attrKey] === attrValue && 
-             variant.attributes[otherAttrKey] === otherAttrValue;
-    });
-  }
-  
-  // Function to get all attribute keys
+  // Get all attribute keys from the buttons
   function getAttributeKeys() {
     const keys = new Set();
     variantButtons.forEach(btn => keys.add(btn.getAttribute('data-attr')));
     return Array.from(keys);
   }
   
-  // Function to update available options - only disable based on the LAST selected attribute
-  function updateAvailableOptions(lastSelectedKey) {
-    if (!lastSelectedKey || !selectedAttributes[lastSelectedKey]) {
-      // No selection yet, enable all
-      variantButtons.forEach(btn => {
-        btn.classList.remove('disabled');
-        btn.disabled = false;
+  // Check if a variant exists with the given attribute combination (any stock status)
+  function variantExistsWith(attrKey, attrValue, otherSelections) {
+    return variants.some(variant => {
+      if (!variant.attributes || variant.is_active === false) return false;
+      if (variant.attributes[attrKey] !== attrValue) return false;
+      // Check all other selections match
+      for (var k in otherSelections) {
+        if (k === attrKey) continue;
+        if (variant.attributes[k] !== otherSelections[k]) return false;
+      }
+      return true;
+    });
+  }
+  
+  // Check if a variant with the given attributes is out of stock
+  function isVariantOutOfStock(attrKey, attrValue, otherSelections) {
+    var matched = variants.filter(variant => {
+      if (!variant.attributes || variant.is_active === false) return false;
+      if (variant.attributes[attrKey] !== attrValue) return false;
+      for (var k in otherSelections) {
+        if (k === attrKey) continue;
+        if (variant.attributes[k] !== otherSelections[k]) return false;
+      }
+      return true;
+    });
+    // If all matching variants are out of stock, it's out of stock
+    return matched.length > 0 && matched.every(v => v.stock_status === 'out_of_stock');
+  }
+  
+  // Update visibility and stock styling of options in other groups based on current selections
+  function updateAvailableOptions() {
+    var attrKeys = getAttributeKeys();
+    
+    attrKeys.forEach(function(groupKey) {
+      // Build "other selections" = all selections EXCEPT this group
+      var otherSelections = {};
+      for (var k in selectedAttributes) {
+        if (k !== groupKey) otherSelections[k] = selectedAttributes[k];
+      }
+      
+      // For each button in this group, check if a variant exists with this value + other selections
+      var groupBtns = document.querySelectorAll('.variant-option[data-attr="' + groupKey + '"]');
+      groupBtns.forEach(function(btn) {
+        var val = btn.getAttribute('data-value');
+        var exists = variantExistsWith(groupKey, val, otherSelections);
+        var outOfStock = exists && isVariantOutOfStock(groupKey, val, otherSelections);
+        
+        // Hide options that don't exist as a combination
+        if (exists) {
+          btn.classList.remove('disabled');
+        } else {
+          btn.classList.add('disabled');
+          btn.classList.remove('selected', 'out-of-stock');
+        }
+        
+        // Mark out-of-stock options with strikethrough
+        if (outOfStock) {
+          btn.classList.add('out-of-stock');
+        } else {
+          btn.classList.remove('out-of-stock');
+        }
       });
-      return;
-    }
-    
-    const lastSelectedValue = selectedAttributes[lastSelectedKey];
-    
-    variantButtons.forEach(btn => {
-      const attrKey = btn.getAttribute('data-attr');
-      const attrValue = btn.getAttribute('data-value');
-      
-      // Don't disable options in the same attribute group as the last selection
-      if (attrKey === lastSelectedKey) {
-        btn.classList.remove('disabled');
-        btn.disabled = false;
-        return;
-      }
-      
-      // Check if this option is available with the last selection
-      const isAvailable = isOptionAvailableWith(attrKey, attrValue, lastSelectedKey, lastSelectedValue);
-      
-      if (isAvailable) {
-        btn.classList.remove('disabled');
-        btn.disabled = false;
-      } else {
-        btn.classList.add('disabled');
-        btn.disabled = true;
-      }
     });
   }
   
@@ -5090,24 +5146,10 @@ function initVariantSelection(product, t) {
         return;
       }
       
-      // If clicking a disabled option, clear other selections first
-      if (this.disabled || this.classList.contains('disabled')) {
-        // Clear all selections except this attribute group
-        const attrKeys = getAttributeKeys();
-        attrKeys.forEach(key => {
-          if (key !== attrKey) {
-            delete selectedAttributes[key];
-            document.querySelectorAll('.variant-option[data-attr="' + key + '"]').forEach(b => {
-              b.classList.remove('selected');
-            });
-            // Clear the selected value label for cleared groups
-            var clearedValueSpan = document.querySelector('.variant-group[data-group="' + key + '"] .variant-selected-value');
-            if (clearedValueSpan) clearedValueSpan.textContent = '';
-          }
-        });
-      }
+      // Don't allow clicking hidden (non-existent) options
+      if (this.classList.contains('disabled')) return;
       
-      // Toggle selection within the same attribute group
+      // Select the clicked option within its attribute group
       const groupButtons = document.querySelectorAll('.variant-option[data-attr="' + attrKey + '"]');
       groupButtons.forEach(b => b.classList.remove('selected'));
       this.classList.add('selected');
@@ -5121,25 +5163,54 @@ function initVariantSelection(product, t) {
         selectedValueSpan.textContent = attrValue;
       }
       
-      // Update which options are available based on this selection
-      updateAvailableOptions(attrKey);
+      // Update visibility/stock of options in other groups
+      updateAvailableOptions();
       
-      // Find matching variant
+      // Check if other groups' selected option got hidden; if so, auto-select first visible
+      var attrKeys = getAttributeKeys();
+      attrKeys.forEach(function(otherKey) {
+        if (otherKey === attrKey) return;
+        var currentSelected = document.querySelector('.variant-option[data-attr="' + otherKey + '"].selected');
+        if (!currentSelected || currentSelected.classList.contains('disabled')) {
+          // Selection got hidden or doesn't exist - auto-select first visible
+          var firstVisible = document.querySelector('.variant-option[data-attr="' + otherKey + '"]:not(.disabled)');
+          if (firstVisible) {
+            document.querySelectorAll('.variant-option[data-attr="' + otherKey + '"]').forEach(function(b) { b.classList.remove('selected'); });
+            firstVisible.classList.add('selected');
+            selectedAttributes[otherKey] = firstVisible.getAttribute('data-value');
+            var otherValueSpan = document.querySelector('.variant-group[data-group="' + otherKey + '"] .variant-selected-value');
+            if (otherValueSpan) otherValueSpan.textContent = firstVisible.getAttribute('data-value');
+          } else {
+            delete selectedAttributes[otherKey];
+            var clearedSpan = document.querySelector('.variant-group[data-group="' + otherKey + '"] .variant-selected-value');
+            if (clearedSpan) clearedSpan.textContent = '';
+          }
+        }
+      });
+      
+      // Find matching variant and update UI
       const matchedVariant = findMatchingVariant(variants, selectedAttributes);
-      
-      // Update UI based on selection
       updateVariantUI(matchedVariant, product, t, selectedAttributes);
     });
   });
   
   // Auto-select the first option in each variant group on page load
   var variantGroups = document.querySelectorAll('.variant-group');
-  variantGroups.forEach(function(group) {
-    var firstBtn = group.querySelector('.variant-option:not(.disabled)');
+  var groupArray = Array.from(variantGroups);
+  if (groupArray.length > 0) {
+    // Select first option in the first group
+    var firstBtn = groupArray[0].querySelector('.variant-option');
     if (firstBtn && !firstBtn.getAttribute('data-variant-id')) {
       firstBtn.click();
     }
-  });
+    // For remaining groups, select first visible (non-hidden) option
+    for (var gi = 1; gi < groupArray.length; gi++) {
+      var availBtn = groupArray[gi].querySelector('.variant-option:not(.disabled)');
+      if (availBtn && !availBtn.getAttribute('data-variant-id')) {
+        availBtn.click();
+      }
+    }
+  }
 }
 
 // Find variant that matches all selected attributes
@@ -5211,30 +5282,54 @@ function updateVariantUI(variant, product, t, selectedAttributes) {
     // Store selected variant
     window.selectedVariant = variant;
   } else {
-    // No matching variant found - show base product info
-    if (priceDisplay) {
-      if (hasVariantPriceRange && Number.isFinite(variantMinPrice)) {
-        priceDisplay.textContent = startingAtLabel + ' ' + t.currency + variantMinPrice.toFixed(2);
-      } else if (hasSalePrice) {
-        priceDisplay.innerHTML = t.currency + basePrice.toFixed(2) + ' <span class="original-price">' + t.currency + originalPrice.toFixed(2) + '</span>';
-      } else {
-        priceDisplay.textContent = t.currency + basePrice.toFixed(2);
+    // No matching variant found
+    // Check if all attribute groups have a selection - if so, this is an unavailable combination
+    var allGroupsSelected = false;
+    var variantGroups = document.querySelectorAll('.variant-group');
+    if (variantGroups.length > 0) {
+      var totalGroups = variantGroups.length;
+      var selectedCount = Object.keys(selectedAttributes).length;
+      allGroupsSelected = selectedCount >= totalGroups;
+    }
+    
+    if (allGroupsSelected) {
+      // All groups selected but no variant matches - treat as out of stock / unavailable
+      if (stockDisplay) {
+        stockDisplay.className = 'product-stock out-of-stock';
+        stockDisplay.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>' + (t.outOfStock || 'Out of Stock');
       }
-    }
-    
-    // Reset to base product stock
-    const baseInStock = product.stock_status !== 'out_of_stock';
-    if (stockDisplay) {
-      stockDisplay.className = 'product-stock ' + (baseInStock ? 'in-stock' : 'out-of-stock');
-      stockDisplay.innerHTML = baseInStock 
-        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>' + t.inStock
-        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>' + t.outOfStock;
-    }
-    
-    if (addToCartBtn) {
-      addToCartBtn.disabled = !baseInStock;
-      addToCartBtn.style.opacity = baseInStock ? '1' : '0.5';
-      addToCartBtn.style.cursor = baseInStock ? 'pointer' : 'not-allowed';
+      
+      if (addToCartBtn) {
+        addToCartBtn.disabled = true;
+        addToCartBtn.style.opacity = '0.5';
+        addToCartBtn.style.cursor = 'not-allowed';
+      }
+    } else {
+      // Partial selection - show base product info
+      if (priceDisplay) {
+        if (hasVariantPriceRange && Number.isFinite(variantMinPrice)) {
+          priceDisplay.textContent = startingAtLabel + ' ' + t.currency + variantMinPrice.toFixed(2);
+        } else if (hasSalePrice) {
+          priceDisplay.innerHTML = t.currency + basePrice.toFixed(2) + ' <span class="original-price">' + t.currency + originalPrice.toFixed(2) + '</span>';
+        } else {
+          priceDisplay.textContent = t.currency + basePrice.toFixed(2);
+        }
+      }
+      
+      // Reset to base product stock
+      const baseInStock = product.stock_status !== 'out_of_stock';
+      if (stockDisplay) {
+        stockDisplay.className = 'product-stock ' + (baseInStock ? 'in-stock' : 'out-of-stock');
+        stockDisplay.innerHTML = baseInStock 
+          ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>' + t.inStock
+          : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>' + t.outOfStock;
+      }
+      
+      if (addToCartBtn) {
+        addToCartBtn.disabled = !baseInStock;
+        addToCartBtn.style.opacity = baseInStock ? '1' : '0.5';
+        addToCartBtn.style.cursor = baseInStock ? 'pointer' : 'not-allowed';
+      }
     }
     
     window.selectedVariant = null;
@@ -5247,6 +5342,23 @@ function addProductToCart() {
   
   const quantity = parseInt(document.getElementById('product-quantity')?.value || 1);
   const selectedVariant = window.selectedVariant;
+  const t = window.productTranslations || {};
+  
+  // Validate stock status
+  var hasVariants = (product.variants && product.variants.length > 0);
+  if (selectedVariant) {
+    if (selectedVariant.stock_status === 'out_of_stock') {
+      alert(t.outOfStock || 'This item is out of stock');
+      return;
+    }
+  } else if (hasVariants) {
+    // Product has variants but no variant is selected (invalid combination)
+    alert(t.outOfStock || 'This combination is unavailable');
+    return;
+  } else if (product.stock_status === 'out_of_stock') {
+    alert(t.outOfStock || 'This item is out of stock');
+    return;
+  }
   
   // Create cart item with variant info if selected
   const cartItem = {
