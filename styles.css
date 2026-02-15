@@ -9068,6 +9068,22 @@ section[data-hero-type] {
 
 
 /* ZAPPY_CHECKOUT_FIX */
+/* Fix for inputs without explicit type attribute (browser defaults to text) */
+.checkout-accordion-panel input:not([type]) {
+  width: 100% !important;
+  padding: 14px 16px !important;
+  border: 1px solid #f0f0f0 !important;
+  border-radius: 8px !important;
+  background: #fff !important;
+  font-size: 15px !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04) !important;
+  box-sizing: border-box !important;
+}
+.checkout-accordion-panel input:not([type]):focus {
+  outline: none !important;
+  border-color: var(--primary, #3F37C9) !important;
+  box-shadow: 0 0 0 3px rgba(var(--primary-rgb, 0,0,0), 0.08) !important;
+}
 /* Checkbox sizing fix - prevents general input styles from affecting checkboxes */
 .checkout-step input[type="checkbox"],
 .checkout-accordion-panel input[type="checkbox"],
@@ -9099,7 +9115,6 @@ section[data-hero-type] {
 }
 /* Checkout login prompt */
 .checkout-login-prompt {
-  display: flex !important;
   align-items: center !important;
   gap: 8px !important;
   margin-bottom: 16px !important;
@@ -9120,8 +9135,8 @@ section[data-hero-type] {
   text-decoration: underline !important;
 }
 /* Checkout logged-in user display */
+/* NOTE: Do NOT set display here - inline JS controls visibility via display:none/flex */
 .checkout-logged-in {
-  display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
   gap: 12px !important;

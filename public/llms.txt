@@ -1,6 +1,4 @@
-# Star Shoes — Generative Engine Optimization Map
-
-> A קמעונאות business.
+# Business — Generative Engine Optimization Map
 
 ---
 
@@ -68,15 +66,7 @@ Information about WCAG compliance and accessibility features.
 
 # Business Context (for LLM understanding)
 
-## About Star Shoes
-Star Shoes is a business in the קמעונאות industry.
-
-## Target Audience
-כל הגילאים שצריכים נעליים
-
-## Industry
-קמעונאות
-
+## About Business
 ---
 
 # Additional Resources
