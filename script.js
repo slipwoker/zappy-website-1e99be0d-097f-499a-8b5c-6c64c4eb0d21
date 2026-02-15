@@ -5731,3 +5731,230 @@ async function loadRelatedProducts(currentProduct, t) {
     }
   } catch(e) {}
 })();
+
+
+/* ZAPPY_VARIANT_SELECTION_FIX */
+(function(){
+  try {
+    if (window.__zappyVariantFixInit) return;
+    window.__zappyVariantFixInit = true;
+
+    function fixVariantSelection() {
+      var product = window.currentProduct;
+      var t = window.productTranslations || {};
+      if (!product || !product.variants || product.variants.length === 0) return;
+      var variants = product.variants;
+      var variantButtons = document.querySelectorAll('.variant-option');
+      if (variantButtons.length === 0) return;
+      if (window._zappyVariantFixed) return;
+      window._zappyVariantFixed = true;
+
+      var selectedAttributes = {};
+
+      function getAttributeKeys() {
+        var keys = [], seen = {};
+        variantButtons.forEach(function(btn) {
+          var k = btn.getAttribute('data-attr');
+          if (k && !seen[k]) { seen[k] = true; keys.push(k); }
+        });
+        return keys;
+      }
+
+      function variantExistsWith(attrKey, attrValue, otherSelections) {
+        return variants.some(function(v) {
+          if (!v.attributes || v.is_active === false) return false;
+          if (v.attributes.hasOwnProperty(attrKey) && v.attributes[attrKey] !== attrValue) return false;
+          for (var k in otherSelections) {
+            if (k === attrKey) continue;
+            if (v.attributes.hasOwnProperty(k) && v.attributes[k] !== otherSelections[k]) return false;
+          }
+          return true;
+        });
+      }
+
+      function isVariantOutOfStock(attrKey, attrValue, otherSelections) {
+        var matched = variants.filter(function(v) {
+          if (!v.attributes || v.is_active === false) return false;
+          if (v.attributes.hasOwnProperty(attrKey) && v.attributes[attrKey] !== attrValue) return false;
+          for (var k in otherSelections) {
+            if (k === attrKey) continue;
+            if (v.attributes.hasOwnProperty(k) && v.attributes[k] !== otherSelections[k]) return false;
+          }
+          return true;
+        });
+        return matched.length > 0 && matched.every(function(v) { return v.stock_status === 'out_of_stock'; });
+      }
+
+      function updateAvailableOptions() {
+        var attrKeys = getAttributeKeys();
+        attrKeys.forEach(function(groupKey) {
+          var otherSelections = {};
+          for (var k in selectedAttributes) {
+            if (k !== groupKey) otherSelections[k] = selectedAttributes[k];
+          }
+          var groupBtns = document.querySelectorAll('.variant-option[data-attr="' + groupKey + '"]');
+          groupBtns.forEach(function(btn) {
+            var val = btn.getAttribute('data-value');
+            var exists = variantExistsWith(groupKey, val, otherSelections);
+            var oos = exists && isVariantOutOfStock(groupKey, val, otherSelections);
+            if (exists) { btn.classList.remove('disabled'); } else { btn.classList.add('disabled'); btn.classList.remove('selected', 'out-of-stock'); }
+            if (oos) { btn.classList.add('out-of-stock'); } else { btn.classList.remove('out-of-stock'); }
+          });
+        });
+      }
+
+      function findMatchingVariant(attrs) {
+        var keys = Object.keys(attrs);
+        if (keys.length === 0) return null;
+        return variants.find(function(v) {
+          if (!v.attributes || v.is_active === false) return false;
+          return keys.every(function(k) {
+            return !v.attributes.hasOwnProperty(k) || v.attributes[k] === attrs[k];
+          });
+        }) || null;
+      }
+
+      // Sort variant options within each group (numeric values small→big)
+      var variantGroups = document.querySelectorAll('.variant-options');
+      variantGroups.forEach(function(container) {
+        var btns = Array.from(container.querySelectorAll('.variant-option'));
+        if (btns.length < 2) return;
+        btns.sort(function(a, b) {
+          var va = a.getAttribute('data-value') || '';
+          var vb = b.getAttribute('data-value') || '';
+          var na = parseFloat(va), nb = parseFloat(vb);
+          if (!isNaN(na) && !isNaN(nb)) return na - nb;
+          return va.localeCompare(vb);
+        });
+        btns.forEach(function(btn) { container.appendChild(btn); });
+      });
+
+      // Clone buttons to remove old event listeners
+      variantButtons.forEach(function(btn) {
+        var newBtn = btn.cloneNode(true);
+        btn.parentNode.replaceChild(newBtn, btn);
+      });
+      variantButtons = document.querySelectorAll('.variant-option');
+
+      variantButtons.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var variantId = this.getAttribute('data-variant-id');
+          var attrKey = this.getAttribute('data-attr');
+          var attrValue = this.getAttribute('data-value');
+
+          if (variantId) {
+            variantButtons.forEach(function(b) { b.classList.remove('selected'); });
+            this.classList.add('selected');
+            var mv = variants.find(function(v) { return v.id === variantId; });
+            if (typeof updateVariantUI === 'function') updateVariantUI(mv || null, product, t, {});
+            return;
+          }
+
+          var groupBtns = document.querySelectorAll('.variant-option[data-attr="' + attrKey + '"]');
+          groupBtns.forEach(function(b) { b.classList.remove('selected'); });
+          this.classList.add('selected');
+          selectedAttributes[attrKey] = attrValue;
+
+          var valSpan = document.querySelector('.variant-group[data-group="' + attrKey + '"] .variant-selected-value');
+          if (valSpan) valSpan.textContent = attrValue;
+
+          updateAvailableOptions();
+
+          var attrKeys = getAttributeKeys();
+          var anyAutoSelected = false;
+          attrKeys.forEach(function(otherKey) {
+            if (otherKey === attrKey) return;
+            var cur = document.querySelector('.variant-option[data-attr="' + otherKey + '"].selected');
+            if (!cur || cur.classList.contains('disabled')) {
+              var first = document.querySelector('.variant-option[data-attr="' + otherKey + '"]:not(.disabled)');
+              if (first) {
+                document.querySelectorAll('.variant-option[data-attr="' + otherKey + '"]').forEach(function(b) { b.classList.remove('selected'); });
+                first.classList.add('selected');
+                selectedAttributes[otherKey] = first.getAttribute('data-value');
+                var sp = document.querySelector('.variant-group[data-group="' + otherKey + '"] .variant-selected-value');
+                if (sp) sp.textContent = first.getAttribute('data-value');
+                anyAutoSelected = true;
+              } else {
+                delete selectedAttributes[otherKey];
+              }
+            }
+          });
+
+          if (anyAutoSelected) {
+            updateAvailableOptions();
+            this.classList.add('selected');
+            selectedAttributes[attrKey] = attrValue;
+            if (valSpan) valSpan.textContent = attrValue;
+          }
+
+          var matched = findMatchingVariant(selectedAttributes);
+          if (typeof updateVariantUI === 'function') updateVariantUI(matched, product, t, selectedAttributes);
+        });
+      });
+
+      // Clear all states and re-auto-select
+      variantButtons.forEach(function(b) { b.classList.remove('selected', 'disabled', 'out-of-stock'); });
+      selectedAttributes = {};
+
+      var groups = document.querySelectorAll('.variant-group');
+      var arr = Array.from(groups);
+      if (arr.length > 0) {
+        var fb = arr[0].querySelector('.variant-option');
+        if (fb && !fb.getAttribute('data-variant-id')) fb.click();
+        for (var gi = 1; gi < arr.length; gi++) {
+          var ab = arr[gi].querySelector('.variant-option:not(.disabled)');
+          if (ab && !ab.getAttribute('data-variant-id')) ab.click();
+        }
+      }
+    }
+
+    if (document.readyState === 'complete') {
+      setTimeout(fixVariantSelection, 100);
+    } else {
+      window.addEventListener('load', function() { setTimeout(fixVariantSelection, 100); });
+    }
+    setTimeout(fixVariantSelection, 2000);
+  } catch(e) {}
+})();
+
+/* CART COLOR SWATCH PATCH */
+(function(){
+  function patchCartColorSwatches(container) {
+    if (!container) return;
+    var attrs = container.querySelectorAll('.cart-item-attr');
+    attrs.forEach(function(span) {
+      if (span.querySelector('.cart-item-color-swatch')) return;
+      var labelEl = span.querySelector('.cart-item-attr-label');
+      if (!labelEl) return;
+      var labelText = (labelEl.textContent || '').replace(/[:\s]+$/, '').toLowerCase();
+      var colorLabels = ['color','colour','צבע','لون','farbe','couleur','colore'];
+      if (colorLabels.indexOf(labelText) === -1) return;
+      var fullText = span.textContent || '';
+      var colorValue = fullText.replace(labelEl.textContent || '', '').trim();
+      if (!colorValue) return;
+      var bgColor = /^#[0-9A-Fa-f]{3,6}$/.test(colorValue) ? colorValue : colorValue.toLowerCase();
+      var swatch = document.createElement('span');
+      swatch.className = 'cart-item-color-swatch';
+      swatch.title = colorValue;
+      swatch.style.cssText = 'display:inline-block;width:14px;height:14px;border-radius:50%;background-color:' + bgColor + ';border:1px solid rgba(0,0,0,0.15);vertical-align:middle;margin-inline-start:4px;';
+      span.textContent = '';
+      span.appendChild(labelEl.cloneNode(true));
+      span.appendChild(document.createTextNode(' '));
+      span.appendChild(swatch);
+    });
+  }
+  function observeCartDrawer() {
+    var drawer = document.getElementById('cart-drawer') || document.getElementById('cart-drawer-items');
+    if (!drawer) return;
+    patchCartColorSwatches(drawer);
+    var observer = new MutationObserver(function() { patchCartColorSwatches(drawer); });
+    observer.observe(drawer, { childList: true, subtree: true });
+  }
+  if (document.readyState === 'complete') { setTimeout(observeCartDrawer, 200); }
+  else { window.addEventListener('load', function() { setTimeout(observeCartDrawer, 200); }); }
+  var bodyObs = new MutationObserver(function() {
+    if (document.getElementById('cart-drawer')) { observeCartDrawer(); bodyObs.disconnect(); }
+  });
+  if (document.body) bodyObs.observe(document.body, { childList: true, subtree: true });
+  else document.addEventListener('DOMContentLoaded', function() { bodyObs.observe(document.body, { childList: true, subtree: true }); });
+})();
