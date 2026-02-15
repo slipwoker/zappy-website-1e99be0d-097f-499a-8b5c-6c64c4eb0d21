@@ -1,75 +1,85 @@
-# Business — Generative Engine Optimization Map
+# Star Shoes — Generative Engine Optimization Map
+
+> A קמעונאות business.
 
 ---
 
 ## Pages
 
 ### בית
-https://example.com
+https://star-shoes.zappy5.app
 
 ### אודות
-https://example.com/about
+https://star-shoes.zappy5.app/about
 
 ### לוקבוק
-https://example.com/lookbook
+https://star-shoes.zappy5.app/lookbook
 
 ### צור קשר
-https://example.com/contact
+https://star-shoes.zappy5.app/contact
 
 ### Products
-https://example.com/products
+https://star-shoes.zappy5.app/products
 המוצרים שלנו - Star Shoes
 
 ### Cart
-https://example.com/cart
+https://star-shoes.zappy5.app/cart
 עגלת הקניות שלך
 
 ### Checkout
-https://example.com/checkout
+https://star-shoes.zappy5.app/checkout
 תשלום
 
 ### Login
-https://example.com/login
+https://star-shoes.zappy5.app/login
 התחברות לקוחות
 
 ### Account
-https://example.com/account
+https://star-shoes.zappy5.app/account
 החשבון שלי
 
 ### Order Success
-https://example.com/order-success
+https://star-shoes.zappy5.app/order-success
 תודה על ההזמנה
 
 ### Product Detail
-https://example.com/product/:slug
+https://star-shoes.zappy5.app/product/:slug
 פרטי המוצר - Star Shoes
 
 ### Category
-https://example.com/category/:slug
+https://star-shoes.zappy5.app/category/:slug
 מוצרים - Star Shoes
 
 ## Legal & Policy
 
 ### Privacy Policy
-https://example.com/privacy
+https://star-shoes.zappy5.app/privacy
 Information about how user data is collected, stored, and protected.
 
 ### Terms & Conditions
-https://example.com/terms
+https://star-shoes.zappy5.app/terms
 Legal terms describing service usage, rights, and policies.
 
 ### Accessibility Statement
-https://example.com/accessibility
+https://star-shoes.zappy5.app/accessibility
 Information about WCAG compliance and accessibility features.
 
 ---
 
 # Business Context (for LLM understanding)
 
-## About Business
+## About Star Shoes
+Star Shoes is a business in the קמעונאות industry.
+
+## Target Audience
+כל הגילאים שצריכים נעליים
+
+## Industry
+קמעונאות
+
 ---
 
 # Additional Resources
 
-- **Sitemap**: https://example.com/sitemap.xml
-- **Robots.txt**: https://example.com/robots.txt
+- **Sitemap**: https://star-shoes.zappy5.app/sitemap.xml
+- **Robots.txt**: https://star-shoes.zappy5.app/robots.txt
