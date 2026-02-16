@@ -5739,201 +5739,105 @@ async function loadRelatedProducts(currentProduct, t) {
     if (window.__zappyVariantFixInit) return;
     window.__zappyVariantFixInit = true;
 
+    // Inject CSS for disabled/OOS variant styling
+    if (!document.getElementById('zappy-variant-fix-css')) {
+      var s = document.createElement('style');
+      s.id = 'zappy-variant-fix-css';
+      s.textContent = '.variant-option.disabled{opacity:0.4!important;cursor:pointer!important;text-decoration:line-through!important}.variant-option.disabled::after,.variant-option.disabled::before{content:none!important}.variant-option.color-swatch.disabled{text-decoration:none!important}.variant-option.out-of-stock{opacity:0.4!important;cursor:pointer!important;text-decoration:line-through!important}.variant-option.out-of-stock::after,.variant-option.out-of-stock::before{content:none!important}.variant-option.color-swatch.out-of-stock{text-decoration:none!important}';
+      document.head.appendChild(s);
+    }
+
+    var selectedAttributes = {};
+    var _vProduct = null;
+    var _vT = {};
+    var _initOvr = false;
+    function _oivs(){if(_initOvr)return;if(typeof window.initVariantSelection==='function')_initOvr=true;window.initVariantSelection=function(p,t){if(p&&p.variants&&p.variants.length>0){_vProduct=p;var tr=t||{};if(!tr.pleaseSelect){var rtl=document.documentElement.getAttribute('dir')==='rtl'||document.body.getAttribute('dir')==='rtl';tr.pleaseSelect=rtl?'נא לבחור':'Please select'}_vT=tr}}}
+    _oivs();
+
+    function _gv() { return _vProduct ? (_vProduct.variants||[]).filter(function(v){return v.is_active!==false}) : []; }
+    function _gak() { var k=[],s={}; document.querySelectorAll('.variant-option').forEach(function(b){var a=b.getAttribute('data-attr');if(a&&!s[a]){s[a]=true;k.push(a)}}); return k; }
+    function _ce(sel) { return _gv().some(function(v){if(!v.attributes)return false;for(var k in sel){if(!sel.hasOwnProperty(k))continue;if(v.attributes[k]!==sel[k])return false}return true}); }
+    function _fm(sel) { return _gv().filter(function(v){if(!v.attributes)return false;for(var k in sel){if(!sel.hasOwnProperty(k))continue;if(v.attributes[k]!==sel[k])return false}return true}); }
+    function _oos(v) { return v.stock_status==='out_of_stock'||(v.stock_quantity!=null&&v.stock_quantity<=0); }
+
+    function _uv() {
+      if(_gv().length===0)return;
+      document.querySelectorAll('.variant-option').forEach(function(btn){
+        var ak=btn.getAttribute('data-attr'),av=btn.getAttribute('data-value');
+        var t={};for(var k in selectedAttributes){if(selectedAttributes.hasOwnProperty(k)&&k!==ak)t[k]=selectedAttributes[k]}t[ak]=av;
+        var m=_fm(t);btn.classList.remove('disabled','out-of-stock');btn.disabled=false;
+        if(m.length===0){btn.classList.add('disabled')}else if(m.every(function(v){return _oos(v)})){btn.classList.add('disabled');btn.classList.add('out-of-stock')}
+      });
+    }
+
+    function _upd() {
+      var t=_vT,product=_vProduct;if(!product)return;
+      var keys=_gak(),allSel=keys.every(function(k){return selectedAttributes.hasOwnProperty(k)});
+      var sd=document.getElementById('product-stock-display'),ab=document.getElementById('add-to-cart-btn');
+      keys.forEach(function(k){var sp=document.querySelector('.variant-group[data-group="'+k+'"] .variant-selected-value');if(sp)sp.textContent=selectedAttributes[k]||''});
+      if(allSel){
+        var m=_fm(selectedAttributes);if(m.length>0){var v=m[0];window.selectedVariant=v;
+          if(_oos(v)){if(sd){sd.className='product-stock out-of-stock';sd.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>'+(t.outOfStock||'Out of Stock')}if(ab){ab.disabled=true;ab.style.opacity='0.5';ab.style.cursor='not-allowed'}}
+          else{if(sd){sd.className='product-stock in-stock';sd.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>'+(t.inStock||'In Stock')}if(ab){ab.disabled=false;ab.style.opacity='';ab.style.cursor=''}}
+          if(v.price!=null){var pd=document.getElementById('product-price-display');if(pd){var c=product.currency||String.fromCharCode(8362),op=product.compare_at_price||product.original_price,h=c+parseFloat(v.price).toFixed(2);if(op&&parseFloat(op)>parseFloat(v.price))h+=' <span class="original-price">'+c+parseFloat(op).toFixed(2)+'</span>';pd.innerHTML=h}}
+        }
+      } else {
+        window.selectedVariant=null;
+        if(sd){sd.className='product-stock in-stock';sd.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>'+(t.inStock||'In Stock')}
+        if(ab){ab.disabled=false;ab.style.opacity='';ab.style.cursor=''}
+      }
+    }
+
+    // Document-level capture handler
+    document.addEventListener('click',function(e){
+      var btn=e.target.closest?e.target.closest('.variant-option'):null;if(!btn)return;
+      if(!_vProduct||_gv().length===0)return;
+      e.preventDefault();e.stopImmediatePropagation();
+      var ak=btn.getAttribute('data-attr'),av=btn.getAttribute('data-value');if(!ak||!av)return;
+      if(selectedAttributes[ak]===av)return;
+      document.querySelectorAll('.variant-option[data-attr="'+ak+'"]').forEach(function(b){b.classList.remove('selected')});selectedAttributes[ak]=av;btn.classList.add('selected');
+      if(Object.keys(selectedAttributes).length>1){if(!_ce(selectedAttributes)){document.querySelectorAll('.variant-option').forEach(function(b){b.classList.remove('selected')});selectedAttributes={};selectedAttributes[ak]=av;btn.classList.add('selected')}}
+      _uv();_upd();
+    },true);
+
+    // Document-level add-to-cart interceptor (capture phase) to prevent original alert()
+    document.addEventListener('click',function(e){
+      var ab=e.target.closest?e.target.closest('.add-to-cart-btn,.add-to-cart,#add-to-cart-btn,[onclick*="addProductToCart"]'):null;if(!ab)return;
+      if(!_vProduct||_gv().length===0)return;
+      var t=_vT||{},keys=_gak();
+      for(var i=0;i<keys.length;i++){if(!selectedAttributes.hasOwnProperty(keys[i])){
+        e.preventDefault();e.stopImmediatePropagation();
+        var grp=document.querySelector('.variant-group[data-group="'+keys[i]+'"]'),lbl=grp?grp.querySelector('.variant-group-label'):null,name=lbl?lbl.textContent.replace(/[:\s]+$/,'').trim():keys[i];
+        var sd=document.getElementById('product-stock-display');if(sd){sd.className='product-stock out-of-stock';sd.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>'+(t.pleaseSelect||'Please select')+' '+name}
+        if(grp){grp.style.transition='background 0.3s';grp.style.background='rgba(255,0,0,0.05)';grp.style.borderRadius='8px';setTimeout(function(){grp.style.background=''},2000)}return}}
+      var m=_fm(selectedAttributes);if(m.length>0&&m.every(function(v){return _oos(v)})){e.preventDefault();e.stopImmediatePropagation();return}
+    },true);
+
     function fixVariantSelection() {
-      var product = window.currentProduct;
-      var t = window.productTranslations || {};
-      if (!product || !product.variants || product.variants.length === 0) return;
-      var variants = product.variants;
-      var variantButtons = document.querySelectorAll('.variant-option');
-      if (variantButtons.length === 0) return;
-      if (window._zappyVariantFixed) return;
-      window._zappyVariantFixed = true;
-
-      // CRITICAL: Remove the dynamically injected style tag that hides disabled variants
-      // The original initVariantSelection injects ".variant-option.disabled { display: none !important; }"
-      var oldStyleTag = document.getElementById('zappy-variant-state-css');
-      if (oldStyleTag) oldStyleTag.remove();
-      // Also search for any style tags containing the old display:none rule
-      document.querySelectorAll('style').forEach(function(s) {
-        if (s.textContent.indexOf('.variant-option.disabled') !== -1 && s.textContent.indexOf('display: none') !== -1) {
-          s.remove();
-        }
-      });
-      // Inject the correct CSS: show disabled with strikethrough, not display:none
-      if (!document.getElementById('zappy-variant-fix-css')) {
-        var fixStyle = document.createElement('style');
-        fixStyle.id = 'zappy-variant-fix-css';
-        fixStyle.textContent = '.variant-option.disabled { display: flex !important; opacity: 0.3 !important; position: relative !important; cursor: pointer !important; } .variant-option.disabled:not(.color-swatch)::after { content: ""; position: absolute; top: 50%; left: 4px; right: 4px; height: 1px; background: currentColor; transform: rotate(-12deg); pointer-events: none; } .variant-option.color-swatch.disabled::before { content: ""; position: absolute; top: 50%; left: 10%; right: 10%; height: 1.5px; background: rgba(0,0,0,0.6); transform: rotate(-45deg); pointer-events: none; z-index: 1; }';
-        document.head.appendChild(fixStyle);
-      }
-      // Remove any inline display:none on variant options set by the old code
-      variantButtons.forEach(function(btn) { btn.style.display = ''; });
-
-      var selectedAttributes = {};
-
-      function getAttributeKeys() {
-        var keys = [], seen = {};
-        variantButtons.forEach(function(btn) {
-          var k = btn.getAttribute('data-attr');
-          if (k && !seen[k]) { seen[k] = true; keys.push(k); }
-        });
-        return keys;
-      }
-
-      function variantExistsWith(attrKey, attrValue, otherSelections) {
-        return variants.some(function(v) {
-          if (!v.attributes || v.is_active === false) return false;
-          if (v.attributes.hasOwnProperty(attrKey) && v.attributes[attrKey] !== attrValue) return false;
-          for (var k in otherSelections) {
-            if (k === attrKey) continue;
-            if (v.attributes.hasOwnProperty(k) && v.attributes[k] !== otherSelections[k]) return false;
-          }
-          return true;
-        });
-      }
-
-      function isVariantOutOfStock(attrKey, attrValue, otherSelections) {
-        var matched = variants.filter(function(v) {
-          if (!v.attributes || v.is_active === false) return false;
-          if (v.attributes.hasOwnProperty(attrKey) && v.attributes[attrKey] !== attrValue) return false;
-          for (var k in otherSelections) {
-            if (k === attrKey) continue;
-            if (v.attributes.hasOwnProperty(k) && v.attributes[k] !== otherSelections[k]) return false;
-          }
-          return true;
-        });
-        return matched.length > 0 && matched.every(function(v) { return v.stock_status === 'out_of_stock'; });
-      }
-
-      function updateAvailableOptions() {
-        var attrKeys = getAttributeKeys();
-        attrKeys.forEach(function(groupKey) {
-          var otherSelections = {};
-          for (var k in selectedAttributes) {
-            if (k !== groupKey) otherSelections[k] = selectedAttributes[k];
-          }
-          var groupBtns = document.querySelectorAll('.variant-option[data-attr="' + groupKey + '"]');
-          groupBtns.forEach(function(btn) {
-            var val = btn.getAttribute('data-value');
-            var exists = variantExistsWith(groupKey, val, otherSelections);
-            var oos = exists && isVariantOutOfStock(groupKey, val, otherSelections);
-            if (exists) { btn.classList.remove('disabled'); } else { btn.classList.add('disabled'); btn.classList.remove('selected', 'out-of-stock'); }
-            if (oos) { btn.classList.add('out-of-stock'); } else { btn.classList.remove('out-of-stock'); }
-          });
-        });
-      }
-
-      function findMatchingVariant(attrs) {
-        var keys = Object.keys(attrs);
-        if (keys.length === 0) return null;
-        return variants.find(function(v) {
-          if (!v.attributes || v.is_active === false) return false;
-          return keys.every(function(k) {
-            return !v.attributes.hasOwnProperty(k) || v.attributes[k] === attrs[k];
-          });
-        }) || null;
-      }
-
-      // Sort variant options within each group (numeric values small→big)
-      var variantGroups = document.querySelectorAll('.variant-options');
-      variantGroups.forEach(function(container) {
-        var btns = Array.from(container.querySelectorAll('.variant-option'));
-        if (btns.length < 2) return;
-        btns.sort(function(a, b) {
-          var va = a.getAttribute('data-value') || '';
-          var vb = b.getAttribute('data-value') || '';
-          var na = parseFloat(va), nb = parseFloat(vb);
-          if (!isNaN(na) && !isNaN(nb)) return na - nb;
-          return va.localeCompare(vb);
-        });
-        btns.forEach(function(btn) { container.appendChild(btn); });
-      });
-
-      // Clone buttons to remove old event listeners
-      variantButtons.forEach(function(btn) {
-        var newBtn = btn.cloneNode(true);
-        btn.parentNode.replaceChild(newBtn, btn);
-      });
-      variantButtons = document.querySelectorAll('.variant-option');
-
-      variantButtons.forEach(function(btn) {
-        btn.addEventListener('click', function() {
-          var variantId = this.getAttribute('data-variant-id');
-          var attrKey = this.getAttribute('data-attr');
-          var attrValue = this.getAttribute('data-value');
-
-          if (variantId) {
-            variantButtons.forEach(function(b) { b.classList.remove('selected'); });
-            this.classList.add('selected');
-            var mv = variants.find(function(v) { return v.id === variantId; });
-            if (typeof updateVariantUI === 'function') updateVariantUI(mv || null, product, t, {});
-            return;
-          }
-
-          var groupBtns = document.querySelectorAll('.variant-option[data-attr="' + attrKey + '"]');
-          groupBtns.forEach(function(b) { b.classList.remove('selected'); });
-          this.classList.add('selected');
-          selectedAttributes[attrKey] = attrValue;
-
-          var valSpan = document.querySelector('.variant-group[data-group="' + attrKey + '"] .variant-selected-value');
-          if (valSpan) valSpan.textContent = attrValue;
-
-          updateAvailableOptions();
-
-          var attrKeys = getAttributeKeys();
-          var anyAutoSelected = false;
-          attrKeys.forEach(function(otherKey) {
-            if (otherKey === attrKey) return;
-            var cur = document.querySelector('.variant-option[data-attr="' + otherKey + '"].selected');
-            if (!cur || cur.classList.contains('disabled')) {
-              var first = document.querySelector('.variant-option[data-attr="' + otherKey + '"]:not(.disabled)');
-              if (first) {
-                document.querySelectorAll('.variant-option[data-attr="' + otherKey + '"]').forEach(function(b) { b.classList.remove('selected'); });
-                first.classList.add('selected');
-                selectedAttributes[otherKey] = first.getAttribute('data-value');
-                var sp = document.querySelector('.variant-group[data-group="' + otherKey + '"] .variant-selected-value');
-                if (sp) sp.textContent = first.getAttribute('data-value');
-                anyAutoSelected = true;
-              } else {
-                delete selectedAttributes[otherKey];
-              }
-            }
-          });
-
-          if (anyAutoSelected) {
-            updateAvailableOptions();
-            this.classList.add('selected');
-            selectedAttributes[attrKey] = attrValue;
-            if (valSpan) valSpan.textContent = attrValue;
-          }
-
-          var matched = findMatchingVariant(selectedAttributes);
-          if (typeof updateVariantUI === 'function') updateVariantUI(matched, product, t, selectedAttributes);
-        });
-      });
-
-      // Clear all states and re-auto-select
-      variantButtons.forEach(function(b) { b.classList.remove('selected', 'disabled', 'out-of-stock'); });
-      selectedAttributes = {};
-
-      var groups = document.querySelectorAll('.variant-group');
-      var arr = Array.from(groups);
-      if (arr.length > 0) {
-        var fb = arr[0].querySelector('.variant-option');
-        if (fb && !fb.getAttribute('data-variant-id')) fb.click();
-        for (var gi = 1; gi < arr.length; gi++) {
-          var ab = arr[gi].querySelector('.variant-option:not(.disabled)');
-          if (ab && !ab.getAttribute('data-variant-id')) ab.click();
-        }
-      }
+      _oivs();
+      var product=_vProduct||window.currentProduct,t=_vT||window.productTranslations||{};
+      if(!product||!product.variants||product.variants.length===0)return;
+      if(document.querySelectorAll('.variant-option').length===0)return;
+      if(window._zappyVariantFixed)return;window._zappyVariantFixed=true;
+      _vProduct=product;if(!t.pleaseSelect){var isRTL=document.documentElement.getAttribute('dir')==='rtl'||document.body.getAttribute('dir')==='rtl';t.pleaseSelect=isRTL?'נא לבחור':'Please select'}_vT=t;
+      var old=document.getElementById('zappy-variant-state-css');if(old)old.remove();
+      document.querySelectorAll('.variant-option').forEach(function(b){b.style.display='';b.disabled=false});
+      document.querySelectorAll('.variant-options').forEach(function(c){var b=Array.from(c.querySelectorAll('.variant-option'));if(b.length<2)return;b.sort(function(a,b){var va=a.getAttribute('data-value')||'',vb=b.getAttribute('data-value')||'';var na=parseFloat(va),nb=parseFloat(vb);if(!isNaN(na)&&!isNaN(nb))return na-nb;return va.localeCompare(vb)});b.forEach(function(x){c.appendChild(x)})});
+      var origATC=window.addProductToCart;
+      window.addProductToCart=function(){
+        var keys=_gak();for(var i=0;i<keys.length;i++){if(!selectedAttributes.hasOwnProperty(keys[i])){
+          var grp=document.querySelector('.variant-group[data-group="'+keys[i]+'"]'),lbl=grp?grp.querySelector('.variant-group-label'):null,name=lbl?lbl.textContent.replace(/[:\s]+$/,'').trim():keys[i];
+          var sd=document.getElementById('product-stock-display');if(sd){sd.className='product-stock out-of-stock';sd.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>'+(t.pleaseSelect||'Please select')+' '+name}
+          if(grp){grp.style.transition='background 0.3s';grp.style.background='rgba(255,0,0,0.05)';grp.style.borderRadius='8px';setTimeout(function(){grp.style.background=''},2000)}return}}
+        var m=_fm(selectedAttributes);if(m.length>0&&m.every(function(v){return _oos(v)}))return;
+        if(origATC)origATC.apply(this,arguments);
+      };
+      selectedAttributes={};document.querySelectorAll('.variant-option').forEach(function(b){b.classList.remove('selected','disabled','out-of-stock');b.disabled=false});
+      _uv();_upd();
     }
 
-    if (document.readyState === 'complete') {
-      setTimeout(fixVariantSelection, 100);
-    } else {
-      window.addEventListener('load', function() { setTimeout(fixVariantSelection, 100); });
-    }
-    setTimeout(fixVariantSelection, 2000);
+    if(document.readyState==='complete'){setTimeout(fixVariantSelection,100)}else{window.addEventListener('load',function(){setTimeout(fixVariantSelection,100)})}
+    setTimeout(fixVariantSelection,2000);
   } catch(e) {}
 })();
 

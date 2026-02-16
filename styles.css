@@ -9068,8 +9068,12 @@ section[data-hero-type] {
 
 
 /* ZAPPY_CHECKOUT_FIX */
-/* Fix for inputs without explicit type attribute (browser defaults to text) */
-.checkout-accordion-panel input:not([type]) {
+/* Checkout form input styling (covers both V1 and V2 sites) */
+.checkout-accordion-panel input[type="text"],
+.checkout-accordion-panel input:not([type]),
+.checkout-accordion-panel input[type="email"],
+.checkout-accordion-panel input[type="tel"],
+.checkout-accordion-panel select {
   width: 100% !important;
   padding: 14px 16px !important;
   border: 1px solid #f0f0f0 !important;
@@ -9078,12 +9082,26 @@ section[data-hero-type] {
   font-size: 15px !important;
   box-shadow: 0 1px 3px rgba(0,0,0,0.04) !important;
   box-sizing: border-box !important;
+  color: var(--text-dark, var(--text, #1a1a1a)) !important;
 }
-.checkout-accordion-panel input:not([type]):focus {
+.checkout-accordion-panel input[type="text"]:focus,
+.checkout-accordion-panel input:not([type]):focus,
+.checkout-accordion-panel input[type="email"]:focus,
+.checkout-accordion-panel input[type="tel"]:focus,
+.checkout-accordion-panel select:focus {
   outline: none !important;
   border-color: var(--primary, #3F37C9) !important;
   box-shadow: 0 0 0 3px rgba(var(--primary-rgb, 0,0,0), 0.08) !important;
 }
+.checkout-accordion-panel input::placeholder {
+  color: rgba(0,0,0,0.35) !important;
+}
+[dir="rtl"] .checkout-accordion-panel input,
+[dir="rtl"] .checkout-accordion-panel input::placeholder {
+  text-align: right !important;
+}
+.checkout-form-fields { display: flex !important; flex-direction: column !important; gap: 16px !important; }
+.checkout-form-fields .input-wrapper { margin-bottom: 0 !important; }
 /* Checkbox sizing fix - prevents general input styles from affecting checkboxes */
 .checkout-step input[type="checkbox"],
 .checkout-accordion-panel input[type="checkbox"],
@@ -9167,4 +9185,82 @@ section[data-hero-type] {
 .checkout-logout-btn:hover {
   border-color: rgba(0,0,0,0.3) !important;
   color: rgba(0,0,0,0.7) !important;
+}
+/* Variant options - no blocked cursor on disabled/out-of-stock */
+.variant-option.disabled,
+.variant-option.out-of-stock {
+  cursor: pointer !important;
+}
+/* Product add-to-cart row - V2-aligned layout */
+.product-add-row {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  margin-top: 16px !important;
+  position: sticky !important;
+  bottom: 20px !important;
+  z-index: 100 !important;
+}
+.product-add-row .product-quantity > label { display: none !important; }
+.product-add-row .product-quantity {
+  display: inline-flex !important;
+  width: max-content !important;
+}
+.product-add-row .quantity-selector {
+  display: flex !important;
+  align-items: center !important;
+  border: 1px solid var(--border-color, #e5e7eb) !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+  height: 48px !important;
+}
+.product-add-row .quantity-selector button {
+  width: 48px !important;
+  height: 48px !important;
+  border: none !important;
+  background: rgba(0,0,0,0.03) !important;
+  font-size: 1.25rem !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+.product-add-row .quantity-selector button:hover {
+  background: rgba(0,0,0,0.07) !important;
+}
+.product-add-row .quantity-selector input {
+  width: 50px !important;
+  height: 48px !important;
+  border: none !important;
+  text-align: center !important;
+  font-size: 1rem !important;
+  background: transparent !important;
+  -moz-appearance: textfield !important;
+}
+.product-add-row .quantity-selector input::-webkit-inner-spin-button,
+.product-add-row .quantity-selector input::-webkit-outer-spin-button {
+  -webkit-appearance: none !important;
+  margin: 0 !important;
+}
+.product-add-row .product-actions {
+  flex: 1 !important;
+  display: flex !important;
+}
+.product-add-row .product-actions .add-to-cart,
+.product-add-row .product-actions #add-to-cart-btn {
+  height: 48px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex: 1 !important;
+  border-radius: 8px !important;
+  font-size: 1rem !important;
+  padding: 0 24px !important;
+}
+@media (max-width: 480px) {
+  .product-add-row { flex-direction: column !important; align-items: stretch !important; }
+}
+/* Product details accordion collapse support */
+.product-details-accordion.collapsed .product-details-body {
+  display: none !important;
 }
