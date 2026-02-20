@@ -8869,10 +8869,18 @@ nav.navbar .menu-item-has-children::after,
   grid-template-columns: var(--zappy-grid-cols, repeat(2, minmax(0, 1fr))) !important;
 }
 
-/* ZOOM WRAPPER: Ensure overflow:hidden for crop zoom effect */
+/* ZOOM WRAPPER: Ensure overflow:hidden and position:relative for crop zoom effect */
 /* The wrapper clips the oversized image to create the zoom/crop effect */
+/* position:relative is needed so absolutely positioned images stay within the wrapper */
 [data-zappy-zoom-wrapper="true"] {
   overflow: hidden !important;
+  position: relative !important;
+}
+
+/* Prevent inserted elements from exceeding their container width */
+.zappy-inserted-element {
+  max-width: 100% !important;
+  box-sizing: border-box !important;
 }
 
 @media (max-width: 768px) {
@@ -8881,6 +8889,17 @@ nav.navbar .menu-item-has-children::after,
   [data-zappy-auto-grid="true"] {
     grid-template-columns: 1fr !important;
     gap: 1.5rem !important;
+  }
+  
+  /* Featured/product grids - force single column on mobile */
+  .featured-grid,
+  .product-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  /* Neutralize centering transforms on mobile */
+  [data-zappy-center-transform] {
+    transform: none !important;
   }
   
   /* Media-only grid items - constrain height on mobile */
