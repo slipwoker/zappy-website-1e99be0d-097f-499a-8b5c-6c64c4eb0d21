@@ -238,7 +238,7 @@
     <link rel="icon" type="image/png" sizes="512x512" href="/assets/favicon-512x512.png">
     <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
     <!-- Cookie Consent -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanilla-cookieconsent@3/dist/cookieconsent.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanilla-cookieconsent@3/dist/cookieconsent.css">
     <script src="https://cdn.jsdelivr.net/npm/vanilla-cookieconsent@3/dist/cookieconsent.umd.js"></script>
     <!-- Mickidum Accessibility Toolbar -->
     <script src="https://cdn.jsdelivr.net/gh/mickidum/acc_toolbar/acctoolbar/acctoolbar.min.js"></script>
@@ -277,6 +277,101 @@
 .zappy-announcement-bar .zappy-announcement-message.active {
   opacity: 1;
 }</style>
+
+<style data-zappy-section-v2-css="true">
+/* V2 Regenerated Section CSS */
+.lookbook-page-intro-section {
+  position: relative;
+  background: var(--bg-light);
+  color: var(--text-dark);
+  padding: 120px 16px 100px;
+  overflow: visible;
+}
+
+.lookbook-page-intro-section .lookbook-intro-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.lookbook-page-intro-section .lookbook-intro-text {
+  margin-bottom: 48px;
+}
+
+.lookbook-page-intro-section h1 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--text-dark);
+  margin: 0 0 16px 0;
+  text-align: start;
+  letter-spacing: -0.01em;
+}
+
+.lookbook-page-intro-section h3 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--text-muted);
+  margin: 0;
+  text-align: start;
+  letter-spacing: 0.01em;
+}
+
+.lookbook-page-intro-section .lookbook-intro-image-wrapper {
+  width: 100%;
+  border: 1px solid var(--border-light);
+  border-radius: 0;
+  overflow: hidden;
+  box-shadow: 0 12px 26px rgba(10,17,38,0.10);
+}
+
+.lookbook-page-intro-section .lookbook-intro-image-wrapper img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.lookbook-page-intro-section .lookbook-intro-divider-wrapper {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.lookbook-page-intro-section .lookbook-intro-divider-wrapper svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .lookbook-page-intro-section {
+    padding: 100px 16px 80px;
+  }
+
+  .lookbook-page-intro-section h1 {
+    font-size: 32px;
+  }
+
+  .lookbook-page-intro-section h3 {
+    font-size: 18px;
+  }
+
+  .lookbook-page-intro-section .lookbook-intro-text {
+    margin-bottom: 32px;
+  }
+
+  .lookbook-page-intro-section .lookbook-intro-divider-wrapper {
+    height: 60px;
+  }
+}
+</style>
     <link rel="stylesheet" href="/styles.css">
 
     <style id="zappy-dropdown-submenu-styles">
@@ -338,10 +433,10 @@
       <div class="search-wrapper">
         <input type="text" id="mobile-search-input" placeholder="חיפוש מוצרים..." autocomplete="off">
         <button class="search-submit" id="mobile-search-submit" title="חיפוש">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="M21 21l-4.35-4.35"></path></svg>
         </button>
         <button class="close-search" id="close-mobile-search">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"></path></svg>
         </button>
       </div>
       <div class="search-results" id="mobile-search-results"></div>
@@ -367,7 +462,7 @@
   <div class="nav-container">
     <div class="nav-brand">
       <a href="/" class="logo-link">
-        <img src="/assets/business-logo.webp" alt="Star Shoes" class="logo" />
+        <img src="/assets/business-logo.webp" alt="Star Shoes" class="logo">
       </a>
     </div>
     
@@ -385,13 +480,13 @@
         <!-- Categories will be loaded dynamically -->
       </ul>
     </li>
-  <li><a href="/about">אודות</a></li><li><a href="/lookbook">לוקבוק</a></li><li><a href="/contact">צור קשר</a></li></ul><div class="nav-ecommerce-icons nav-icons-left"><a href="/login" class="login-link nav-login" title="התחברות"><svg class="login-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a><a href="#cart" class="cart-link nav-cart" id="cart-drawer-toggle" title="עגלת קניות"><svg class="cart-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg><span class="cart-count">0</span></a><div class="nav-search-box">
+  <li><a href="/about">אודות</a></li><li><a href="/lookbook">לוקבוק</a></li><li><a href="/contact">צור קשר</a></li></ul><div class="nav-ecommerce-icons nav-icons-left"><a href="/login" class="login-link nav-login" title="התחברות"><svg class="login-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></a><a href="#cart" class="cart-link nav-cart" id="cart-drawer-toggle" title="עגלת קניות"><svg class="cart-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg><span class="cart-count">0</span></a><div class="nav-search-box">
     <input type="text" class="nav-search-input" id="nav-search-input" placeholder="חיפוש מוצרים..." autocomplete="off">
     <button class="nav-search-btn" id="nav-search-btn" title="חיפוש">
-      <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="M21 21l-4.35-4.35"></path></svg>
     </button>
     <div class="nav-search-results" id="nav-search-results"></div>
-  </div></div><div class="nav-ecommerce-icons nav-icons-right"><button class="nav-search-toggle" id="mobile-search-toggle" title="חיפוש"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></button></div>
+  </div></div><div class="nav-ecommerce-icons nav-icons-right"><button class="nav-search-toggle" id="mobile-search-toggle" title="חיפוש"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="M21 21l-4.35-4.35"></path></svg></button></div>
     
     
   </div>
@@ -411,18 +506,16 @@
     <section class="lookbook-page-intro-section" data-layout-spec="לוקבוק-page-intro">
   <div class="lookbook-intro-container">
     <div class="lookbook-intro-text">
-      <h1>לוקבוק סתיו-חורף 2024</h1>
-      <h3>סטיילינג עונתי שמתאים לכל סיטואציה – מהרחוב לסטודיו, מהבוקר ועד הלילה</h3>
+      <h1>קולקציית הנעליים החדשה שלנו</h1>
+      <h3>גלה את המגמות החמות ביותר בעולם האופנה והנעליים</h3>
     </div>
-    
     <div class="lookbook-intro-image-wrapper">
-      <img data-placeholder="lookbook-page-intro-image-1" data-context="Editorial lifestyle photo for a premium shoe retail brand lookbook: stylish urban setting with a fashionable person wearing trendy sneakers, shot from a low angle showing the shoes prominently, modern street or studio background with natural lighting, fashion magazine aesthetic, high-end retail photography style" width="1200" height="600" src="/assets/site-lookbook-page-intro-image-1.webp" alt="לוקבוק נעליים סתיו-חורף 2024 - Star Shoes">
+      <img data-context="Modern lifestyle photography of stylish shoes displayed on a clean surface with natural lighting, fashion editorial style, high-end retail aesthetic, contemporary shoe collection showcase" width="1200" height="600" src="/assets/star-shoes-section-לוקבוק-page-intro-lookbook-page-intro-image-1.webp" alt="קולקציית נעליים חדשה - Star Shoes" data-zappy-editable-image="true">
     </div>
   </div>
-  
-  <div class="lookbook-divider-wrapper">
+  <div class="lookbook-intro-divider-wrapper">
     <svg data-no-icon-edit="true" aria-hidden="true" viewBox="0 0 1200 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,80 L0,45 Q30,38 60,42 Q90,46 120,40 Q150,34 180,38 Q210,42 240,36 Q270,30 300,35 Q330,40 360,33 Q390,26 420,32 Q450,38 480,30 Q510,22 540,28 Q570,34 600,26 Q630,18 660,25 Q690,32 720,24 Q750,16 780,23 Q810,30 840,22 Q870,14 900,21 Q930,28 960,20 Q990,12 1020,19 Q1050,26 1080,18 Q1110,10 1140,17 Q1170,24 1200,40 L1200,80 Z" fill="var(--bg-light)"></path>
+      <path d="M0,80 L0,45 Q30,42 60,48 T120,44 Q150,49 180,43 T240,47 Q270,44 300,49 T360,45 Q390,48 420,43 T480,47 Q510,45 540,49 T600,44 Q630,47 660,43 T720,48 Q750,45 780,49 T840,44 Q870,48 900,43 T960,47 Q990,44 1020,49 T1080,45 Q1110,48 1140,43 T1200,47 L1200,80 Z" fill="var(--bg-light)"></path>
     </svg>
   </div>
 </section>
@@ -593,7 +686,7 @@
 </section>
   </main>
   
-  <footer class="site-footer"><div class="footer-container"><div class="footer-grid"><div class="footer-column footer-about"><img src="/assets/business-logo.webp" alt="Star Shoes" class="logo" /><p class="footer-description">המקום שלך למצוא את הנעליים המושלמות. איכות, סטייל ונוחות במקום אחד.</p></div><div class="footer-column footer-links"><h3 class="footer-title">קישורים מהירים</h3><ul class="footer-nav"><li><a href="/about">אודות</a></li><li><a href="/lookbook">לוקבוק</a></li><li><a href="/contact">צור קשר</a></li></ul></div><div class="footer-column footer-contact"><h3 class="footer-title">יצירת קשר</h3><ul class="contact-list"><li><i class="fas fa-envelope"></i><a href="mailto:[business_email]">[business_email]</a></li><li><i class="fas fa-phone"></i><a href="tel:[business_phone]">[business_phone]</a></li><li><a href="/"><i class="fas fa-map-marker-alt"></i><span>[business_address]</span></a></li></ul></div><div class="footer-column footer-social"><h3 class="footer-title">עקבו אחרינו</h3><div class="social-links"><a href="[facebook_handle]" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="[instagram_handle]" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="[whatsapp_handle]" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a></div></div></div><div class="footer-bottom"><div class="legal-links"><a href="/privacy">Privacy Policy</a><span class="separator">|</span><a href="/terms">Terms &amp; Conditions</a><span class="separator">|</span>
+  <footer class="site-footer"><div class="footer-container"><div class="footer-grid"><div class="footer-column footer-about"><img src="/assets/business-logo.webp" alt="Star Shoes" class="logo"><p class="footer-description">המקום שלך למצוא את הנעליים המושלמות. איכות, סטייל ונוחות במקום אחד.</p></div><div class="footer-column footer-links"><h3 class="footer-title">קישורים מהירים</h3><ul class="footer-nav"><li><a href="/about">אודות</a></li><li><a href="/lookbook">לוקבוק</a></li><li><a href="/contact">צור קשר</a></li></ul></div><div class="footer-column footer-contact"><h3 class="footer-title">יצירת קשר</h3><ul class="contact-list"><li><i class="fas fa-envelope"></i><a href="mailto:[business_email]">[business_email]</a></li><li><i class="fas fa-phone"></i><a href="tel:[business_phone]">[business_phone]</a></li><li><a href="/"><i class="fas fa-map-marker-alt"></i><span>[business_address]</span></a></li></ul></div><div class="footer-column footer-social"><h3 class="footer-title">עקבו אחרינו</h3><div class="social-links"><a href="[facebook_handle]" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="[instagram_handle]" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="[whatsapp_handle]" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a></div></div></div><div class="footer-bottom"><div class="legal-links"><a href="/privacy">Privacy Policy</a><span class="separator">|</span><a href="/terms">Terms &amp; Conditions</a><span class="separator">|</span>
             <a href="/return-policy" aria-label="מדיניות החזרות">
               מדיניות החזרות
             </a><span class="separator">|</span><a href="/accessibility">Accessibility</a></div><p class="copyright">© 2026 Star Shoes. All rights reserved.</p><a href="https://zappy5.com" target="_blank" class="zappy-attribution">Generated by Zappy</a></div></div></footer>
