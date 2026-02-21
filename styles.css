@@ -8828,6 +8828,232 @@ nav.navbar .menu-item-has-children::after,
   }
 }
 
+/* ═══════════════════════════════════════════════════════════
+   V2 REGENERATED SECTION CSS (בית-hero)
+   Added: 2026-02-21T19:25:08.710Z
+   ═══════════════════════════════════════════════════════════ */
+.home-hero-section {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  min-height: 600px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: var(--bg-dark);
+}
+
+.home-hero-section .home-hero-bg-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 42% center;
+  z-index: 0;
+}
+
+.home-hero-section .home-hero-scrim {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(12,30,76,0.88) 0%, rgba(12,30,76,0.72) 38%, rgba(12,30,76,0.45) 62%, rgba(12,30,76,0.00) 88%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.home-hero-section .home-hero-content-wrapper {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.home-hero-section .home-hero-glass-card {
+  max-width: 600px;
+  width: min(92vw, 600px);
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 20px;
+  padding: 48px 40px;
+  box-shadow: 0 18px 42px rgba(10, 17, 38, 0.32);
+  color: var(--text-light);
+}
+
+.home-hero-section .home-hero-glass-card h1 {
+  font-family: "Playfair Display", "Georgia", serif;
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--text-light);
+  margin: 0 0 16px 0;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+}
+
+.home-hero-section .home-hero-glass-card h3 {
+  font-family: "Playfair Display", "Georgia", serif;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.005em;
+  color: var(--text-light);
+  margin: 0 0 28px 0;
+  opacity: 0.92;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.28);
+}
+
+.home-hero-section .home-hero-cta-group {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.home-hero-section .home-hero-btn-primary {
+  display: inline-block;
+  background: var(--primary);
+  color: var(--text-light);
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 14px 32px;
+  border-radius: 12px;
+  text-decoration: none;
+  box-shadow: 0 12px 24px rgba(63, 55, 201, 0.35);
+  transition: transform 220ms ease, box-shadow 220ms ease, background-color 220ms ease;
+}
+
+.home-hero-section .home-hero-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 32px rgba(63, 55, 201, 0.45);
+  background: #5048d9;
+}
+
+.home-hero-section .home-hero-btn-primary:active {
+  transform: translateY(0);
+}
+
+.home-hero-section .home-hero-btn-secondary {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.14);
+  color: var(--text-light);
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 14px 32px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  text-decoration: none;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: transform 220ms ease, background-color 220ms ease, border-color 220ms ease;
+}
+
+.home-hero-section .home-hero-btn-secondary:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.55);
+}
+
+.home-hero-section .home-hero-btn-secondary:active {
+  transform: translateY(0);
+}
+
+.home-hero-section .home-hero-bottom-fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  background: linear-gradient(180deg, rgba(247, 248, 252, 0) 0%, var(--bg-light) 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .home-hero-section {
+    min-height: 500px;
+    height: 100vh;
+    align-items: flex-start;
+    padding-top: 100px;
+  }
+  
+  .home-hero-section .home-hero-bg-image {
+    object-position: 38% center;
+  }
+  
+  .home-hero-section .home-hero-scrim {
+    background: linear-gradient(180deg, rgba(12,30,76,0.82) 0%, rgba(12,30,76,0.68) 45%, rgba(12,30,76,0.50) 75%, rgba(12,30,76,0.00) 100%);
+  }
+  
+  .home-hero-section .home-hero-content-wrapper {
+    padding: 0 16px;
+    align-items: flex-start;
+  }
+  
+  .home-hero-section .home-hero-glass-card {
+    padding: 32px 24px;
+    max-width: 100%;
+  }
+  
+  .home-hero-section .home-hero-glass-card h1 {
+    font-size: 36px;
+    line-height: 1.15;
+    margin-bottom: 12px;
+  }
+  
+  .home-hero-section .home-hero-glass-card h3 {
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 24px;
+  }
+  
+  .home-hero-section .home-hero-cta-group {
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+  }
+  
+  .home-hero-section .home-hero-btn-primary,
+  .home-hero-section .home-hero-btn-secondary {
+    width: 100%;
+    text-align: center;
+    padding: 12px 24px;
+    font-size: 15px;
+  }
+  
+  .home-hero-section .home-hero-bottom-fade {
+    height: 80px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .home-hero-section .home-hero-glass-card {
+    max-width: 540px;
+    padding: 40px 36px;
+  }
+  
+  .home-hero-section .home-hero-glass-card h1 {
+    font-size: 42px;
+  }
+  
+  .home-hero-section .home-hero-glass-card h3 {
+    font-size: 20px;
+  }
+}
+
 /* ========== RTL MOBILE NAVBAR FIX (zappy-rtl-mobile-fix) ========== */
 /* High-specificity rules to ensure RTL positioning wins over any [lang="en"] conflicts */
 /* For RTL sites: hamburger on RIGHT, phone on LEFT (mirror of LTR layout) */
