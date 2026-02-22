@@ -4,49 +4,49 @@
 
 ## Pages
 
-### בית
+### Page
 https://star-shoes.zappy5.app
 
-### אודות
+### Page
 https://star-shoes.zappy5.app/about
 
-### לוקבוק
+### Page
 https://star-shoes.zappy5.app/lookbook
 
-### צור קשר
-https://star-shoes.zappy5.app/contact
-
-### Products
+### מוצרים
 https://star-shoes.zappy5.app/products
 המוצרים שלנו - Star Shoes
 
-### Cart
+### עגלת קניות
 https://star-shoes.zappy5.app/cart
 עגלת הקניות שלך
 
-### Checkout
+### תשלום
 https://star-shoes.zappy5.app/checkout
 תשלום
 
-### Login
+### התחברות
 https://star-shoes.zappy5.app/login
 התחברות לקוחות
 
-### Account
+### החשבון שלי
 https://star-shoes.zappy5.app/account
 החשבון שלי
 
-### Order Success
+### ההזמנה התקבלה!
 https://star-shoes.zappy5.app/order-success
 תודה על ההזמנה
 
-### Product Detail
+### פרטי המוצר
 https://star-shoes.zappy5.app/product/:slug
 פרטי המוצר - Star Shoes
 
-### Category
+### מוצרים
 https://star-shoes.zappy5.app/category/:slug
 מוצרים - Star Shoes
+
+### Page
+https://star-shoes.zappy5.app/contact
 
 ## Legal & Policy
 

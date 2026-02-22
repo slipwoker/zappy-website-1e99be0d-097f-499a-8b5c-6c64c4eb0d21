@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="he" dir="rtl">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -504,49 +504,429 @@
   }
 }
 </style>
-    <link rel="stylesheet" href="/styles.css">
 
-    <style id="zappy-dropdown-submenu-styles">
-      /* ========== DESKTOP DROPDOWN SUBMENU STYLES ========== */
-      /* Base styles for dropdown submenus - parent must be positioned */
-      .nav-menu li:has(.sub-menu), nav li:has(.sub-menu), .navbar li:has(.sub-menu), #navMenu li:has(.sub-menu) { position: relative; }
-      /* Submenu base - hidden by default */
-      .nav-menu .sub-menu, nav .sub-menu, .navbar .sub-menu, #navMenu .sub-menu { display: block !important; position: absolute !important; top: 100%; left: 0; min-width: 220px; background: white; border-radius: 8px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); padding: 8px 0; opacity: 0; visibility: hidden; transform: translateY(10px); transition: all 0.3s ease; z-index: 1000; list-style: none; pointer-events: none; }
-      /* CRITICAL: Desktop hover styles to show dropdown */
-      .nav-menu li:hover > .sub-menu, nav li:hover > .sub-menu, .navbar li:hover > .sub-menu, #navMenu li:hover > .sub-menu { opacity: 1 !important; visibility: visible !important; transform: translateY(0) !important; pointer-events: auto !important; }
-      /* Submenu item styling */
-      .sub-menu li { list-style: none; margin: 0; padding: 0; }
-      .sub-menu a { display: block !important; padding: 10px 16px !important; color: #333 !important; font-weight: 500; text-decoration: none; white-space: nowrap; transition: background-color 0.2s; }
-      .sub-menu a:hover { background-color: #f5f5f5; }
-      /* RTL (Hebrew/Arabic) dropdown positioning */
-      [dir="rtl"] .nav-menu .sub-menu, [dir="rtl"] nav .sub-menu, [dir="rtl"] .navbar .sub-menu, html[lang="he"] .nav-menu .sub-menu, html[lang="he"] nav .sub-menu, html[lang="he"] .navbar .sub-menu, html[lang="ar"] .nav-menu .sub-menu, html[lang="ar"] nav .sub-menu, html[lang="ar"] .navbar .sub-menu { left: auto !important; right: 0 !important; }
-      /* Hide empty dropdown menus */
-      .sub-menu:empty, .sub-menu:not(:has(li:not(.zappy-hidden-menu-item))), .sub-menu:not(:has(li)) { display: none !important; opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; }
-      /* Desktop: show submenu on Menu Group hover */
-      li:has(.menu-group-title):hover > .sub-menu { opacity: 1 !important; visibility: visible !important; transform: translateY(0) !important; pointer-events: auto !important; }
-      /* Menu Group title styling */
-      .nav-menu > li > .menu-group-title, #navMenu > li > .menu-group-title { display: inline-block; padding: 0.5rem 1rem; cursor: default; user-select: none; }
-      
-      /* ========== MOBILE SUBMENU STYLES ========== */
-      @media (max-width: 768px) {
-        .nav-menu .sub-menu, nav .sub-menu, .navbar .sub-menu, #navMenu .sub-menu { position: static !important; transform: none !important; box-shadow: none !important; background: transparent !important; max-height: 0; overflow: hidden; opacity: 0; visibility: hidden; transition: max-height 0.3s ease, opacity 0.3s ease; padding: 0 !important; border-radius: 0 !important; }
-        .sub-menu.mobile-expanded { max-height: 500px !important; opacity: 1 !important; visibility: visible !important; padding: 8px 0 8px 16px !important; }
-        [dir="rtl"] .sub-menu.mobile-expanded, html[lang="he"] .sub-menu.mobile-expanded { padding: 8px 16px 8px 0 !important; }
-        /* Disable hover behavior on mobile */
-        .nav-menu li:hover > .sub-menu, nav li:hover > .sub-menu, .navbar li:hover > .sub-menu, #navMenu li:hover > .sub-menu { opacity: 0; visibility: hidden; pointer-events: none; }
-        .nav-menu li > .sub-menu.mobile-expanded, nav li > .sub-menu.mobile-expanded, .navbar li > .sub-menu.mobile-expanded, #navMenu li > .sub-menu.mobile-expanded { opacity: 1 !important; visibility: visible !important; pointer-events: auto !important; }
-        .nav-menu li:has(.sub-menu), nav li:has(.sub-menu), .navbar li:has(.sub-menu), #navMenu li:has(.sub-menu) { display: flex !important; flex-wrap: wrap !important; align-items: center !important; }
-        .nav-menu li:has(.sub-menu) > a, nav li:has(.sub-menu) > a, .navbar li:has(.sub-menu) > a, #navMenu li:has(.sub-menu) > a { flex: 1 !important; }
-        .nav-menu li:has(.sub-menu) > a [class*="chevron"], .nav-menu li:has(.sub-menu) > a [class*="arrow"], .nav-menu li:has(.sub-menu) > a .fa-chevron-down, .nav-menu li:has(.sub-menu) > a .fa-angle-down, nav li:has(.sub-menu) > a [class*="chevron"], nav li:has(.sub-menu) > a [class*="arrow"], #navMenu li:has(.sub-menu) > a [class*="chevron"], #navMenu li:has(.sub-menu) > a [class*="arrow"] { display: none !important; visibility: hidden !important; }
-        .mobile-submenu-toggle { display: flex !important; align-items: center !important; justify-content: center !important; width: 44px !important; height: 44px !important; background: transparent !important; border: none !important; cursor: pointer !important; }
-        .mobile-submenu-toggle::after { content: '' !important; width: 0 !important; height: 0 !important; border-left: 6px solid transparent !important; border-right: 6px solid transparent !important; border-top: 7px solid currentColor !important; transition: transform 0.3s ease !important; }
-        .mobile-submenu-toggle.expanded::after { transform: rotate(180deg) !important; }
-        .nav-menu li:has(.sub-menu) > .sub-menu, nav li:has(.sub-menu) > .sub-menu { flex-basis: 100% !important; width: 100% !important; }
-        .sub-menu a { padding: 10px 0 !important; display: block !important; }
-        .nav-menu li:has(.sub-menu) > .menu-group-title, nav li:has(.sub-menu) > .menu-group-title, .navbar li:has(.sub-menu) > .menu-group-title, #navMenu li:has(.sub-menu) > .menu-group-title { flex: 1 !important; }
-      }
-      @media (min-width: 769px) { .mobile-submenu-toggle { display: none !important; } }
-    </style>
+          <style id="zappy-cta-mobile-style">
+            /* Hide CTA list item on desktop (tablets and up) */
+            @media (min-width: 769px) {
+              .nav-cta-item-mobile {
+                display: none !important;
+              }
+            }
+            /* Show CTA list item on mobile */
+            @media (max-width: 768px) {
+              .nav-cta-item-mobile {
+                display: list-item !important;
+              }
+            }
+          </style>
+        
+          <style id="zappy-nested-menu-style">
+            /* Desktop only: vertically center nav items */
+            @media (min-width: 769px) {
+              .nav-menu,
+              #navMenu {
+                align-items: center !important;
+              }
+            }
+            
+            /* Menu Group styling (non-clickable parent) - TOP LEVEL ONLY with ultra-specific selector */
+            .nav-menu > li > .menu-group-title,
+            #navMenu > li > .menu-group-title {
+              display: inline-block !important;
+              padding: 0.5rem 1rem !important;
+              color: var(--nav-color) !important;
+              font-weight: 500 !important;
+              line-height: 1.7 !important;
+              cursor: default !important;
+              user-select: none !important;
+              vertical-align: middle !important;
+              text-decoration: none !important;
+              margin: 0 !important;
+              transition: color 0.3s ease !important;
+            }
+            
+            .nav-menu > li > .menu-group-title:hover,
+            #navMenu > li > .menu-group-title:hover {
+              color: var(--nav-hover-color) !important;
+            }
+            
+            /* Desktop: show submenu on Menu Group hover */
+            li:has(.menu-group-title):hover > .sub-menu {
+              opacity: 1 !important;
+              visibility: visible !important;
+              transform: translateY(0) !important;
+              pointer-events: auto !important; /* Enable interaction when hovering */
+            }
+            
+            /* Hide menu items marked as hidden (overrides hover states) */
+            .zappy-hidden-menu-item,
+            li:has(.menu-group-title):hover > .sub-menu .zappy-hidden-menu-item {
+              display: none !important;
+              opacity: 0 !important;
+              visibility: hidden !important;
+              pointer-events: none !important;
+            }
+            
+            /* Keep submenu visible when hovering over the submenu itself */
+            .sub-menu:hover {
+              opacity: 1 !important;
+              visibility: visible !important;
+              pointer-events: auto !important;
+            }
+            
+            /* Nested dropdown menu styles - using more specific selectors */
+            .nav-menu .sub-menu,
+            nav .sub-menu,
+            .navbar .sub-menu {
+              display: block !important; /* Ensure submenu is in the DOM */
+              position: absolute !important;
+              top: 100%;
+              left: 0;
+              right: auto;
+              min-width: 200px;
+              background: white;
+              box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+              border-radius: 8px;
+              padding: 8px 0;
+              margin-top: 0px; /* Remove gap to prevent hover loss */
+              opacity: 0 !important;
+              visibility: hidden !important;
+              transform: translateY(-10px);
+              transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+              z-index: 1000;
+              list-style: none;
+              pointer-events: none; /* Prevent interaction when hidden */
+            }
+            
+            /* RTL (Hebrew/Arabic) submenu positioning - align to right instead of left */
+            [dir="rtl"] .nav-menu .sub-menu,
+            [dir="rtl"] nav .sub-menu,
+            [dir="rtl"] .navbar .sub-menu,
+            html[lang="he"] .nav-menu .sub-menu,
+            html[lang="he"] nav .sub-menu,
+            html[lang="he"] .navbar .sub-menu,
+            html[lang="ar"] .nav-menu .sub-menu,
+            html[lang="ar"] nav .sub-menu,
+            html[lang="ar"] .navbar .sub-menu {
+              left: auto;
+              right: 0;
+            }
+            
+            /* Show submenu on parent hover - more specific selectors */
+            .nav-menu li:hover > .sub-menu,
+            nav li:hover > .sub-menu,
+            .navbar li:hover > .sub-menu {
+              opacity: 1 !important;
+              visibility: visible !important;
+              transform: translateY(0) !important;
+              pointer-events: auto !important; /* Enable interaction when visible */
+            }
+            
+            /* Parent item must be relatively positioned */
+            .nav-menu li:has(.sub-menu),
+            nav li:has(.sub-menu),
+            .navbar li:has(.sub-menu) {
+              position: relative;
+            }
+            
+            /* Style for submenu items */
+            .sub-menu li {
+              list-style: none;
+              margin: 0;
+              padding: 0;
+            }
+            
+            .sub-menu a,
+            .sub-menu .menu-group-title {
+              display: block !important;
+              padding: 10px 12px !important;
+              color: #333 !important;
+              font-weight: 600 !important;
+              text-decoration: none;
+              transition: background-color 0.2s;
+              white-space: nowrap;
+              cursor: default;
+            }
+            
+            .sub-menu a:hover {
+              background-color: #f5f5f5;
+            }
+            
+            /* CRITICAL: Override submenu styles for TOP-LEVEL Menu Groups only - must come AFTER submenu styles */
+            .nav-menu > li > .menu-group-title,
+            #navMenu > li > .menu-group-title {
+              display: inline-block !important;
+              padding: 0.5rem 1rem !important;
+              color: var(--nav-color) !important;
+              font-weight: 500 !important;
+              line-height: 1.7 !important;
+              cursor: default !important;
+              user-select: none !important;
+              vertical-align: middle !important;
+              text-decoration: none !important;
+              margin: 0 !important;
+              transition: color 0.3s ease !important;
+            }
+            
+            .nav-menu > li > .menu-group-title:hover,
+            #navMenu > li > .menu-group-title:hover {
+              color: var(--nav-hover-color) !important;
+              background-color: transparent !important;
+            }
+            
+            /* On mobile, show nested menus as expandable accordion */
+            @media (max-width: 768px) {
+              /* Mobile submenu styling */
+              .nav-menu .sub-menu,
+              nav .sub-menu,
+              .navbar .sub-menu {
+                position: static !important;
+                transform: none !important;
+                box-shadow: none !important;
+                background: transparent !important;
+                margin-top: 0 !important;
+                max-height: 0;
+                overflow: hidden;
+                opacity: 0;
+                visibility: hidden;
+                transition: max-height 0.3s ease, opacity 0.3s ease, visibility 0.3s ease, padding 0.3s ease;
+                padding: 0 !important;
+                border-radius: 0 !important;
+              }
+              
+              /* Expanded state */
+              .sub-menu.mobile-expanded {
+                max-height: 500px !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+                padding: 8px 0 8px 16px !important;
+              }
+              
+              /* RTL padding adjustment */
+              [dir="rtl"] .sub-menu.mobile-expanded,
+              html[lang="he"] .sub-menu.mobile-expanded,
+              html[lang="ar"] .sub-menu.mobile-expanded {
+                padding: 8px 16px 8px 0 !important;
+              }
+              
+              /* Disable hover behavior on mobile */
+              .nav-menu li:hover > .sub-menu,
+              nav li:hover > .sub-menu,
+              .navbar li:hover > .sub-menu {
+                opacity: 0;
+                visibility: hidden;
+                pointer-events: none;
+              }
+              
+              /* Enable visibility for expanded submenus */
+              .nav-menu li > .sub-menu.mobile-expanded,
+              nav li > .sub-menu.mobile-expanded,
+              .navbar li > .sub-menu.mobile-expanded {
+                opacity: 1 !important;
+                visibility: visible !important;
+                pointer-events: auto !important;
+              }
+              
+              .sub-menu a {
+                padding: 10px 0 !important;
+                display: block !important;
+                font-size: 14px !important;
+              }
+              
+              .sub-menu a:hover {
+                background-color: transparent !important;
+              }
+              
+              /* Parent item wrapper - flex layout for link + toggle */
+              .nav-menu li:has(.sub-menu),
+              nav li:has(.sub-menu),
+              .navbar li:has(.sub-menu) {
+                display: flex !important;
+                flex-wrap: wrap !important;
+                align-items: center !important;
+              }
+              
+              /* Parent link - takes most space, allows navigation */
+              .nav-menu li:has(.sub-menu) > a,
+              nav li:has(.sub-menu) > a,
+              .navbar li:has(.sub-menu) > a,
+              .nav-menu > li > .menu-group-title,
+              #navMenu > li > .menu-group-title {
+                flex: 1 !important;
+              }
+              
+              /* HIDE EXISTING CHEVRONS/ARROWS from cloned sites to prevent duplicates */
+              .nav-menu li:has(.sub-menu) > a .fa-chevron-down,
+              .nav-menu li:has(.sub-menu) > a .fa-angle-down,
+              .nav-menu li:has(.sub-menu) > a [class*="chevron"],
+              .nav-menu li:has(.sub-menu) > a [class*="arrow"],
+              nav li:has(.sub-menu) > a [class*="chevron"],
+              nav li:has(.sub-menu) > a [class*="arrow"],
+              #navMenu li:has(.sub-menu) > a [class*="chevron"],
+              #navMenu li:has(.sub-menu) > a [class*="arrow"] {
+                display: none !important;
+                visibility: hidden !important;
+              }
+              
+              /* Toggle arrow button - separate clickable area */
+              .mobile-submenu-toggle {
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                width: 44px !important;
+                height: 44px !important;
+                background: transparent !important;
+                border: none !important;
+                cursor: pointer !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                flex-shrink: 0 !important;
+                -webkit-tap-highlight-color: transparent;
+              }
+              
+              .mobile-submenu-toggle::after {
+                content: '' !important;
+                display: block !important;
+                width: 0 !important;
+                height: 0 !important;
+                border-left: 6px solid transparent !important;
+                border-right: 6px solid transparent !important;
+                border-top: 7px solid currentColor !important;
+                transition: transform 0.3s ease !important;
+              }
+              
+              /* Rotate arrow when expanded */
+              .mobile-submenu-toggle.expanded::after {
+                transform: rotate(180deg) !important;
+              }
+              
+              /* Submenu takes full width below parent */
+              .nav-menu li:has(.sub-menu) > .sub-menu,
+              nav li:has(.sub-menu) > .sub-menu,
+              .navbar li:has(.sub-menu) > .sub-menu {
+                flex-basis: 100% !important;
+                width: 100% !important;
+              }
+            }
+            
+            /* Hide toggle button on desktop */
+            @media (min-width: 769px) {
+              .mobile-submenu-toggle {
+                display: none !important;
+              }
+            }
+          </style>
+          
+          <script id="zappy-mobile-menu-script">
+            // Mobile menu toggle for nested submenus (including Menu Groups)
+            // Uses separate toggle button - link navigates, arrow toggles submenu
+            (function() {
+              function initMobileMenuToggles() {
+                // Only run on mobile
+                if (window.innerWidth > 768) {
+                  // Remove any toggle buttons on desktop
+                  document.querySelectorAll('.mobile-submenu-toggle').forEach(btn => btn.remove());
+                  document.querySelectorAll('.sub-menu.mobile-expanded').forEach(menu => {
+                    menu.classList.remove('mobile-expanded');
+                  });
+                  console.log('[MOBILE MENU] Desktop mode - cleanup done');
+                  return;
+                }
+                
+                console.log('[MOBILE MENU] Initializing mobile menu toggles...');
+                
+                // Find all parent menu items (items with .sub-menu)
+                const menuItemsWithSubmenus = document.querySelectorAll(
+                  '.nav-menu li:has(.sub-menu), nav li:has(.sub-menu), .navbar li:has(.sub-menu), #navMenu li:has(.sub-menu)'
+                );
+                
+                console.log('[MOBILE MENU] Found', menuItemsWithSubmenus.length, 'items with submenus');
+                
+                menuItemsWithSubmenus.forEach(function(li) {
+                  // Skip if already has toggle button
+                  if (li.querySelector('.mobile-submenu-toggle')) {
+                    return;
+                  }
+                  
+                  const submenu = li.querySelector('.sub-menu');
+                  const parentLink = li.querySelector(':scope > a') || li.querySelector(':scope > .menu-group-title');
+                  
+                  if (!submenu || !parentLink) return;
+                  
+                  // Create toggle button
+                  const toggleBtn = document.createElement('button');
+                  toggleBtn.className = 'mobile-submenu-toggle';
+                  toggleBtn.setAttribute('aria-label', 'Toggle submenu');
+                  toggleBtn.setAttribute('type', 'button');
+                  
+                  // Insert toggle button after the link
+                  parentLink.insertAdjacentElement('afterend', toggleBtn);
+                  
+                  console.log('[MOBILE MENU] Created toggle button for:', parentLink.textContent?.trim());
+                  
+                  // Handle toggle button click - only toggles submenu
+                  toggleBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const isExpanded = submenu.classList.contains('mobile-expanded');
+                    
+                    // Close all other submenus first
+                    document.querySelectorAll('.sub-menu.mobile-expanded').forEach(function(menu) {
+                      if (menu !== submenu) {
+                        menu.classList.remove('mobile-expanded');
+                        const otherToggle = menu.parentElement.querySelector('.mobile-submenu-toggle');
+                        if (otherToggle) otherToggle.classList.remove('expanded');
+                      }
+                    });
+                    
+                    // Toggle this submenu
+                    submenu.classList.toggle('mobile-expanded');
+                    toggleBtn.classList.toggle('expanded');
+                    
+                    console.log('[MOBILE MENU] Toggled submenu:', !isExpanded ? 'expanded' : 'collapsed');
+                  });
+                  
+                  // Parent link navigates normally - no preventDefault
+                });
+              }
+              
+              // Initialize on DOM load
+              if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initMobileMenuToggles);
+              } else {
+                initMobileMenuToggles();
+              }
+              
+              // Re-initialize on window resize (but use debounce to avoid too many calls)
+              let resizeTimer;
+              window.addEventListener('resize', function() {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(initMobileMenuToggles, 250);
+              });
+              
+              // Also initialize when mobile menu becomes visible
+              // This handles cases where the mobile menu is hidden initially
+              const observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                  if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                    const target = mutation.target;
+                    if (target.classList.contains('active') || target.style.display !== 'none') {
+                      console.log('[MOBILE MENU] Mobile menu became visible, re-initializing...');
+                      setTimeout(initMobileMenuToggles, 100);
+                    }
+                  }
+                });
+              });
+              
+              // Observe mobile menu containers
+              const mobileMenus = document.querySelectorAll('.mobile-menu, .nav-menu, #navMenu');
+              mobileMenus.forEach(function(menu) {
+                observer.observe(menu, { attributes: true, attributeFilter: ['class', 'style'] });
+              });
+            })();
+          </script>
+    <link rel="stylesheet" href="/styles.css">
 
     <style id="zappy-widget-visibility">
       #mic-access-tool-general-button, .mic-access-tool-general-button,
@@ -562,12 +942,12 @@
 
     <div class="mobile-search-panel" id="mobile-search-panel">
       <div class="search-wrapper">
-        <input type="text" id="mobile-search-input" placeholder="חיפוש מוצרים..." autocomplete="off">
+        <input type="text" id="mobile-search-input" placeholder="חיפוש נעליים..." autocomplete="off">
         <button class="search-submit" id="mobile-search-submit" title="חיפוש">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="M21 21l-4.35-4.35"></path></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
         </button>
         <button class="close-search" id="close-mobile-search">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"></path></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
         </button>
       </div>
       <div class="search-results" id="mobile-search-results"></div>
@@ -577,16 +957,16 @@
   <nav class="navbar" dir="rtl">
   <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
     <svg class="hamburger-icon" width="24" height="24" viewBox="0 0 24 24" fill="none">
-      <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+      <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
     </svg>
     <svg class="close-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" style="display:none;">
-      <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+      <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
     </svg>
   </button>
   
   <button class="phone-header-btn" aria-label="Call">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
     </svg>
   </button>
   
@@ -597,27 +977,24 @@
       </a>
     </div>
     
-    <ul class="nav-menu" id="navMenu">
-
-    <li class="menu-item-has-children zappy-products-dropdown">
+    <ul class="nav-menu" id="navMenu"><li><a href="/about">אודות</a></li><li><a href="/lookbook">לוקבוק</a></li><li class="menu-item-has-children zappy-products-dropdown">
       <a href="/products">
-        מוצרים
+        נעליים
         <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M6 9l6 6 6-6"></path>
+          <path d="M6 9l6 6 6-6"/>
         </svg>
       </a>
       <ul class="sub-menu" id="zappy-nav-category-links">
-        <li><a href="/products">כל המוצרים</a></li>
+        <li><a href="/products">כל הנעליים</a></li>
         <!-- Categories will be loaded dynamically -->
       </ul>
-    </li>
-  <li><a href="/about">אודות</a></li><li><a href="/lookbook">לוקבוק</a></li><li><a href="/contact">צור קשר</a></li></ul><div class="nav-ecommerce-icons nav-icons-left"><a href="/login" class="login-link nav-login" title="התחברות"><svg class="login-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></a><a href="#cart" class="cart-link nav-cart" id="cart-drawer-toggle" title="עגלת קניות"><svg class="cart-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg><span class="cart-count">0</span></a><div class="nav-search-box">
-    <input type="text" class="nav-search-input" id="nav-search-input" placeholder="חיפוש מוצרים..." autocomplete="off">
+    </li><li><a href="/cart">עגלת קניות</a></li><li><a href="/checkout">תשלום</a></li><li><a href="/login">התחברות</a></li><li><a href="/account">החשבון שלי</a></li><li><a href="/order-success">ההזמנה התקבלה!</a></li><li><a href="/product/:slug">פרטי המוצר</a></li><li><a href="/category/:slug">מוצרים</a></li><li><a href="/contact">צור קשר</a></li></ul><div class="nav-ecommerce-icons nav-icons-left"><a href="/login" class="login-link nav-login" title="התחברות"><svg class="login-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a><a href="#cart" class="cart-link nav-cart" id="cart-drawer-toggle" title="עגלת קניות"><svg class="cart-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg><span class="cart-count">0</span></a><div class="nav-search-box">
+    <input type="text" class="nav-search-input" id="nav-search-input" placeholder="חיפוש נעליים..." autocomplete="off">
     <button class="nav-search-btn" id="nav-search-btn" title="חיפוש">
-      <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="M21 21l-4.35-4.35"></path></svg>
+      <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
     </button>
     <div class="nav-search-results" id="nav-search-results"></div>
-  </div></div><div class="nav-ecommerce-icons nav-icons-right"><button class="nav-search-toggle" id="mobile-search-toggle" title="חיפוש"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="M21 21l-4.35-4.35"></path></svg></button></div>
+  </div></div><div class="nav-ecommerce-icons nav-icons-right"><button class="nav-search-toggle" id="mobile-search-toggle" title="חיפוש"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></button></div>
     
     
   </div>
@@ -625,7 +1002,7 @@
 
     <nav class="zappy-catalog-menu rtl" id="zappy-catalog-menu" dir="rtl">
       <div class="catalog-menu-container">
-        <a href="/products" class="catalog-menu-item catalog-menu-all">כל המוצרים</a>
+        <a href="/products" class="catalog-menu-item catalog-menu-all">כל הנעליים</a>
         <div class="catalog-menu-categories" id="zappy-category-links">
           <!-- Categories will be loaded dynamically -->
         </div>
@@ -667,7 +1044,7 @@
   <div class="three-video-grid zappy-preserve-css-grid" style="display: grid; grid-template-columns: 367.328px 367.336px 367.336px 0px; gap: 25px;" id="zappy-auto-grid-1771505690943-mdgt0f" data-zappy-auto-grid="true" data-original-item-width="367" data-original-gap="25px">
     <div class="zappy-inserted-element" id="zappy-element-1771165325341-rcqr24rzo" data-element-id="zappy-element-1771165325341-rcqr24rzo" data-element-type="video" data-zappy-newly-inserted="true" style="margin-top: 20px; margin-bottom: 20px; display: flex; justify-content: center; cursor: pointer; text-align: center;" data-video-editable="true" data-grid-item-index="0">
       <div style="width: 100%; max-width: 350px; display: block; margin-left: auto; margin-right: auto;">
-        <div class="video-placeholder" style="position: relative; width: 100%; max-width: 800px; height: 0px; padding-bottom: 56.25%; background: rgb(0, 0, 0); border-radius: 8px; overflow: hidden;" data-element-type="video" data-element-id="zappy-element-1771165325341-rcqr24rzo" data-placeholder="video-placeholder" id="zappy-element-1771165325341-rcqr24rzo-inner" data-video-editable="true"><iframe src="https://www.youtube.com/embed/S6CUN31wTRE" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; " allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+        <div class="video-placeholder" style="position: relative; width: 100%; max-width: 800px; height: 0px; padding-bottom: 56.25%; background: rgb(0, 0, 0); border-radius: 8px; overflow: hidden;" data-element-type="video" data-element-id="zappy-element-1771165325341-rcqr24rzo" data-placeholder="video-placeholder" id="zappy-element-1771165325341-rcqr24rzo-inner" data-video-editable="true"><iframe src="https://www.youtube.com/embed/S6CUN31wTRE" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; " allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
       </div>
     </div>
     <div class="zappy-inserted-element" id="zappy-element-1771165325341-arazu4nrh" data-element-id="zappy-element-1771165325341-arazu4nrh" data-element-type="video" data-zappy-newly-inserted="true" style="margin-top: 20px; margin-bottom: 20px; display: flex; justify-content: center; cursor: pointer;" data-video-editable="true" data-grid-item-index="1">
@@ -675,14 +1052,14 @@
         <div class="video-placeholder" style="position: relative; width: 100%; max-width: 350px; height: 0px; padding-bottom: 56.25%; background: #3F37C908; border: 3px solid #3F37C9; border-radius: 16px; overflow: hidden; cursor: pointer;" data-element-type="video" data-element-id="zappy-element-1771165325341-arazu4nrh" data-placeholder="video-placeholder" id="zappy-element-1771165325341-arazu4nrh-inner" data-video-editable="true">
           <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; text-align: center;">
             <svg style="width: 120px; height: 120px; display: block;" viewBox="0 0 270 265" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="2" y="2" width="266" height="261" rx="40" stroke="#3F37C9" stroke-width="4"></rect>
+      <rect x="2" y="2" width="266" height="261" rx="40" stroke="#3F37C9" stroke-width="4"/>
       <g clip-path="url(#clip0_201_1806)">
-        <path d="M102.5 91L112.5 82.5L123.5 81.5L175.5 119L182.5 131.5L178.5 142L125.5 180.5L116 183.5L109 181L102 172L102.5 91Z" fill="#FFE8F4"></path>
-        <path d="M177.228 117.668L127.264 81.483C121.838 77.496 114.723 76.929 108.729 79.9665C102.636 83.058 99 88.98 99 95.811V168.194C99 175.029 102.641 180.951 108.734 184.038C111.335 185.357 114.089 186.009 116.82 186.009C120.483 186.009 124.105 184.835 127.251 182.526L177.223 146.337L177.237 146.328C181.849 142.944 184.495 137.724 184.495 132C184.495 126.276 181.849 121.056 177.223 117.668H177.228ZM174.582 142.692L124.605 178.886C120.492 181.91 115.322 182.328 110.772 180.024C106.218 177.716 103.504 173.297 103.504 168.194V95.8065C103.504 90.708 106.223 86.289 110.772 83.976C112.703 82.995 114.736 82.5 116.82 82.5C119.587 82.5 122.283 83.4045 124.618 85.1235L174.587 121.308C178.029 123.833 180.005 127.73 180.005 132C180.005 136.271 178.034 140.163 174.587 142.692H174.582Z" fill="#3F37C9"></path>
+        <path d="M102.5 91L112.5 82.5L123.5 81.5L175.5 119L182.5 131.5L178.5 142L125.5 180.5L116 183.5L109 181L102 172L102.5 91Z" fill="#FFE8F4"/>
+        <path d="M177.228 117.668L127.264 81.483C121.838 77.496 114.723 76.929 108.729 79.9665C102.636 83.058 99 88.98 99 95.811V168.194C99 175.029 102.641 180.951 108.734 184.038C111.335 185.357 114.089 186.009 116.82 186.009C120.483 186.009 124.105 184.835 127.251 182.526L177.223 146.337L177.237 146.328C181.849 142.944 184.495 137.724 184.495 132C184.495 126.276 181.849 121.056 177.223 117.668H177.228ZM174.582 142.692L124.605 178.886C120.492 181.91 115.322 182.328 110.772 180.024C106.218 177.716 103.504 173.297 103.504 168.194V95.8065C103.504 90.708 106.223 86.289 110.772 83.976C112.703 82.995 114.736 82.5 116.82 82.5C119.587 82.5 122.283 83.4045 124.618 85.1235L174.587 121.308C178.029 123.833 180.005 127.73 180.005 132C180.005 136.271 178.034 140.163 174.587 142.692H174.582Z" fill="#3F37C9"/>
       </g>
       <defs>
         <clipPath id="clip0_201_1806">
-          <rect width="108" height="108" fill="white" transform="translate(81 78)"></rect>
+          <rect width="108" height="108" fill="white" transform="translate(81 78)"/>
         </clipPath>
       </defs>
     </svg>
@@ -695,14 +1072,14 @@
         <div class="video-placeholder" style="position: relative; width: 100%; max-width: 350px; height: 0px; padding-bottom: 56.25%; background: #3F37C908; border: 3px solid #3F37C9; border-radius: 16px; overflow: hidden; cursor: pointer;" data-element-type="video" data-element-id="zappy-element-1771165325341-zujppuxrx" data-placeholder="video-placeholder" id="zappy-element-1771165325341-zujppuxrx-inner" data-video-editable="true">
           <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; text-align: center;">
             <svg style="width: 120px; height: 120px; display: block;" viewBox="0 0 270 265" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="2" y="2" width="266" height="261" rx="40" stroke="#3F37C9" stroke-width="4"></rect>
+      <rect x="2" y="2" width="266" height="261" rx="40" stroke="#3F37C9" stroke-width="4"/>
       <g clip-path="url(#clip0_201_1806)">
-        <path d="M102.5 91L112.5 82.5L123.5 81.5L175.5 119L182.5 131.5L178.5 142L125.5 180.5L116 183.5L109 181L102 172L102.5 91Z" fill="#FFE8F4"></path>
-        <path d="M177.228 117.668L127.264 81.483C121.838 77.496 114.723 76.929 108.729 79.9665C102.636 83.058 99 88.98 99 95.811V168.194C99 175.029 102.641 180.951 108.734 184.038C111.335 185.357 114.089 186.009 116.82 186.009C120.483 186.009 124.105 184.835 127.251 182.526L177.223 146.337L177.237 146.328C181.849 142.944 184.495 137.724 184.495 132C184.495 126.276 181.849 121.056 177.223 117.668H177.228ZM174.582 142.692L124.605 178.886C120.492 181.91 115.322 182.328 110.772 180.024C106.218 177.716 103.504 173.297 103.504 168.194V95.8065C103.504 90.708 106.223 86.289 110.772 83.976C112.703 82.995 114.736 82.5 116.82 82.5C119.587 82.5 122.283 83.4045 124.618 85.1235L174.587 121.308C178.029 123.833 180.005 127.73 180.005 132C180.005 136.271 178.034 140.163 174.587 142.692H174.582Z" fill="#3F37C9"></path>
+        <path d="M102.5 91L112.5 82.5L123.5 81.5L175.5 119L182.5 131.5L178.5 142L125.5 180.5L116 183.5L109 181L102 172L102.5 91Z" fill="#FFE8F4"/>
+        <path d="M177.228 117.668L127.264 81.483C121.838 77.496 114.723 76.929 108.729 79.9665C102.636 83.058 99 88.98 99 95.811V168.194C99 175.029 102.641 180.951 108.734 184.038C111.335 185.357 114.089 186.009 116.82 186.009C120.483 186.009 124.105 184.835 127.251 182.526L177.223 146.337L177.237 146.328C181.849 142.944 184.495 137.724 184.495 132C184.495 126.276 181.849 121.056 177.223 117.668H177.228ZM174.582 142.692L124.605 178.886C120.492 181.91 115.322 182.328 110.772 180.024C106.218 177.716 103.504 173.297 103.504 168.194V95.8065C103.504 90.708 106.223 86.289 110.772 83.976C112.703 82.995 114.736 82.5 116.82 82.5C119.587 82.5 122.283 83.4045 124.618 85.1235L174.587 121.308C178.029 123.833 180.005 127.73 180.005 132C180.005 136.271 178.034 140.163 174.587 142.692H174.582Z" fill="#3F37C9"/>
       </g>
       <defs>
         <clipPath id="clip0_201_1806">
-          <rect width="108" height="108" fill="white" transform="translate(81 78)"></rect>
+          <rect width="108" height="108" fill="white" transform="translate(81 78)"/>
         </clipPath>
       </defs>
     </svg>
@@ -720,7 +1097,7 @@
   <div class="accent-top-card-grid zappy-preserve-css-grid" style="display: grid; grid-template-columns: 364px 364px 364px; gap: 30px;" id="zappy-auto-grid-1771699517586-yi0rv6" data-zappy-auto-grid="true" data-original-item-width="364" data-original-gap="30px">
     <div style="padding: 30px; background: white; border-top: 4px solid rgb(63, 55, 201); box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 8px; border-radius: 8px; display: flex !important; flex-direction: column !important; min-height: 0px !important; align-items: stretch !important; justify-content: flex-start !important;" data-grid-item-index="0">
       <h3 style="font-size: 22px; font-weight: 600; color: #1F2937; margin-bottom: 15px; font-family: Cormorant Garamond, Playfair Display, Georgia, serif;">כותרת כרטיס 1</h3>
-      <p style="font-size: 16px; line-height: 1.6; color: #1F2937; opacity: 0.8; font-family: Cormorant Garamond, Playfair Display, Georgia, serif;">טקסט תיאור כרטיס נמצא כאן</p><div class="zappy-inserted-element" id="zappy-element-1771699522966-iwhd42llw" data-element-id="zappy-element-1771699522966-iwhd42llw" data-element-type="icon" data-zappy-newly-inserted="true" data-zappy-media-cell="true" style="margin-top: 20px !important; margin-right: auto; margin-bottom: 20px !important; margin-left: auto; text-align: center; display: flex !important; justify-content: center !important; max-width: 100% !important; width: 100% !important; min-height: 150px !important;"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="145" height="145" viewBox="0 0 24 24" data-icon="material-symbols:trophy" data-iconify="material-symbols:trophy" data-size-adjusted="true" style="width: 145px; height: 145px; display: inline-block; vertical-align: -0.125em; color: rgb(169, 92, 20); pointer-events: auto; cursor: pointer;" data-element-type="icon" data-icon-type="iconify" data-element-id="zappy-element-1771699522966-iwhd42llw" id="zappy-element-1771699522966-iwhd42llw" class="iconify iconify--material-symbols"><path fill="currentColor" d="M7 21v-2h4v-3.1q-1.225-.275-2.187-1.037T7.4 12.95q-1.875-.225-3.137-1.637T3 8V7q0-.825.588-1.412T5 5h2V3h10v2h2q.825 0 1.413.588T21 7v1q0 1.9-1.263 3.313T16.6 12.95q-.45 1.15-1.412 1.913T13 15.9V19h4v2zm0-10.2V7H5v1q0 .95.55 1.713T7 10.8m10 0q.9-.325 1.45-1.088T19 8V7h-2z"></path></svg></div>
+      <p style="font-size: 16px; line-height: 1.6; color: #1F2937; opacity: 0.8; font-family: Cormorant Garamond, Playfair Display, Georgia, serif;">טקסט תיאור כרטיס נמצא כאן</p><div class="zappy-inserted-element" id="zappy-element-1771699522966-iwhd42llw" data-element-id="zappy-element-1771699522966-iwhd42llw" data-element-type="icon" data-zappy-newly-inserted="true" data-zappy-media-cell="true" style="margin-top: 20px !important; margin-right: auto; margin-bottom: 20px !important; margin-left: auto; text-align: center; display: flex !important; justify-content: center !important; max-width: 100% !important; width: 100% !important; min-height: 150px !important;"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="145" height="145" viewBox="0 0 24 24" data-icon="material-symbols:trophy" data-iconify="material-symbols:trophy" data-size-adjusted="true" style="width: 145px; height: 145px; display: inline-block; vertical-align: -0.125em; color: rgb(169, 92, 20); pointer-events: auto; cursor: pointer;" data-element-type="icon" data-icon-type="iconify" data-element-id="zappy-element-1771699522966-iwhd42llw" id="zappy-element-1771699522966-iwhd42llw" class="iconify iconify--material-symbols"><path fill="currentColor" d="M7 21v-2h4v-3.1q-1.225-.275-2.187-1.037T7.4 12.95q-1.875-.225-3.137-1.637T3 8V7q0-.825.588-1.412T5 5h2V3h10v2h2q.825 0 1.413.588T21 7v1q0 1.9-1.263 3.313T16.6 12.95q-.45 1.15-1.412 1.913T13 15.9V19h4v2zm0-10.2V7H5v1q0 .95.55 1.713T7 10.8m10 0q.9-.325 1.45-1.088T19 8V7h-2z"/></svg></div>
     </div>
     <div style="padding: 30px; background: white; border-top: 4px solid rgb(255, 107, 107); box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 8px; border-radius: 8px; display: flex !important; flex-direction: column !important; min-height: 0px !important; align-items: stretch !important; justify-content: flex-start !important;" data-grid-item-index="1">
       <h3 style="font-size: 22px; font-weight: 600; color: #1F2937; margin-bottom: 15px; font-family: Cormorant Garamond, Playfair Display, Georgia, serif;">כותרת כרטיס 2</h3>
@@ -743,9 +1120,9 @@
     <section class="featured-products-section" id="featured-products" data-zappy-dynamic="true">
       <div class="container">
         <h2 class="section-title">מוצרים מומלצים</h2>
-        <div class="product-grid featured-grid zappy-preserve-css-grid" id="zappy-featured-products" data-zappy-auto-grid="true" data-original-item-width="272" data-original-gap="24px" style="grid-template-columns: 272px 272px 272px 272px;"><div class="product-card standard" data-product-id="e7305c1c-15e5-49b2-9042-a6487a33ce7a" data-grid-item-index="0" style=""><a href="/product/tchynh-8ypsre" class="product-card-link"><img src="/assets/product-enhanced-1771433190821-wk72kr.webp" alt="טחינה"><h3>טחינה</h3><p>טחינה גולמית איכותית – מוצר טבעי ובריא העשוי משומשום טחון באיכות פרימיום הטחינה שלנו מיוצרת משומשום מובחר ומעובדת בקפידה רבה כדי לשמור על הטעם האותנטי והערכים התזונתיים הגבוהים. עשירה בחלבון, סידן וברזל, הטחינה מהווה תוספת מושלמת למגוון מנות – ממרקים וממרחים ועד רטבים וקינוחים. יתרונות המוצר:עשויה מ-100% שומשום טבעי ללא תוספים מלאכותיים או חומרים משמרים מקור מצוין לחלבון צמחי מתאימה לתזונה צמחונית וטבעונית רב-תכליתית – מושלמת לחומוס, סלטים, אפייה ועוד</p><div class="price">₪0.00</div></a></div><div class="product-card standard" data-product-id="31cf6eb6-8ba3-4ff6-8af5-e385ba3c3ff0" data-grid-item-index="1" style=""><a href="/product/chvltsh-mdhymh-f6g9ns" class="product-card-link"><img src="/assets/product-1771163744817-dppqj.webp" alt="חולצה מדהימה"><h3>חולצה מדהימה</h3><p>החולצה הזו כך וכך</p><div class="price">₪98.99 <span class="original-price">₪150.00</span></div></a></div></div>
+        <div class="product-grid featured-grid zappy-preserve-css-grid" id="zappy-featured-products" data-zappy-auto-grid="true" data-original-item-width="272" data-original-gap="24px" style="grid-template-columns: 272px 272px 272px 272px;"><div class="product-card standard" data-product-id="e7305c1c-15e5-49b2-9042-a6487a33ce7a" data-grid-item-index="0" style><a href="/product/tchynh-8ypsre" class="product-card-link"><img src="/assets/product-enhanced-1771433190821-wk72kr.webp" alt="טחינה"><h3>טחינה</h3><p>טחינה גולמית איכותית – מוצר טבעי ובריא העשוי משומשום טחון באיכות פרימיום הטחינה שלנו מיוצרת משומשום מובחר ומעובדת בקפידה רבה כדי לשמור על הטעם האותנטי והערכים התזונתיים הגבוהים. עשירה בחלבון, סידן וברזל, הטחינה מהווה תוספת מושלמת למגוון מנות – ממרקים וממרחים ועד רטבים וקינוחים. יתרונות המוצר:עשויה מ-100% שומשום טבעי ללא תוספים מלאכותיים או חומרים משמרים מקור מצוין לחלבון צמחי מתאימה לתזונה צמחונית וטבעונית רב-תכליתית – מושלמת לחומוס, סלטים, אפייה ועוד</p><div class="price">₪0.00</div></a></div><div class="product-card standard" data-product-id="31cf6eb6-8ba3-4ff6-8af5-e385ba3c3ff0" data-grid-item-index="1" style><a href="/product/chvltsh-mdhymh-f6g9ns" class="product-card-link"><img src="/assets/product-1771163744817-dppqj.webp" alt="חולצה מדהימה"><h3>חולצה מדהימה</h3><p>החולצה הזו כך וכך</p><div class="price">₪98.99 <span class="original-price">₪150.00</span></div></a></div></div>
         <div class="view-all-products" style="text-align: center !important; display: flex !important; justify-content: center !important; align-items: flex-start !important;">
-          <a href="/products" class="btn btn-primary" data-element-type="button" data-element-id="btn-1771512931581-y0t2skf7l" data-native-element="true" style="outline: none; border-color: rgb(63, 55, 201) !important; color: rgb(255, 255, 255) !important; background-color: rgb(63, 55, 201) !important; background-image: none !important;">צפה בכל המוצרים →</a>
+          <a href="/products" class="btn btn-primary" data-element-type="button" data-element-id="btn-1771512931581-y0t2skf7l" data-native-element="true" style="outline: none; border-color: rgb(63, 55, 201) !important; color: rgb(255, 255, 255) !important; background-color: rgb(63, 55, 201) !important; background-image: none !important;">צפה בכל הנעליים →</a>
         </div>
       </div>
     </section>
@@ -755,7 +1132,7 @@
       <div class="container">
         <h2 class="section-title">קנו לפי קטגוריה</h2>
         <div class="category-blocks" id="zappy-featured-categories">
-          <div class="loading-categories">טוען מוצרים...</div>
+          <div class="loading-categories">טוען נעליים...</div>
         </div>
       </div>
     </section>
@@ -790,7 +1167,7 @@
   
   <div class="home-story-divider-wrapper">
     <svg data-no-icon-edit="true" aria-hidden="true" viewBox="0 0 1200 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,60 L0,35 Q60,28 120,36 T240,32 Q300,38 360,30 T480,35 Q540,30 600,36 T720,32 Q780,37 840,31 T960,36 Q1020,30 1080,35 T1200,32 L1200,60 Z" fill="#FFFFFF"></path>
+      <path d="M0,60 L0,35 Q60,28 120,36 T240,32 Q300,38 360,30 T480,35 Q540,30 600,36 T720,32 Q780,37 840,31 T960,36 Q1020,30 1080,35 T1200,32 L1200,60 Z" fill="#FFFFFF"/>
     </svg>
 
   </div>
@@ -809,7 +1186,7 @@
       <a data-zappy-click-action="link" href="/lookbook" style="text-decoration: none; color: inherit; display: contents;"><div data-zappy-zoom-wrapper="true" data-element-id="img-1771515670253-n8nve6vn4" data-element-type="image" data-zappy-zoom-wrapper-width="364px" data-zappy-zoom-wrapper-height="228px" data-zappy-zoom-wrapper-width-mode="grid-responsive" data-zappy-zoom-clip="true" data-zappy-wrapper-margins-applied="true" style="cursor: pointer; position: relative !important; width: 100% !important; max-width: 100% !important; margin-left: auto !important; margin-right: auto !important; display: block !important; padding-bottom: 62.6374% !important; overflow: hidden !important;" data-zappy-zoom-aspect-ratio="0.626374" data-zappy-click-action="link"><img data-placeholder="layout-image-1771515669686-p9onpy9md" data-context="תיאור תמונה 2" data-zappy-editable-image="true" src="/assets/business-general-service-upload-1771592859704.webp" alt="תיאור תמונה 2" style="border-radius: 8px; object-position: 49% 77%; display: block !important; width: 100% !important; object-fit: cover !important; margin: 0px !important; max-height: none !important; position: absolute !important; left: 0% !important; top: -45.9298% !important; height: 159.649% !important; max-width: none !important;" class="layout-placeholder-image zappy-editable-image" data-element-type="image" data-element-id="img-1771515670253-n8nve6vn4" data-zappy-original-width="364" data-zappy-original-height="227.5" data-zappy-zoom="1" data-zappy-click-action="link"></div></a>
       <div style="padding: 24px;">
         <h3 style="font-size: 20px; font-weight: 600; color: #1F2937; margin-bottom: 10px; font-family: Cormorant Garamond, Playfair Display, Georgia, serif;" class="zappy-editable">כותרת כרטיס 2</h3>
-        <p style="font-size: 15px; line-height: 1.6; color: #1F2937; opacity: 0.8; font-family: Cormorant Garamond, Playfair Display, Georgia, serif;" class="zappy-editable">טקסט תיאור כרטיס נמצא כאן<span class="zappy-inserted-element zappy-inline-element" id="zappy-element-1771594705697-hycss3ozl" data-element-id="zappy-element-1771594705697-hycss3ozl" data-element-type="icon" data-zappy-newly-inserted="true" style="vertical-align: middle; margin: 0px auto 0px 0px; text-align: left; display: flex !important; width: 100% !important; justify-content: flex-end !important;"><a data-zappy-click-action="link" href="/about" style="text-decoration: none; color: inherit; display: contents;"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="61" height="61" viewBox="0 0 24 24" data-icon="material-symbols:trophy" data-iconify="material-symbols:trophy" data-size-adjusted="true" style="display: inline-block; vertical-align: -0.125em; pointer-events: auto; color: rgb(63, 55, 201); cursor: pointer; width: 61px; height: 61px;" data-element-type="icon" data-icon-type="iconify" data-element-id="zappy-element-1771594705697-hycss3ozl" id="zappy-element-1771594705697-hycss3ozl" class="iconify iconify--material-symbols" data-zappy-click-action="link"><path fill="currentColor" d="M7 21v-2h4v-3.1q-1.225-.275-2.187-1.037T7.4 12.95q-1.875-.225-3.137-1.637T3 8V7q0-.825.588-1.412T5 5h2V3h10v2h2q.825 0 1.413.588T21 7v1q0 1.9-1.263 3.313T16.6 12.95q-.45 1.15-1.412 1.913T13 15.9V19h4v2zm0-10.2V7H5v1q0 .95.55 1.713T7 10.8m10 0q.9-.325 1.45-1.088T19 8V7h-2z"></path></svg></a></span></p><div class="zappy-inserted-element" id="zappy-element-1771595928633-xl62pq1hn" data-element-id="zappy-element-1771595928633-xl62pq1hn" data-element-type="paragraph" data-zappy-newly-inserted="true" style="max-width: 1152px; margin-left: auto; margin-right: auto; width: 100%; align-self: start !important;"><p style="font-size: 1rem;" data-element-type="paragraph" data-element-id="zappy-element-1771595928633-xl62pq1hn" id="zappy-element-1771595928633-xl62pq1hn" data-zappy-newly-inserted="true" class="zappy-editable">הזן את טקסט הפסקה שלך...</p></div>
+        <p style="font-size: 15px; line-height: 1.6; color: #1F2937; opacity: 0.8; font-family: Cormorant Garamond, Playfair Display, Georgia, serif;" class="zappy-editable">טקסט תיאור כרטיס נמצא כאן<span class="zappy-inserted-element zappy-inline-element" id="zappy-element-1771594705697-hycss3ozl" data-element-id="zappy-element-1771594705697-hycss3ozl" data-element-type="icon" data-zappy-newly-inserted="true" style="vertical-align: middle; margin: 0px auto 0px 0px; text-align: left; display: flex !important; width: 100% !important; justify-content: flex-end !important;"><a data-zappy-click-action="link" href="/about" style="text-decoration: none; color: inherit; display: contents;"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" width="61" height="61" viewBox="0 0 24 24" data-icon="material-symbols:trophy" data-iconify="material-symbols:trophy" data-size-adjusted="true" style="display: inline-block; vertical-align: -0.125em; pointer-events: auto; color: rgb(63, 55, 201); cursor: pointer; width: 61px; height: 61px;" data-element-type="icon" data-icon-type="iconify" data-element-id="zappy-element-1771594705697-hycss3ozl" id="zappy-element-1771594705697-hycss3ozl" class="iconify iconify--material-symbols" data-zappy-click-action="link"><path fill="currentColor" d="M7 21v-2h4v-3.1q-1.225-.275-2.187-1.037T7.4 12.95q-1.875-.225-3.137-1.637T3 8V7q0-.825.588-1.412T5 5h2V3h10v2h2q.825 0 1.413.588T21 7v1q0 1.9-1.263 3.313T16.6 12.95q-.45 1.15-1.412 1.913T13 15.9V19h4v2zm0-10.2V7H5v1q0 .95.55 1.713T7 10.8m10 0q.9-.325 1.45-1.088T19 8V7h-2z"/></svg></a></span></p><div class="zappy-inserted-element" id="zappy-element-1771595928633-xl62pq1hn" data-element-id="zappy-element-1771595928633-xl62pq1hn" data-element-type="paragraph" data-zappy-newly-inserted="true" style="max-width: 1152px; margin-left: auto; margin-right: auto; width: 100%; align-self: start !important;"><p style="font-size: 1rem;" data-element-type="paragraph" data-element-id="zappy-element-1771595928633-xl62pq1hn" id="zappy-element-1771595928633-xl62pq1hn" data-zappy-newly-inserted="true" class="zappy-editable">הזן את טקסט הפסקה שלך...</p></div>
       </div>
     </div><div style="background: white; border-radius: 12px; box-shadow: rgba(0, 0, 0, 0.08) 0px 2px 8px;" class="zappy-grid-item-no-stretch">
       <div data-zappy-zoom-wrapper="true" data-element-id="img-1771515670253-n8nve6vn4-dup-1771594501522-cpj3y0" data-element-type="image" data-zappy-zoom-wrapper-width="364px" data-zappy-zoom-wrapper-height="228px" data-zappy-zoom-wrapper-width-mode="grid-responsive" data-zappy-zoom-clip="true" data-zappy-wrapper-margins-applied="true" style="position: relative !important; width: 100% !important; max-width: 100% !important; margin-left: auto !important; margin-right: auto !important; display: block !important; padding-bottom: 62.6374% !important; overflow: hidden !important;" data-zappy-zoom-aspect-ratio="0.626374"><img data-placeholder="layout-image-1771515669686-p9onpy9md" data-context="תיאור תמונה 2" data-zappy-editable-image="true" src="/assets/business-general-service-upload-1771594520037.webp" alt="תיאור תמונה 2" style="border-radius: 8px; object-position: 51% 28%; cursor: pointer; display: block !important; width: 100% !important; object-fit: cover !important; margin: 0px !important; max-height: none !important; position: absolute !important; left: 0% !important; top: -16.7018% !important; height: 159.649% !important; max-width: none !important;" class="layout-placeholder-image zappy-editable-image" data-element-type="image" data-element-id="img-1771515670253-n8nve6vn4-dup-1771594501522-cpj3y0" data-zappy-original-width="364" data-zappy-original-height="227.5" data-zappy-zoom="1"></div>
@@ -836,7 +1213,7 @@
           <div class="zappy-inserted-element" style="text-align: center; display: flex; justify-content: center; width: 100%;" data-element-id="element-saved-1771609912473-yq8d8rlw3">
         <div style="width: 100%; max-width: 502px;">
           <div style="position: relative; width: 100%; height: 0px; padding-bottom: 53.3865%; background: rgb(0, 0, 0); border-radius: 8px; overflow: hidden; max-width: none; max-height: none;" data-element-type="video" data-element-id="video-1771610631656-obnrzkpda" class="zappy-resizable-hover">
-          <iframe src="https://www.youtube.com/embed/Nntd2fgMUYw" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; border: none; " allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
+          <iframe src="https://www.youtube.com/embed/Nntd2fgMUYw" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; border: none; " allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
           </iframe>
           </div>
         </div>
@@ -846,7 +1223,7 @@
         </div>
       </div></div></div>
   </div>
-<div class="zappy-inserted-element" id="zappy-element-1771611440157-ztmvzj5xd" data-element-id="zappy-element-1771611440157-ztmvzj5xd" data-element-type="video" style="max-width: 1440px; margin: 20px auto; display: flex; justify-content: center; text-align: center; position: relative;"><div style="width: 100%; max-width: 1486px; display: block; margin-left: auto; margin-right: auto;"><div style="position: relative; width: 100%; max-width: none; height: 0px; padding-bottom: 56.2584%; background: rgb(0, 0, 0); border-radius: 8px; overflow: hidden;" data-element-type="video" data-element-id="zappy-element-1771611440157-ztmvzj5xd" id="zappy-element-1771611440157-ztmvzj5xd" class="zappy-resizable-hover"><iframe src="https://www.youtube.com/embed/721JQZw6Spg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; " allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div></div></div><div class="zappy-inserted-element" id="zappy-element-1771624244060-6fe6021by" data-element-id="zappy-element-1771624244060-6fe6021by" data-element-type="image" style="max-width: 1152px; margin: 20px 0px; text-align: left; justify-content: flex-end;"><style data-zappy-image-lightbox="true">.zappy-lightbox{position:fixed;inset:0;background:rgba(0,0,0,.72);display:none;align-items:center;justify-content:center;z-index:9999;padding:24px;}.zappy-lightbox-content{position:relative;max-width:min(1100px,92vw);max-height:92vh;}.zappy-lightbox-content img{max-width:92vw;max-height:92vh;display:block;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.45);}.zappy-lightbox-close{position:absolute;top:-14px;right:-14px;width:32px;height:32px;border-radius:999px;background:#fff;color:#111;display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 8px 24px rgba(0,0,0,.25);cursor:pointer;}.zappy-lightbox-backdrop{position:absolute;inset:0;display:block;cursor:pointer;}input.zappy-lightbox-toggle{position:absolute;opacity:0;pointer-events:none;}label.zappy-lightbox-trigger{display:contents;}body:not(.zappy-edit-mode) label.zappy-lightbox-trigger{cursor:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22%3E%3Cpath d=%22M14%2C10c0%2C.276-.224%2C.5-.5%2C.5h-3v3c0%2C.276-.224%2C.5-.5%2C.5s-.5-.224-.5-.5v-3h-3c-.276%2C0-.5-.224-.5-.5s.224-.5.5-.5h3v-3c0-.276.224-.5.5-.5s.5.224.5.5v3h3c.276%2C0%2C.5.224%2C.5.5Zm9.854%2C13.854c-.098.098-.226.146-.354.146s-.256-.049-.354-.146l-6.449-6.449c-1.775%2C1.607-4.12%2C2.596-6.697%2C2.596C4.486%2C20%2C0%2C15.514%2C0%2C10S4.486%2C0%2C10%2C0s10%2C4.486%2C10%2C10c0%2C2.577-.989%2C4.922-2.596%2C6.697l6.449%2C6.449c.195.195.195.512%2C0%2C.707Zm-4.854-13.854C19%2C5.038%2C14.963%2C1%2C10%2C1S1%2C5.038%2C1%2C10s4.037%2C9%2C9%2C9%2C9-4.038%2C9-9Z%22/%3E%3C/svg%3E") 12 12, zoom-in;}body:not(.zappy-edit-mode) label.zappy-lightbox-trigger [data-zappy-zoom-wrapper="true"],body:not(.zappy-edit-mode) label.zappy-lightbox-trigger img{cursor:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22%3E%3Cpath d=%22M14%2C10c0%2C.276-.224%2C.5-.5%2C.5h-3v3c0%2C.276-.224%2C.5-.5%2C.5s-.5-.224-.5-.5v-3h-3c-.276%2C0-.5-.224-.5-.5s.224-.5.5-.5h3v-3c0-.276.224-.5.5-.5s.5.224.5.5v3h3c.276%2C0%2C.5.224%2C.5.5Zm9.854%2C13.854c-.098.098-.226.146-.354.146s-.256-.049-.354-.146l-6.449-6.449c-1.775%2C1.607-4.12%2C2.596-6.697%2C2.596C4.486%2C20%2C0%2C15.514%2C0%2C10S4.486%2C0%2C10%2C0s10%2C4.486%2C10%2C10c0%2C2.577-.989%2C4.922-2.596%2C6.697l6.449%2C6.449c.195.195.195.512%2C0%2C.707Zm-4.854-13.854C19%2C5.038%2C14.963%2C1%2C10%2C1S1%2C5.038%2C1%2C10s4.037%2C9%2C9%2C9%2C9-4.038%2C9-9Z%22/%3E%3C/svg%3E") 12 12, zoom-in !important;}.zappy-edit-mode label.zappy-lightbox-trigger{cursor:inherit !important;}input.zappy-lightbox-toggle:checked + label.zappy-lightbox-trigger + .zappy-lightbox{display:flex;}</style><input type="checkbox" id="zappy-lightbox-toggle-zappy-element-1771624244060-6fe6021by" class="zappy-lightbox-toggle" data-zappy-image-lightbox="true"><label class="zappy-lightbox-trigger" for="zappy-lightbox-toggle-zappy-element-1771624244060-6fe6021by" data-zappy-image-lightbox="true"><div data-zappy-zoom-wrapper="true" data-element-id="zappy-element-1771624244060-6fe6021by" data-element-type="image" data-zappy-zoom-wrapper-width="467px" data-zappy-zoom-wrapper-height="467px" data-zappy-zoom-wrapper-width-mode="px" data-zappy-zoom-clip="true" data-zappy-wrapper-margins-applied="true" style="position: relative !important; overflow: hidden !important; width: 467px !important; max-width: 100% !important; margin-left: auto !important; margin-right: auto !important; height: 467px !important; display: block !important; cursor: pointer;" data-zappy-click-action="expand"><img src="/assets/business-general-service-upload-1771624272828.webp" alt="Image" style="border-radius: 8px; object-position: 55% 40%; width: 130% !important; height: 130% !important; max-width: none !important; object-fit: cover !important; margin: 0px !important; position: absolute !important; display: block; left: -16.5% !important; top: -12% !important; max-height: none !important;" data-element-type="image" data-element-id="zappy-element-1771624244060-6fe6021by" id="zappy-element-1771624244060-6fe6021by" class="zappy-editable-image" data-original-position="static" data-zappy-zoom="1.3" data-resize-handler-attached="true" data-zappy-click-action="expand"></div></label></div></section>
+<div class="zappy-inserted-element" id="zappy-element-1771611440157-ztmvzj5xd" data-element-id="zappy-element-1771611440157-ztmvzj5xd" data-element-type="video" style="max-width: 1440px; margin: 20px auto; display: flex; justify-content: center; text-align: center; position: relative;"><div style="width: 100%; max-width: 1486px; display: block; margin-left: auto; margin-right: auto;"><div style="position: relative; width: 100%; max-width: none; height: 0px; padding-bottom: 56.2584%; background: rgb(0, 0, 0); border-radius: 8px; overflow: hidden;" data-element-type="video" data-element-id="zappy-element-1771611440157-ztmvzj5xd" id="zappy-element-1771611440157-ztmvzj5xd" class="zappy-resizable-hover"><iframe src="https://www.youtube.com/embed/721JQZw6Spg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; " allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div></div></div><div class="zappy-inserted-element" id="zappy-element-1771624244060-6fe6021by" data-element-id="zappy-element-1771624244060-6fe6021by" data-element-type="image" style="max-width: 1152px; margin: 20px 0px; text-align: left; justify-content: flex-end;"><style data-zappy-image-lightbox="true">.zappy-lightbox{position:fixed;inset:0;background:rgba(0,0,0,.72);display:none;align-items:center;justify-content:center;z-index:9999;padding:24px;}.zappy-lightbox-content{position:relative;max-width:min(1100px,92vw);max-height:92vh;}.zappy-lightbox-content img{max-width:92vw;max-height:92vh;display:block;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.45);}.zappy-lightbox-close{position:absolute;top:-14px;right:-14px;width:32px;height:32px;border-radius:999px;background:#fff;color:#111;display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:0 8px 24px rgba(0,0,0,.25);cursor:pointer;}.zappy-lightbox-backdrop{position:absolute;inset:0;display:block;cursor:pointer;}input.zappy-lightbox-toggle{position:absolute;opacity:0;pointer-events:none;}label.zappy-lightbox-trigger{display:contents;}body:not(.zappy-edit-mode) label.zappy-lightbox-trigger{cursor:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22%3E%3Cpath d=%22M14%2C10c0%2C.276-.224%2C.5-.5%2C.5h-3v3c0%2C.276-.224%2C.5-.5%2C.5s-.5-.224-.5-.5v-3h-3c-.276%2C0-.5-.224-.5-.5s.224-.5.5-.5h3v-3c0-.276.224-.5.5-.5s.5.224.5.5v3h3c.276%2C0%2C.5.224%2C.5.5Zm9.854%2C13.854c-.098.098-.226.146-.354.146s-.256-.049-.354-.146l-6.449-6.449c-1.775%2C1.607-4.12%2C2.596-6.697%2C2.596C4.486%2C20%2C0%2C15.514%2C0%2C10S4.486%2C0%2C10%2C0s10%2C4.486%2C10%2C10c0%2C2.577-.989%2C4.922-2.596%2C6.697l6.449%2C6.449c.195.195.195.512%2C0%2C.707Zm-4.854-13.854C19%2C5.038%2C14.963%2C1%2C10%2C1S1%2C5.038%2C1%2C10s4.037%2C9%2C9%2C9%2C9-4.038%2C9-9Z%22/%3E%3C/svg%3E") 12 12, zoom-in;}body:not(.zappy-edit-mode) label.zappy-lightbox-trigger [data-zappy-zoom-wrapper="true"],body:not(.zappy-edit-mode) label.zappy-lightbox-trigger img{cursor:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22%3E%3Cpath d=%22M14%2C10c0%2C.276-.224%2C.5-.5%2C.5h-3v3c0%2C.276-.224%2C.5-.5%2C.5s-.5-.224-.5-.5v-3h-3c-.276%2C0-.5-.224-.5-.5s.224-.5.5-.5h3v-3c0-.276.224-.5.5-.5s.5.224.5.5v3h3c.276%2C0%2C.5.224%2C.5.5Zm9.854%2C13.854c-.098.098-.226.146-.354.146s-.256-.049-.354-.146l-6.449-6.449c-1.775%2C1.607-4.12%2C2.596-6.697%2C2.596C4.486%2C20%2C0%2C15.514%2C0%2C10S4.486%2C0%2C10%2C0s10%2C4.486%2C10%2C10c0%2C2.577-.989%2C4.922-2.596%2C6.697l6.449%2C6.449c.195.195.195.512%2C0%2C.707Zm-4.854-13.854C19%2C5.038%2C14.963%2C1%2C10%2C1S1%2C5.038%2C1%2C10s4.037%2C9%2C9%2C9%2C9-4.038%2C9-9Z%22/%3E%3C/svg%3E") 12 12, zoom-in !important;}.zappy-edit-mode label.zappy-lightbox-trigger{cursor:inherit !important;}input.zappy-lightbox-toggle:checked + label.zappy-lightbox-trigger + .zappy-lightbox{display:flex;}</style><input type="checkbox" id="zappy-lightbox-toggle-zappy-element-1771624244060-6fe6021by" class="zappy-lightbox-toggle" data-zappy-image-lightbox="true"><label class="zappy-lightbox-trigger" for="zappy-lightbox-toggle-zappy-element-1771624244060-6fe6021by" data-zappy-image-lightbox="true"><div data-zappy-zoom-wrapper="true" data-element-id="zappy-element-1771624244060-6fe6021by" data-element-type="image" data-zappy-zoom-wrapper-width="467px" data-zappy-zoom-wrapper-height="467px" data-zappy-zoom-wrapper-width-mode="px" data-zappy-zoom-clip="true" data-zappy-wrapper-margins-applied="true" style="position: relative !important; overflow: hidden !important; width: 467px !important; max-width: 100% !important; margin-left: auto !important; margin-right: auto !important; height: 467px !important; display: block !important; cursor: pointer;" data-zappy-click-action="expand"><img src="/assets/business-general-service-upload-1771624272828.webp" alt="Image" style="border-radius: 8px; object-position: 55% 40%; width: 130% !important; height: 130% !important; max-width: none !important; object-fit: cover !important; margin: 0px !important; position: absolute !important; display: block; left: -16.5% !important; top: -12% !important; max-height: none !important;" data-element-type="image" data-element-id="zappy-element-1771624244060-6fe6021by" id="zappy-element-1771624244060-6fe6021by" class="zappy-editable-image" data-original-position="static" data-zappy-zoom="1.3" data-resize-handler-attached="true" data-zappy-click-action="expand"></div></label></div></section>
 
 
 
@@ -914,13 +1291,13 @@
     <svg data-no-icon-edit="true" aria-hidden="true" viewBox="0 0 1200 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <linearGradient id="home-showcase-gold-line" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" style="stop-color:#EE7055;stop-"></stop>
-          <stop offset="50%" style="stop-color:#EE7055;stop-opacity:0.6"></stop>
-          <stop offset="100%" style="stop-color:#EE7055;stop-"></stop>
+          <stop offset="0%" style="stop-color:#EE7055;stop-"/>
+          <stop offset="50%" style="stop-color:#EE7055;stop-opacity:0.6"/>
+          <stop offset="100%" style="stop-color:#EE7055;stop-"/>
         </linearGradient>
       </defs>
-      <path d="M0,80 L0,20 L1200,50 L1200,80 Z" fill="var(--bg-dark)"></path>
-      <path d="M0,20 L1200,50" stroke="url(#home-showcase-gold-line)" stroke-width="1.5" fill="none"></path>
+      <path d="M0,80 L0,20 L1200,50 L1200,80 Z" fill="var(--bg-dark)"/>
+      <path d="M0,20 L1200,50" stroke="url(#home-showcase-gold-line)" stroke-width="1.5" fill="none"/>
     </svg>
   </div>
 <div class="zappy-inserted-element" id="zappy-element-1771612324902-dtnsihnq5" data-element-id="zappy-element-1771612324902-dtnsihnq5" data-element-type="button" data-zappy-newly-inserted="true" style="max-width: 660.4px; margin: 20px auto; text-align: center; display: flex; justify-content: center; align-items: flex-start; width: 100% !important; align-self: start !important; height: auto !important;"><a href="#" class="btn btn-primary" style="text-decoration: none; padding: 12px 24px; border-radius: 6px; display: inline-block; border-color: var(--primary-color, var(--primary, #8B0000)) !important; border-style: solid; border-width: 2px; border-image: initial; color: rgb(255, 255, 255) !important; width: auto !important; flex: 0 0 auto !important; cursor: pointer !important; background-color: var(--primary-color, var(--primary, #8B0000)) !important; background-image: none !important;" data-element-type="button" data-text-color="auto" data-element-id="zappy-element-1771612324902-dtnsihnq5" id="zappy-element-1771612324902-dtnsihnq5">לחץ כאן</a></div></section>
@@ -955,19 +1332,19 @@
     <svg data-no-icon-edit="true" aria-hidden="true" viewBox="0 0 1200 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <linearGradient id="testimonials-nebula-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" style="stop-color:#3F37C9;stop-opacity:1"></stop>
-          <stop offset="100%" style="stop-color:#F7F8FC;stop-opacity:1"></stop>
+          <stop offset="0%" style="stop-color:#3F37C9;stop-opacity:1"/>
+          <stop offset="100%" style="stop-color:#F7F8FC;stop-opacity:1"/>
         </linearGradient>
         <filter id="testimonials-stardust">
-          <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" seed="5"></feTurbulence>
-          <feColorMatrix type="saturate" values="0"></feColorMatrix>
+          <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" seed="5"/>
+          <feColorMatrix type="saturate" values="0"/>
           <feComponentTransfer>
-            <feFuncA type="discrete" tableValues="0 0 0 0 0 0 0 0 0 0.04 0.06 0.08"></feFuncA>
+            <feFuncA type="discrete" tableValues="0 0 0 0 0 0 0 0 0 0.04 0.06 0.08"/>
           </feComponentTransfer>
         </filter>
       </defs>
-      <path d="M0,120 L0,50 Q150,45 300,52 T600,48 Q750,52 900,46 T1200,50 L1200,120 Z" fill="url(#testimonials-nebula-gradient)"></path>
-      <rect x="0" y="0" width="1200" height="120" fill="white" filter="url(#testimonials-stardust)" opacity="0.5"></rect>
+      <path d="M0,120 L0,50 Q150,45 300,52 T600,48 Q750,52 900,46 T1200,50 L1200,120 Z" fill="url(#testimonials-nebula-gradient)"/>
+      <rect x="0" y="0" width="1200" height="120" fill="white" filter="url(#testimonials-stardust)" opacity="0.5"/>
     </svg>
   </div>
 </section>
@@ -1000,9 +1377,7 @@
     <i class="fab fa-whatsapp"></i>
   </a>
   
-  <script src="/script.js"></script>
-
-    <div data-integration="accessibility:toolbar"></div>
+  <div data-integration="accessibility:toolbar"></div>
 
     <script src="/script.js"></script>
 
