@@ -5,10 +5,10 @@
 ## Pages
 
 ### Page
-https://star-shoes.zappy5.app/about
+https://star-shoes.zappy5.app
 
 ### Page
-https://star-shoes.zappy5.app
+https://star-shoes.zappy5.app/about
 
 ### Page
 https://star-shoes.zappy5.app/lookbook
