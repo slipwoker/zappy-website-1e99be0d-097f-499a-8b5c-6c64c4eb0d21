@@ -7,8 +7,8 @@
 ### Page
 https://star-shoes.zappy5.app
 
-### Page
-https://star-shoes.zappy5.app/lookbook
+### תצוגה
+https://star-shoes.zappy5.app/display
 
 ### Page
 https://star-shoes.zappy5.app/about
