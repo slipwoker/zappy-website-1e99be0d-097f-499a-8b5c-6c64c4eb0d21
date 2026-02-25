@@ -5,17 +5,20 @@
 ## Pages
 
 ### Page
+https://star-shoes.zappy5.app/about
+
+### Page
 https://star-shoes.zappy5.app
 
 ### Page
 https://star-shoes.zappy5.app/lookbook
 
-### Page
-https://star-shoes.zappy5.app/about
-
 ### מוצרים
 https://star-shoes.zappy5.app/products
 המוצרים שלנו - Star Shoes
+
+### Page
+https://star-shoes.zappy5.app/contact
 
 ### עגלת קניות
 https://star-shoes.zappy5.app/cart
@@ -44,9 +47,6 @@ https://star-shoes.zappy5.app/product/:slug
 ### מוצרים
 https://star-shoes.zappy5.app/category/:slug
 מוצרים - Star Shoes
-
-### Page
-https://star-shoes.zappy5.app/contact
 
 ## Legal & Policy
 
