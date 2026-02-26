@@ -278,7 +278,232 @@
   opacity: 1;
 }</style>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+
+<style data-zappy-section-v2-css="true">
+/* V2 Regenerated Section CSS */
+.home-hero-section {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  min-height: 600px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: var(--bg-dark);
+}
+
+.home-hero-section .home-hero-bg-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 42% center;
+  z-index: 0;
+}
+
+.home-hero-section .home-hero-scrim {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(12,30,76,0.88) 0%, rgba(12,30,76,0.72) 38%, rgba(12,30,76,0.45) 62%, rgba(12,30,76,0.00) 88%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.home-hero-section .home-hero-content-wrapper {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.home-hero-section .home-hero-glass-card {
+  max-width: 600px;
+  width: min(92vw, 600px);
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 20px;
+  padding: 48px 40px;
+  box-shadow: 0 18px 42px rgba(10, 17, 38, 0.32);
+  color: var(--text-light);
+}
+
+.home-hero-section .home-hero-glass-card h1 {
+  font-family: "Playfair Display", "Georgia", serif;
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--text-light);
+  margin: 0 0 16px 0;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+}
+
+.home-hero-section .home-hero-glass-card h3 {
+  font-family: "Playfair Display", "Georgia", serif;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.005em;
+  color: var(--text-light);
+  margin: 0 0 28px 0;
+  opacity: 0.92;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.28);
+}
+
+.home-hero-section .home-hero-cta-group {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.home-hero-section .home-hero-btn-primary {
+  display: inline-block;
+  background: var(--primary);
+  color: var(--text-light);
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 14px 32px;
+  border-radius: 12px;
+  text-decoration: none;
+  box-shadow: 0 12px 24px rgba(63, 55, 201, 0.35);
+  transition: transform 220ms ease, box-shadow 220ms ease, background-color 220ms ease;
+}
+
+.home-hero-section .home-hero-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 32px rgba(63, 55, 201, 0.45);
+  background: #5048d9;
+}
+
+.home-hero-section .home-hero-btn-primary:active {
+  transform: translateY(0);
+}
+
+.home-hero-section .home-hero-btn-secondary {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.14);
+  color: var(--text-light);
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 14px 32px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  text-decoration: none;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: transform 220ms ease, background-color 220ms ease, border-color 220ms ease;
+}
+
+.home-hero-section .home-hero-btn-secondary:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.55);
+}
+
+.home-hero-section .home-hero-btn-secondary:active {
+  transform: translateY(0);
+}
+
+.home-hero-section .home-hero-bottom-fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  background: linear-gradient(180deg, rgba(247, 248, 252, 0) 0%, var(--bg-light) 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .home-hero-section {
+    min-height: 500px;
+    height: 100vh;
+    align-items: flex-start;
+    padding-top: 100px;
+  }
+  
+  .home-hero-section .home-hero-bg-image {
+    object-position: 38% center;
+  }
+  
+  .home-hero-section .home-hero-scrim {
+    background: linear-gradient(180deg, rgba(12,30,76,0.82) 0%, rgba(12,30,76,0.68) 45%, rgba(12,30,76,0.50) 75%, rgba(12,30,76,0.00) 100%);
+  }
+  
+  .home-hero-section .home-hero-content-wrapper {
+    padding: 0 16px;
+    align-items: flex-start;
+  }
+  
+  .home-hero-section .home-hero-glass-card {
+    padding: 32px 24px;
+    max-width: 100%;
+  }
+  
+  .home-hero-section .home-hero-glass-card h1 {
+    font-size: 36px;
+    line-height: 1.15;
+    margin-bottom: 12px;
+  }
+  
+  .home-hero-section .home-hero-glass-card h3 {
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 24px;
+  }
+  
+  .home-hero-section .home-hero-cta-group {
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+  }
+  
+  .home-hero-section .home-hero-btn-primary,
+  .home-hero-section .home-hero-btn-secondary {
+    width: 100%;
+    text-align: center;
+    padding: 12px 24px;
+    font-size: 15px;
+  }
+  
+  .home-hero-section .home-hero-bottom-fade {
+    height: 80px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .home-hero-section .home-hero-glass-card {
+    max-width: 540px;
+    padding: 40px 36px;
+  }
+  
+  .home-hero-section .home-hero-glass-card h1 {
+    font-size: 42px;
+  }
+  
+  .home-hero-section .home-hero-glass-card h3 {
+    font-size: 20px;
+  }
+}
+</style>
 
           <style id="zappy-cta-mobile-style">
             /* Hide CTA list item on desktop (tablets and up) */
@@ -701,6 +926,8 @@
               });
             })();
           </script>
+        
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="/styles.css">
 
     <style id="zappy-widget-visibility">
@@ -725,12 +952,12 @@
   
     <div class="mobile-search-panel" id="mobile-search-panel">
       <div class="search-wrapper">
-        <input type="text" id="mobile-search-input" placeholder="חיפוש נעליים..." autocomplete="off">
+        <input type="text" id="mobile-search-input" placeholder="חיפוש מוצרים..." autocomplete="off">
         <button class="search-submit" id="mobile-search-submit" title="חיפוש">
-          <svg width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="M21 21l-4.35-4.35"></path></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
         </button>
         <button class="close-search" id="close-mobile-search">
-          <svg width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"></path></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
         </button>
       </div>
       <div class="search-results" id="mobile-search-results"></div>
@@ -769,13 +996,13 @@
         <li><a href="/products">כל הנעליים</a></li>
         <!-- Categories will be loaded dynamically -->
       </ul>
-    </li><li><a href="/contact">צור קשר</a></li></ul><div class="nav-ecommerce-icons nav-icons-left"><a href="/login" class="login-link nav-login" title="התחברות"><svg class="login-icon" width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></a><a href="#cart" class="cart-link nav-cart" id="cart-drawer-toggle" title="עגלת קניות"><svg class="cart-icon" width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg><span class="cart-count">0</span></a><div class="nav-search-box">
-    <input type="text" class="nav-search-input" id="nav-search-input" placeholder="חיפוש נעליים..." autocomplete="off">
+    </li><li><a href="/contact">צור קשר</a></li></ul><div class="nav-ecommerce-icons nav-icons-left"><a href="/login" class="login-link nav-login" title="התחברות"><svg class="login-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a><a href="#cart" class="cart-link nav-cart" id="cart-drawer-toggle" title="עגלת קניות"><svg class="cart-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg><span class="cart-count">0</span></a><div class="nav-search-box">
+    <input type="text" class="nav-search-input" id="nav-search-input" placeholder="חיפוש מוצרים..." autocomplete="off">
     <button class="nav-search-btn" id="nav-search-btn" title="חיפוש">
-      <svg class="search-icon" width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="M21 21l-4.35-4.35"></path></svg>
+      <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
     </button>
     <div class="nav-search-results" id="nav-search-results"></div>
-  </div></div><div class="nav-ecommerce-icons nav-icons-right"><button class="nav-search-toggle" id="mobile-search-toggle" title="חיפוש"><svg width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="M21 21l-4.35-4.35"></path></svg></button></div>
+  </div></div><div class="nav-ecommerce-icons nav-icons-right"><button class="nav-search-toggle" id="mobile-search-toggle" title="חיפוש"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></button></div>
     
     
   </div>
@@ -793,11 +1020,11 @@
         <section class="product-detail-section" id="product-detail">
           <div class="product-detail-loading">
             <div class="loading-spinner"></div>
-            <p>טוען נעליים...</p>
+            <p>טוען מוצרים...</p>
           </div>
         </section>
         <section class="related-products-section" style="display:none;" id="related-products-section">
-          <h2>נעליים דומים</h2>
+          <h2>מוצרים דומים</h2>
           <div class="product-grid" id="related-products-grid"></div>
         </section>
       
@@ -812,7 +1039,7 @@
   <div class="cart-drawer-header">
     <h2>עגלת הקניות שלך</h2>
     <button type="button" class="cart-drawer-close" id="cart-drawer-close" aria-label="סגור">
-      <svg width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"></path></svg>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
     </button>
   </div>
   <div class="cart-drawer-body" id="cart-drawer-items">
@@ -905,7 +1132,6 @@
     }
   })();
   </script>
-
 
     <script src="/script.js"></script>
 
