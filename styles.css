@@ -5721,6 +5721,12 @@ footer {
 
 
 
+
+
+
+
+
+
 /* ==ZAPPY V2 E-COMMERCE THEME CSS== */
 /* ═══════════════════════════════════════════════════════════════════════════ */
 /* V2 E-COMMERCE CSS - Clean V2 Variables Only                                  */
@@ -8267,7 +8273,6 @@ html[lang="ar"] .mobile-search-panel .search-wrapper,
   }
   
   /* Desktop icon buttons: keep circular + centered (fix square icons regression) */
-  /* CRITICAL: For dark themes, use transparent background so light icons are visible */
   .navbar .nav-ecommerce-icons.nav-icons-left a.login-link.nav-login,
   .navbar .nav-ecommerce-icons.nav-icons-left a.cart-link.nav-cart {
     width: 36px !important;
@@ -8279,8 +8284,8 @@ html[lang="ar"] .mobile-search-panel .search-wrapper,
     justify-content: center !important;
     border-radius: 9999px !important;
     border: 1px solid rgba(128,128,128,0.2) !important;
-    background: rgba(128,128,128,0.06) !important;
-    color: var(--nav-text, var(--text-dark)) !important;
+    background: var(--bg-light, #ffffff) !important;
+    color: var(--text-dark, #1a1a1a) !important;
     padding: 0 !important;
     position: relative !important; /* anchor cart badge */
     box-sizing: border-box !important;
@@ -8875,7 +8880,7 @@ nav.navbar .menu-item-has-children::after,
   .navbar .sub-menu li a,
   nav.navbar .sub-menu li a,
   .zappy-products-dropdown .sub-menu a {
-    color: var(--nav-text, --text-dark) !important;
+    color: var(--nav-text, var(--text-light, #ffffff)) !important;
   }
 }
 
@@ -12454,6 +12459,12 @@ nav.navbar .menu-item-has-children::after,
   .navbar ul.sub-menu,
   nav.navbar .sub-menu,
   .zappy-products-dropdown .sub-menu {
+    position: static !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    min-width: 0 !important;
+    width: 100% !important;
     background: transparent !important;
     box-shadow: none !important;
     border-radius: 0 !important;
@@ -12462,6 +12473,17 @@ nav.navbar .menu-item-has-children::after,
   nav.navbar .sub-menu li a,
   .zappy-products-dropdown .sub-menu a {
     color: var(--nav-text, var(--text-light, #ffffff)) !important;
+  }
+
+  /* Mobile submenu toggle arrow: must be visible on dark nav panel */
+  .mobile-submenu-toggle {
+    color: var(--nav-text, var(--text-light, #ffffff)) !important;
+  }
+  .mobile-submenu-toggle::after {
+    border-top-color: var(--nav-text, var(--text-light, #ffffff)) !important;
+  }
+  .mobile-submenu-toggle.expanded::after {
+    border-bottom-color: var(--nav-text, var(--text-light, #ffffff)) !important;
   }
 }
 
