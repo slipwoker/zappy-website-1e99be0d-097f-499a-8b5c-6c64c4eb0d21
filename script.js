@@ -582,6 +582,8 @@ window.onload = function() {
 ;
 
 ;
+
+;
 /* ==ZAPPY E-COMMERCE JS START== */
 // E-commerce functionality
 (function() {
@@ -3148,6 +3150,7 @@ function stripHtmlToText(html) {
       if (currentState !== lastMenuState) {
         lastMenuState = currentState;
         if (currentState) {
+          document.body.classList.add('menu-open');
           // Menu just opened - add overlay
           if (!document.querySelector('.mobile-menu-overlay')) {
             const overlay = document.createElement('div');
@@ -3161,6 +3164,7 @@ function stripHtmlToText(html) {
             document.body.appendChild(overlay);
           }
         } else {
+          document.body.classList.remove('menu-open');
           // Menu just closed - remove overlay
           const overlay = document.querySelector('.mobile-menu-overlay');
           if (overlay) overlay.remove();
@@ -3217,8 +3221,13 @@ function stripHtmlToText(html) {
 
       const apply = function() {
         const menuOpen = menu.classList.contains('active') || menu.classList.contains('open') || menu.classList.contains('show');
-        if (menuOpen) toggle.classList.add('active');
-        else toggle.classList.remove('active');
+        if (menuOpen) {
+          toggle.classList.add('active');
+          document.body.classList.add('menu-open');
+        } else {
+          toggle.classList.remove('active');
+          document.body.classList.remove('menu-open');
+        }
       };
 
       apply();
@@ -5247,28 +5256,85 @@ function initTransparentNavbarScrollEffect() {
   nb.style.transition = 'background 0.3s ease, backdrop-filter 0.3s ease, -webkit-backdrop-filter 0.3s ease, box-shadow 0.3s ease';
   if (cm) cm.style.transition = 'background 0.3s ease, backdrop-filter 0.3s ease, -webkit-backdrop-filter 0.3s ease';
 
+  var navElSelector = 'a, .navbar-brand, .navbar-brand a, .dropdown-toggle, .mobile-toggle, .phone-header-btn, .mobile-hamburger-btn, .mobile-close-btn, .mobile-submenu-toggle, .nav-link';
+  var skipClasses = ['cart-link', 'login-link', 'nav-search-toggle', 'search-toggle'];
+
+  function setScrolledColors(container, color) {
+    var els = container.querySelectorAll(navElSelector);
+    for (var i = 0; i < els.length; i++) {
+      var skip = false;
+      for (var j = 0; j < skipClasses.length; j++) {
+        if (els[i].classList.contains(skipClasses[j])) { skip = true; break; }
+      }
+      if (!skip) els[i].style.setProperty('color', color, 'important');
+    }
+  }
+
+  function clearScrolledColors(container) {
+    var els = container.querySelectorAll(navElSelector);
+    for (var i = 0; i < els.length; i++) els[i].style.removeProperty('color');
+  }
+
   function onScroll() {
-    if (window.innerWidth <= 768) return;
+    if (window._zappyNavOverrideActive) return;
+    if (window.innerWidth <= 768) {
+      nb.style.removeProperty('background');
+      nb.style.removeProperty('background-color');
+      nb.style.removeProperty('background-image');
+      nb.style.removeProperty('--frosted-text');
+      nb.style.backdropFilter = '';
+      nb.style.webkitBackdropFilter = '';
+      nb.style.boxShadow = '';
+      nb.classList.remove('scrolled');
+      clearScrolledColors(nb);
+      if (cm) {
+        cm.style.removeProperty('background');
+        cm.style.removeProperty('background-color');
+        cm.style.removeProperty('backdrop-filter');
+        cm.style.removeProperty('-webkit-backdrop-filter');
+        cm.classList.remove('scrolled');
+        clearScrolledColors(cm);
+      }
+      return;
+    }
     var y = window.scrollY || window.pageYOffset;
     if (y > threshold) {
       nb.classList.add('scrolled');
       nb.style.setProperty('background-color', frostedBg, 'important');
+      nb.style.setProperty('background-image', 'none', 'important');
       nb.style.setProperty('--frosted-text', scrolledTextColor);
       nb.style.backdropFilter = 'blur(12px)';
       nb.style.webkitBackdropFilter = 'blur(12px)';
       nb.style.boxShadow = '0 2px 16px rgba(0,0,0,0.12)';
-      if (cm) { cm.classList.add('scrolled'); cm.style.setProperty('background-color', frostedBg, 'important'); cm.style.backdropFilter = 'blur(12px)'; cm.style.webkitBackdropFilter = 'blur(12px)'; }
+      setScrolledColors(nb, scrolledTextColor);
+      if (cm) {
+        cm.classList.add('scrolled');
+        cm.style.setProperty('background', frostedBg, 'important');
+        cm.style.setProperty('backdrop-filter', 'blur(12px)', 'important');
+        cm.style.setProperty('-webkit-backdrop-filter', 'blur(12px)', 'important');
+        setScrolledColors(cm, scrolledTextColor);
+      }
     } else {
       nb.classList.remove('scrolled');
       nb.style.setProperty('background-color', 'transparent', 'important');
+      nb.style.removeProperty('background-image');
       nb.style.removeProperty('--frosted-text');
       nb.style.backdropFilter = 'none';
       nb.style.webkitBackdropFilter = 'none';
       nb.style.boxShadow = 'none';
-      if (cm) { cm.classList.remove('scrolled'); cm.style.setProperty('background-color', 'transparent', 'important'); cm.style.backdropFilter = 'none'; cm.style.webkitBackdropFilter = 'none'; }
+      clearScrolledColors(nb);
+      if (cm) {
+        cm.classList.remove('scrolled');
+        cm.style.setProperty('background', 'transparent', 'important');
+        cm.style.setProperty('backdrop-filter', 'none', 'important');
+        cm.style.setProperty('-webkit-backdrop-filter', 'none', 'important');
+        clearScrolledColors(cm);
+      }
     }
   }
   window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+  window._zappyNavScrollCleanup = function() { window.removeEventListener('scroll', onScroll); window.removeEventListener('resize', onScroll); };
   onScroll();
 
   // On pages without a dark hero, the transparent navbar shows light text on
@@ -5289,13 +5355,22 @@ function initTransparentNavbarScrollEffect() {
   }
   if (!pageHasDarkHero) {
     window.removeEventListener('scroll', onScroll);
+    window.removeEventListener('resize', onScroll);
     nb.classList.add('scrolled');
     nb.style.setProperty('--frosted-text', scrolledTextColor);
+    nb.style.setProperty('background-image', 'none', 'important');
     nb.style.backdropFilter = 'blur(12px)';
     nb.style.webkitBackdropFilter = 'blur(12px)';
     nb.style.boxShadow = '0 2px 16px rgba(0,0,0,0.12)';
+    setScrolledColors(nb, scrolledTextColor);
     if (window.innerWidth > 768) nb.style.setProperty('background-color', frostedBg, 'important');
-    if (cm) { cm.classList.add('scrolled'); cm.style.setProperty('background-color', frostedBg, 'important'); cm.style.backdropFilter = 'blur(12px)'; cm.style.webkitBackdropFilter = 'blur(12px)'; }
+    if (cm) {
+      cm.classList.add('scrolled');
+      cm.style.setProperty('background', frostedBg, 'important');
+      cm.style.setProperty('backdrop-filter', 'blur(12px)', 'important');
+      cm.style.setProperty('-webkit-backdrop-filter', 'blur(12px)', 'important');
+      setScrolledColors(cm, scrolledTextColor);
+    }
   }
 }
 
@@ -7387,7 +7462,7 @@ async function loadRelatedProducts(currentProduct, t) {
 
       var wid = '1e99be0d-097f-499a-8b5c-6c64c4eb0d21';
 
-      var apiBase = (window.ZAPPY_API_BASE || 'http://localhost:5001').replace(/\/$/,'');
+      var apiBase = (window.ZAPPY_API_BASE || 'https://qaapi.zappy5.com').replace(/\/$/,'');
       apiBase = apiBase + '/api/email/contact-form';
 
       fetch(apiBase, {
