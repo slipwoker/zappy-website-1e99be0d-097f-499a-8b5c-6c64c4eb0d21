@@ -5757,6 +5757,12 @@ footer {
 
 
 
+
+
+
+
+
+
 /* ==ZAPPY V2 E-COMMERCE THEME CSS== */
 /* ═══════════════════════════════════════════════════════════════════════════ */
 /* V2 E-COMMERCE CSS - Clean V2 Variables Only                                  */
@@ -8018,7 +8024,7 @@ html[lang="ar"] .mobile-search-panel .search-wrapper,
   .nav-menu.nav-menu-active,
   #navMenu,
   #navMenu.active {
-    background-color: var(--nav-bg, var(--bg-light)) !important;
+    background-color: var(--nav-bg, var(--bg-light));
   }
 
   /* Ensure hamburger is visible on mobile e-commerce pages.
@@ -10421,7 +10427,7 @@ main.page-container.ecommerce-page,
 }
 .order-summary {
   padding: 24px;
-  background: var(--bg-light);
+  background: #fafafa;
   border-radius: 12px;
   height: fit-content;
   position: sticky;
