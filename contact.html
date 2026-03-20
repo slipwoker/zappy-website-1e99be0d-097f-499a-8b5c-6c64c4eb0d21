@@ -1018,6 +1018,22 @@
       var FREQ = 'every_visit';
       var DELAY = 2000;
       var KEY = 'zppb_a312c72f-141a-44f0-9121-ed3ddc22dd45';
+      // Only run on the first URL opened in this tab. Avoids showing the modal again
+      // on every internal navigation when the user leaves before the delay fired on the landing page.
+      if (FREQ !== 'every_visit') {
+        try {
+          var entKey = KEY + '_sess_entry';
+          var curPath = window.location.pathname + window.location.search;
+          var entryPath = sessionStorage.getItem(entKey);
+          if (!entryPath) {
+            sessionStorage.setItem(entKey, curPath);
+            entryPath = curPath;
+          }
+          if (curPath !== entryPath) {
+            return;
+          }
+        } catch (e) {}
+      }
 
       function shouldShow() {
         if (document.body && document.body.classList.contains('zappy-edit-mode')) return false;
@@ -1029,7 +1045,7 @@
           if (!last) return true;
           return (Date.now() - parseInt(last, 10)) > 86400000;
         }
-        return true;
+        return false;
       }
 
       function markShown() {
