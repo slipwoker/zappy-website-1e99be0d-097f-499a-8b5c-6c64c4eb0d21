@@ -929,27 +929,25 @@
         
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    
-
     <style id="zppb-promo-banner-styles">
     .zppb-overlay { display:none; position:fixed; inset:0; z-index:99999; background:rgba(0,0,0,0.45); align-items: center; justify-content: center; }
     .zppb-overlay.zppb-visible { display:flex; }
-    .zppb-banner { position:relative; overflow:hidden; text-align:center; padding:48px 36px; background:#0B1220; color:#F7F8FC; border-radius:16px; max-width:500px; width:92%; min-height:500px; display:flex; flex-direction:column; box-shadow:0 20px 60px rgba(0,0,0,0.3); animation: zppbFadeIn 0.35s ease forwards; }
+    .zppb-banner { position:relative; overflow:hidden; text-align:center; padding:48px 36px; background:#004be0; color:#ffffff; border-radius:16px; max-width:500px; width:92%; min-height:500px; display:flex; flex-direction:column; box-shadow:0 20px 60px rgba(0,0,0,0.3); animation: zppbSlideUp 0.4s ease forwards; }
     .zppb-bg-img { position:absolute; inset:0; background-size:cover; background-position:center; }
     .zppb-content { position:relative; z-index:1; flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; }
     .zppb-close { position:absolute; top:14px; right:14px; z-index:2; background:rgba(0,0,0,0.3); border:none; color:#fff; width:32px; height:32px; border-radius:50%; cursor:pointer; font-size:18px; line-height:1; display:flex; align-items:center; justify-content:center; }
     .zppb-close:hover { background:rgba(0,0,0,0.5); }
-    .zppb-h { font-size:28px; font-weight:700; margin:0 0 10px; color:#F7F8FC !important; }
-    .zppb-sub { font-size:16px; opacity:0.85; margin:0 0 24px; max-width:380px; color:#F7F8FC !important; white-space:pre-line; }
-    .zppb-cta { display:inline-block; padding:14px 36px; border-radius:50px; font-size:16px; font-weight:600; text-decoration:none; cursor:pointer; border:none; background:#FF6B6B; color:#F7F8FC; margin-top:8px; }
+    .zppb-h { font-size:28px; font-weight:700; margin:0 0 10px; color:#ffffff !important; }
+    .zppb-sub { font-size:16px; opacity:0.85; margin:0 0 24px; max-width:380px; color:#ffffff !important; white-space:pre-line; }
+    .zppb-cta { display:inline-block; padding:14px 36px; border-radius:50px; font-size:16px; font-weight:600; text-decoration:none; cursor:pointer; border:none; background:#e54848; color:#ffffff; margin-top:8px; }
     .zppb-cta:hover { opacity:0.9; }
-    .zppb-coupon { display:inline-block; margin-bottom:20px; padding:10px 24px; border:2px dashed #FF6B6B; border-radius:10px; font-family:monospace; font-weight:700; font-size:18px; color:#FF6B6B; letter-spacing:2px; }
+    .zppb-coupon { display:inline-block; margin-bottom:20px; padding:10px 24px; border:2px dashed #e54848; border-radius:10px; font-family:monospace; font-weight:700; font-size:18px; color:#e54848; letter-spacing:2px; }
     .zppb-countdown { display:flex; gap:8px; justify-content:center; margin-bottom:24px; font-size:32px; font-weight:700; font-family:monospace; direction:ltr; }
-    .zppb-countdown span { background:#FF6B6B; color:#F7F8FC; padding:8px 16px; border-radius:8px; }
+    .zppb-countdown span { background:#e54848; color:#ffffff; padding:8px 16px; border-radius:8px; }
     .zppb-fields { display:flex; flex-direction:column; gap:10px; max-width:340px; width:100%; margin:0 auto 20px; }
-    .zppb-input { width:100%; padding:12px 16px; border-radius:10px; border:1px solid rgba(255,255,255,0.3); background:rgba(255,255,255,0.15); color:#F7F8FC; font-size:15px; outline:none; box-sizing:border-box; }
-    .zppb-input::placeholder { color:#F7F8FC; opacity:0.5; }
-    .zppb-input:focus { border-color:#FF6B6B; background:rgba(255,255,255,0.25); }
+    .zppb-input { width:100%; padding:12px 16px; border-radius:10px; border:1px solid rgba(255,255,255,0.3); background:rgba(255,255,255,0.15); color:#ffffff; font-size:15px; outline:none; box-sizing:border-box; }
+    .zppb-input::placeholder { color:#ffffff; opacity:0.5; }
+    .zppb-input:focus { border-color:#e54848; background:rgba(255,255,255,0.25); }
     @keyframes zppbFadeIn { from { opacity:0; } to { opacity:1; } }
     @keyframes zppbSlideUp { from { opacity:0; transform:translateY(40px); } to { opacity:1; transform:translateY(0); } }
     @keyframes zppbScaleIn { from { opacity:0; transform:scale(0.85); } to { opacity:1; transform:scale(1); } }
@@ -974,7 +972,7 @@
     // Preview pages are served by the Zappy server itself (localhost in dev), so use that base.
     // Deployed sites are static and must call the public Zappy API (never localhost).
     window.ZAPPY_API_BASE = (window.location.pathname.includes('/preview'))
-      ? "http://localhost:5001"
+      ? "https://qaapi.zappy5.com"
       : "https://qaapi.zappy5.com";
   </script>
   
@@ -1048,7 +1046,7 @@
 <section class="legal-page-content return-policy">
   <div class="container">
     <h1>מדיניות החזרת מוצרים</h1>
-    <p class="last-updated"><strong>עדכון אחרון:</strong> 19.3.2026</p>
+    <p class="last-updated"><strong>עדכון אחרון:</strong> 16.3.2026</p>
     
     <p>Star Shoes מחויבת לשביעות רצון לקוחותיה. מדיניות זו מפרטת את זכויותיכם להחזרת מוצרים בהתאם לחוק הגנת הצרכן.</p>
 
@@ -1185,20 +1183,16 @@
   })();
   </script>
 
-    
-
-
     <div class="zppb-overlay" id="zppb-overlay">
       <div class="zppb-banner">
         <button class="zppb-close" id="zppb-close">&times;</button>
         <div class="zppb-bg-img" style="background-image:url('assets/business-promo-banner.webp'); opacity:0.5;"></div>
         <div class="zppb-content">
-          <h3 class="zppb-h">נעלי סטאר - השילוב המושלם</h3>
-          <p class="zppb-sub">הירשמו ותקבלו הנחות והצעות בלעדיות!</p>
+          <h3 class="zppb-h">מבצע מיוחד על נעליים!</h3>
+          <p class="zppb-sub">תפסו את הנעליים שאהבתם לפני שיהיה מאוחר!</p>
+          <div class="zppb-countdown" id="zppb-countdown"><span id="zppb-cd-h">00</span>:<span id="zppb-cd-m">00</span>:<span id="zppb-cd-s">00</span></div>
           
-          
-          <form class="zppb-fields" id="zppb-form"><input type="email" name="zppb_email" placeholder="your@email.com" required class="zppb-input" />
-          <input type="tel" name="zppb_phone" placeholder="+1 (555) 000-0000"  class="zppb-input" /><button type="submit" class="zppb-cta">הצטרפו עכשיו</button></form>
+          <a href="#" class="zppb-cta">קנו עכשיו!</a>
         </div>
       </div>
     </div>
@@ -1206,7 +1200,7 @@
     (function(){
       var FREQ = 'every_visit';
       var DELAY = 2000;
-      var KEY = 'zppb_ec5f1ee3-cfa1-443e-960e-5f7ad6dfa706';
+      var KEY = 'zppb_a312c72f-141a-44f0-9121-ed3ddc22dd45';
 
       function shouldShow() {
         if (document.body && document.body.classList.contains('zappy-edit-mode')) return false;
@@ -1241,28 +1235,25 @@
       }
 
       
-
-      
-      var form = document.getElementById('zppb-form');
-      if (form) {
-        form.addEventListener('submit', function(e) {
-          e.preventDefault();
-          var data = {};
-          var inputs = form.querySelectorAll('.zppb-input');
-          inputs.forEach(function(inp) { data[inp.name.replace('zppb_', '')] = inp.value; });
-          data.websiteId = window.ZAPPY_WEBSITE_ID || '';
-          fetch((window.ZAPPY_API_BASE || '') + '/api/ecommerce/storefront/newsletter-subscribe', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-          }).then(function() {
-            form.innerHTML = '<p style="padding:12px 0;font-weight:600;">Thank you for subscribing!</p>';
-            setTimeout(closeBanner, 2000);
-          }).catch(function() {
-            form.innerHTML = '<p style="padding:12px 0;">Something went wrong. Please try again.</p>';
-          });
-        });
+      function startCountdown() {
+        var end = new Date('2026-03-22T22:15').getTime();
+        function tick() {
+          var diff = Math.max(0, end - Date.now());
+          var h = Math.floor(diff / 3600000);
+          var m = Math.floor((diff % 3600000) / 60000);
+          var s = Math.floor((diff % 60000) / 1000);
+          var eh = document.getElementById('zppb-cd-h');
+          var em = document.getElementById('zppb-cd-m');
+          var es = document.getElementById('zppb-cd-s');
+          if (eh) eh.textContent = String(h).padStart(2, '0');
+          if (em) em.textContent = String(m).padStart(2, '0');
+          if (es) es.textContent = String(s).padStart(2, '0');
+          if (diff > 0) setTimeout(tick, 1000);
+        }
+        tick();
       }
+      
+
       
 
       var closeBtn = document.getElementById('zppb-close');
@@ -1272,7 +1263,7 @@
 
       setTimeout(function() {
         showBanner();
-        
+        startCountdown();
       }, DELAY);
     })();</script>
 
