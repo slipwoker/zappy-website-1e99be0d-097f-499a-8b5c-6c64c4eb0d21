@@ -2128,6 +2128,8 @@ window.onload = function() {
 ;
 
 ;
+
+;
 /* ==ZAPPY E-COMMERCE JS START== */
 // E-commerce functionality
 (function() {
@@ -7879,7 +7881,11 @@ function renderProductDetail(container, product, t) {
   var videoThumbsHtml = videos.map(function(v, i) {
     var thumb = '';
     if (v.type === 'youtube') {
-      var ytId = (v.videoId || v.url.match(/(?:youtube.com/watch?v=|youtu.be/)([w-]{11})/)?.[1] || '');
+      var ytId = v.videoId || '';
+      if (!ytId && v.url) {
+        var _yp = v.url.split('v='); if (_yp[1]) ytId = _yp[1].split('&')[0].substring(0,11);
+        if (!ytId) { _yp = v.url.split('youtu.be/'); if (_yp[1]) ytId = _yp[1].split('?')[0].substring(0,11); }
+      }
       thumb = 'https://img.youtube.com/vi/' + ytId + '/mqdefault.jpg';
     } else if (v.type === 'vimeo') {
       thumb = v.thumbnail || '';
@@ -8104,10 +8110,17 @@ function openVideoModal(videoIndex) {
 
   var html = '';
   if (v.type === 'youtube') {
-    var ytId = v.videoId || (v.url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{11})/) || [])[1] || '';
+    var ytId = v.videoId || '';
+    if (!ytId && v.url) {
+      var ytParts = v.url.split('v='); if (ytParts[1]) ytId = ytParts[1].split('&')[0].substring(0,11);
+      if (!ytId) { ytParts = v.url.split('youtu.be/'); if (ytParts[1]) ytId = ytParts[1].split('?')[0].substring(0,11); }
+    }
     html = '<iframe src="https://www.youtube.com/embed/' + ytId + '?autoplay=1&rel=0" style="width:100%;height:100%;border:none;" allow="autoplay;fullscreen;encrypted-media" allowfullscreen></iframe>';
   } else if (v.type === 'vimeo') {
-    var vimeoId = v.videoId || (v.url.match(/vimeo\.com\/(\d+)/) || [])[1] || '';
+    var vimeoId = v.videoId || '';
+    if (!vimeoId && v.url) {
+      var vmParts = v.url.split('vimeo.com/'); if (vmParts[1]) vimeoId = vmParts[1].split('?')[0].split('/')[0];
+    }
     html = '<iframe src="https://player.vimeo.com/video/' + vimeoId + '?autoplay=1" style="width:100%;height:100%;border:none;" allow="autoplay;fullscreen" allowfullscreen></iframe>';
   } else if (v.type === 'upload') {
     var src = v.url;
