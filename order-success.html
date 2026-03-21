@@ -927,6 +927,8 @@
             })();
           </script>
         
+    
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style id="zppb-promo-banner-styles">
@@ -972,7 +974,7 @@
     // Preview pages are served by the Zappy server itself (localhost in dev), so use that base.
     // Deployed sites are static and must call the public Zappy API (never localhost).
     window.ZAPPY_API_BASE = (window.location.pathname.includes('/preview'))
-      ? "https://qaapi.zappy5.com"
+      ? "http://localhost:5001"
       : "https://qaapi.zappy5.com";
   </script>
   
@@ -1197,7 +1199,7 @@
     </div>
 <script>
     (function(){
-      var FREQ = 'every_visit';
+      var FREQ = 'once_per_session';
       var DELAY = 2000;
       var KEY = 'zppb_a312c72f-141a-44f0-9121-ed3ddc22dd45';
       // Only run on the first URL opened in this tab. Avoids showing the modal again
