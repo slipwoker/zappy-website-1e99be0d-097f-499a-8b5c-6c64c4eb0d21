@@ -5853,6 +5853,12 @@ footer {
 
 
 
+
+
+
+
+
+
 /* ==ZAPPY V2 E-COMMERCE THEME CSS== */
 /* ═══════════════════════════════════════════════════════════════════════════ */
 /* V2 E-COMMERCE CSS - Clean V2 Variables Only                                  */
@@ -9998,16 +10004,18 @@ main.page-container.ecommerce-page,
   color: var(--text-muted);
   margin-bottom: 4px;
 }
+/* Block flow avoids flex anonymous boxes splitting RTL “החל מ” from LTR price */
 .product-card .price {
   font-weight: 700;
   color: var(--accent);
   font-size: 18px;
   margin-top: auto;
   padding-top: 6px;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 6px 8px;
+  display: block;
+  line-height: 1.35;
+  overflow: visible;
+  word-break: normal;
+  overflow-wrap: anywhere;
 }
 .product-card .price .original-price {
   font-size: 14px;
@@ -10016,6 +10024,7 @@ main.page-container.ecommerce-page,
   margin-inline-start: 8px !important;
   display: inline-block;
   font-weight: 400;
+  vertical-align: baseline;
 }
 .product-card .add-to-cart {
   width: 100%;
