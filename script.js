@@ -2150,6 +2150,8 @@ window.onload = function() {
 ;
 
 ;
+
+;
 /* ==ZAPPY E-COMMERCE JS START== */
 // E-commerce functionality
 (function() {
@@ -3178,7 +3180,7 @@ function stripHtmlToText(html) {
     // Legacy filter buttons removed - sidebar filters handle all filtering
   }
   
-  function getLegacyColorSwatchHex(colorValue) {
+  window.getLegacyColorSwatchHex = function getLegacyColorSwatchHex(colorValue) {
     var bgColor = String(colorValue || '').trim();
     if (!/^#[0-9A-Fa-f]{3,8}$/.test(bgColor)) {
       var lc = bgColor.toLowerCase();
@@ -3189,9 +3191,9 @@ function stripHtmlToText(html) {
       return '#94a3b8';
     }
     return bgColor;
-  }
+  };
 
-  function getConfiguredColorSwatchHex(source, attrKey, colorValue) {
+  window.getConfiguredColorSwatchHex = function getConfiguredColorSwatchHex(source, attrKey, colorValue) {
     if (!colorValue) return '';
     if (/^#[0-9A-Fa-f]{3,8}$/.test(String(colorValue).trim())) return String(colorValue).trim();
 
@@ -3217,8 +3219,8 @@ function stripHtmlToText(html) {
       if (match && match.hex) return match.hex;
     }
 
-    return getLegacyColorSwatchHex(colorValue);
-  }
+    return window.getLegacyColorSwatchHex(colorValue);
+  };
 
   // Render cart drawer (slide-out panel)
   function renderCartDrawer() {
@@ -3247,7 +3249,7 @@ function stripHtmlToText(html) {
             var label = attrLabels[key.toLowerCase()] || key;
             var isColor = key.toLowerCase() === 'color' || key.toLowerCase().includes('color');
             if (isColor) {
-              var bgColor = getConfiguredColorSwatchHex(item, key, value);
+              var bgColor = window.getConfiguredColorSwatchHex(item, key, value);
               parts.push('<span class="cart-item-attr"><span class="cart-item-attr-label">' + label + ':</span> <span class="cart-item-color-swatch" title="' + value + '" style="display:inline-block;width:14px;height:14px;border-radius:50%;background-color:' + bgColor + ';border:1px solid rgba(0,0,0,0.15);vertical-align:middle;margin-' + (document.documentElement.dir === 'rtl' ? 'right' : 'left') + ':4px;"></span></span>');
             } else {
               parts.push('<span class="cart-item-attr"><span class="cart-item-attr-label">' + label + ':</span> ' + value + '</span>');
@@ -7902,7 +7904,7 @@ function renderProductDetail(container, product, t) {
         const optionsHtml = valuesArray.map(value => {
           // For color attribute, prefer configured hex and fall back for older sites.
           if (isColorAttr) {
-            var bgColor = getConfiguredColorSwatchHex(product, attrKey, value);
+            var bgColor = window.getConfiguredColorSwatchHex(product, attrKey, value);
             return '<button type="button" class="variant-option color-swatch" data-attr="' + attrKey + '" data-value="' + value + '" data-color-hex="' + bgColor + '" style="background-color: ' + bgColor + ';" title="' + value + '"></button>';
           }
           return '<button type="button" class="variant-option" data-attr="' + attrKey + '" data-value="' + value + '">' + value + '</button>';
