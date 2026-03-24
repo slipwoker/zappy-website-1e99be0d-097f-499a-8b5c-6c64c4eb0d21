@@ -2152,6 +2152,8 @@ window.onload = function() {
 ;
 
 ;
+
+;
 /* ==ZAPPY E-COMMERCE JS START== */
 // E-commerce functionality
 (function() {
@@ -3245,14 +3247,19 @@ function stripHtmlToText(html) {
         var parts = [];
         Object.entries(item.selectedVariant.attributes).forEach(function(entry) {
           var key = entry[0], value = entry[1];
+          var displayValue =
+            item.selectedVariant.attributes_display &&
+            Object.prototype.hasOwnProperty.call(item.selectedVariant.attributes_display, key)
+              ? item.selectedVariant.attributes_display[key]
+              : value;
           if (value) {
             var label = attrLabels[key.toLowerCase()] || key;
             var isColor = key.toLowerCase() === 'color' || key.toLowerCase().includes('color');
             if (isColor) {
               var bgColor = window.getConfiguredColorSwatchHex(item, key, value);
-              parts.push('<span class="cart-item-attr"><span class="cart-item-attr-label">' + label + ':</span> <span class="cart-item-color-swatch" title="' + value + '" style="display:inline-block;width:14px;height:14px;border-radius:50%;background-color:' + bgColor + ';border:1px solid rgba(0,0,0,0.15);vertical-align:middle;margin-' + (document.documentElement.dir === 'rtl' ? 'right' : 'left') + ':4px;"></span></span>');
+              parts.push('<span class="cart-item-attr"><span class="cart-item-attr-label">' + label + ':</span> <span class="cart-item-color-swatch" title="' + displayValue + '" style="display:inline-block;width:14px;height:14px;border-radius:50%;background-color:' + bgColor + ';border:1px solid rgba(0,0,0,0.15);vertical-align:middle;margin-' + (document.documentElement.dir === 'rtl' ? 'right' : 'left') + ':4px;"></span></span>');
             } else {
-              parts.push('<span class="cart-item-attr"><span class="cart-item-attr-label">' + label + ':</span> ' + value + '</span>');
+              parts.push('<span class="cart-item-attr"><span class="cart-item-attr-label">' + label + ':</span> ' + displayValue + '</span>');
             }
           }
         });
@@ -7859,6 +7866,7 @@ function renderProductDetail(container, product, t) {
   if (hasVariants) {
     // Group variants by attribute type to create selection options
     const attributeGroups = {};
+    const attributeDisplayMap = {};
     variants.forEach(variant => {
       if (variant.attributes && variant.is_active !== false) {
         Object.entries(variant.attributes).forEach(([key, value]) => {
@@ -7866,6 +7874,16 @@ function renderProductDetail(container, product, t) {
             attributeGroups[key] = new Set();
           }
           attributeGroups[key].add(value);
+          if (!attributeDisplayMap[key]) {
+            attributeDisplayMap[key] = {};
+          }
+          const displayValue =
+            variant.attributes_display && Object.prototype.hasOwnProperty.call(variant.attributes_display, key)
+              ? variant.attributes_display[key]
+              : value;
+          if (!attributeDisplayMap[key][value]) {
+            attributeDisplayMap[key][value] = displayValue;
+          }
         });
       }
     });
@@ -7902,12 +7920,14 @@ function renderProductDetail(container, product, t) {
         const isColorAttr = attrKey.toLowerCase() === 'color' || attrKey.toLowerCase().includes('color');
         
         const optionsHtml = valuesArray.map(value => {
+          const displayValue =
+            (attributeDisplayMap[attrKey] && attributeDisplayMap[attrKey][value]) || value;
           // For color attribute, prefer configured hex and fall back for older sites.
           if (isColorAttr) {
             var bgColor = window.getConfiguredColorSwatchHex(product, attrKey, value);
-            return '<button type="button" class="variant-option color-swatch" data-attr="' + attrKey + '" data-value="' + value + '" data-color-hex="' + bgColor + '" style="background-color: ' + bgColor + ';" title="' + value + '"></button>';
+            return '<button type="button" class="variant-option color-swatch" data-attr="' + attrKey + '" data-value="' + value + '" data-display-value="' + displayValue + '" data-color-hex="' + bgColor + '" style="background-color: ' + bgColor + ';" title="' + displayValue + '"></button>';
           }
-          return '<button type="button" class="variant-option" data-attr="' + attrKey + '" data-value="' + value + '">' + value + '</button>';
+          return '<button type="button" class="variant-option" data-attr="' + attrKey + '" data-value="' + value + '" data-display-value="' + displayValue + '">' + displayValue + '</button>';
         }).join('');
         
         return '<div class="variant-group" data-group="' + attrKey + '"><label class="variant-group-label">' + label + ': <span class="variant-selected-value"></span></label><div class="variant-options">' + optionsHtml + '</div></div>';
@@ -8552,7 +8572,7 @@ function initVariantSelection(product, t) {
       // Update the variant label to show selected value inline
       var selectedValueSpan = document.querySelector('.variant-group[data-group="' + attrKey + '"] .variant-selected-value');
       if (selectedValueSpan) {
-        selectedValueSpan.textContent = attrValue;
+        selectedValueSpan.textContent = this.getAttribute('data-display-value') || attrValue;
       }
       
       // Update visibility/stock of options in other groups
@@ -8572,7 +8592,7 @@ function initVariantSelection(product, t) {
             firstVisible.classList.add('selected');
             selectedAttributes[otherKey] = firstVisible.getAttribute('data-value');
             var otherValueSpan = document.querySelector('.variant-group[data-group="' + otherKey + '"] .variant-selected-value');
-            if (otherValueSpan) otherValueSpan.textContent = firstVisible.getAttribute('data-value');
+            if (otherValueSpan) otherValueSpan.textContent = firstVisible.getAttribute('data-display-value') || firstVisible.getAttribute('data-value');
             anyAutoSelected = true;
           } else {
             delete selectedAttributes[otherKey];
@@ -8588,7 +8608,7 @@ function initVariantSelection(product, t) {
         btn.classList.add('selected');
         selectedAttributes[attrKey] = attrValue;
         var selectedValueSpanRefresh = document.querySelector('.variant-group[data-group="' + attrKey + '"] .variant-selected-value');
-        if (selectedValueSpanRefresh) selectedValueSpanRefresh.textContent = attrValue;
+        if (selectedValueSpanRefresh) selectedValueSpanRefresh.textContent = btn.getAttribute('data-display-value') || attrValue;
       }
       
       // Find matching variant and update UI
@@ -8854,6 +8874,7 @@ function addProductToCart() {
       name: selectedVariant.name,
       sku: selectedVariant.sku,
       attributes: selectedVariant.attributes,
+      attributes_display: selectedVariant.attributes_display || selectedVariant.attributes,
       price: variantPrice
     };
     cartItem.variantName = selectedVariant.name;
