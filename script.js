@@ -2148,6 +2148,8 @@ window.onload = function() {
 ;
 
 ;
+
+;
 /* ==ZAPPY E-COMMERCE JS START== */
 // E-commerce functionality
 (function() {
@@ -3176,6 +3178,48 @@ function stripHtmlToText(html) {
     // Legacy filter buttons removed - sidebar filters handle all filtering
   }
   
+  function getLegacyColorSwatchHex(colorValue) {
+    var bgColor = String(colorValue || '').trim();
+    if (!/^#[0-9A-Fa-f]{3,8}$/.test(bgColor)) {
+      var lc = bgColor.toLowerCase();
+      var _clr = {'dark grey':'#555','dark gray':'#555','light grey':'#d3d3d3','light gray':'#d3d3d3','light blue':'lightblue','dark blue':'darkblue','light green':'lightgreen','dark green':'darkgreen','dark red':'darkred','light pink':'lightpink','dark orange':'darkorange','sky blue':'skyblue','royal blue':'royalblue','navy blue':'navy','forest green':'forestgreen','olive green':'olivedrab','sea green':'seagreen','hot pink':'hotpink','deep pink':'deeppink','dark violet':'darkviolet','slate grey':'slategrey','slate gray':'slategray','dim grey':'dimgrey','dim gray':'dimgray','steel blue':'steelblue','pale green':'palegreen','off white':'#f5f5f0','burgundy':'#800020','charcoal':'#36454f','champagne':'#f7e7ce','sand':'#c2b280','taupe':'#483c32','wine':'#722f37','rust':'#b7410e','sage':'#bcb88a','mint':'#98ff98','peach':'#ffcba4','cream':'#fffdd0','mauve':'#e0b0ff'};
+      bgColor = _clr[lc] || lc;
+    }
+    if (typeof CSS !== 'undefined' && CSS && typeof CSS.supports === 'function' && !CSS.supports('color', bgColor)) {
+      return '#94a3b8';
+    }
+    return bgColor;
+  }
+
+  function getConfiguredColorSwatchHex(source, attrKey, colorValue) {
+    if (!colorValue) return '';
+    if (/^#[0-9A-Fa-f]{3,8}$/.test(String(colorValue).trim())) return String(colorValue).trim();
+
+    var variantConfig = source && (source.variant_config || source.variantConfig);
+    if (typeof variantConfig === 'string') {
+      try { variantConfig = JSON.parse(variantConfig); } catch (e) { variantConfig = null; }
+    }
+    var selections = variantConfig && variantConfig.selections && typeof variantConfig.selections === 'object'
+      ? variantConfig.selections
+      : null;
+    if (selections) {
+      var selectionKey = Object.keys(selections).find(function(key) {
+        return String(key).toLowerCase() === String(attrKey || '').toLowerCase();
+      });
+      var values = selectionKey && Array.isArray(selections[selectionKey] && selections[selectionKey].values)
+        ? selections[selectionKey].values
+        : [];
+      var normalizedValue = String(colorValue).trim().replace(/s+/g, ' ').toLowerCase();
+      var match = values.find(function(value) {
+        var label = typeof value === 'string' ? value : value && value.label;
+        return label && String(label).trim().replace(/s+/g, ' ').toLowerCase() === normalizedValue && value && value.hex;
+      });
+      if (match && match.hex) return match.hex;
+    }
+
+    return getLegacyColorSwatchHex(colorValue);
+  }
+
   // Render cart drawer (slide-out panel)
   function renderCartDrawer() {
     const drawerItems = document.getElementById('cart-drawer-items');
@@ -3201,14 +3245,9 @@ function stripHtmlToText(html) {
           var key = entry[0], value = entry[1];
           if (value) {
             var label = attrLabels[key.toLowerCase()] || key;
-            var isColor = key.toLowerCase() === 'color';
+            var isColor = key.toLowerCase() === 'color' || key.toLowerCase().includes('color');
             if (isColor) {
-              var bgColor = value;
-              if (!/^#[0-9A-Fa-f]{3,6}$/.test(value)) {
-                var lc = value.toLowerCase();
-                var _clr = {'dark grey':'#555','dark gray':'#555','light grey':'#d3d3d3','light gray':'#d3d3d3','light blue':'lightblue','dark blue':'darkblue','light green':'lightgreen','dark green':'darkgreen','dark red':'darkred','light pink':'lightpink','dark orange':'darkorange','sky blue':'skyblue','royal blue':'royalblue','navy blue':'navy','forest green':'forestgreen','olive green':'olivedrab','hot pink':'hotpink','deep pink':'deeppink','dark violet':'darkviolet','slate grey':'slategrey','slate gray':'slategray','dim grey':'dimgrey','dim gray':'dimgray','off white':'#f5f5f0','burgundy':'#800020','charcoal':'#36454f','champagne':'#f7e7ce','sand':'#c2b280','taupe':'#483c32','wine':'#722f37','rust':'#b7410e','sage':'#bcb88a','mint':'#98ff98','peach':'#ffcba4','cream':'#fffdd0','mauve':'#e0b0ff'};
-                bgColor = _clr[lc] || lc;
-              }
+              var bgColor = getConfiguredColorSwatchHex(item, key, value);
               parts.push('<span class="cart-item-attr"><span class="cart-item-attr-label">' + label + ':</span> <span class="cart-item-color-swatch" title="' + value + '" style="display:inline-block;width:14px;height:14px;border-radius:50%;background-color:' + bgColor + ';border:1px solid rgba(0,0,0,0.15);vertical-align:middle;margin-' + (document.documentElement.dir === 'rtl' ? 'right' : 'left') + ':4px;"></span></span>');
             } else {
               parts.push('<span class="cart-item-attr"><span class="cart-item-attr-label">' + label + ':</span> ' + value + '</span>');
@@ -7858,18 +7897,13 @@ function renderProductDetail(container, product, t) {
           if (ca !== cb) return ca - cb;
           return String(a).localeCompare(String(b));
         });
-        const isColorAttr = attrKey.toLowerCase() === 'color';
+        const isColorAttr = attrKey.toLowerCase() === 'color' || attrKey.toLowerCase().includes('color');
         
         const optionsHtml = valuesArray.map(value => {
-          // For color attribute, try to use color as background
+          // For color attribute, prefer configured hex and fall back for older sites.
           if (isColorAttr) {
-            var bgColor = value;
-            if (!/^#[0-9A-Fa-f]{3,6}$/.test(value)) {
-              var lc = value.toLowerCase();
-              var _clr = {'dark grey':'#555','dark gray':'#555','light grey':'#d3d3d3','light gray':'#d3d3d3','light blue':'lightblue','dark blue':'darkblue','light green':'lightgreen','dark green':'darkgreen','dark red':'darkred','light pink':'lightpink','dark orange':'darkorange','sky blue':'skyblue','royal blue':'royalblue','navy blue':'navy','forest green':'forestgreen','olive green':'olivedrab','sea green':'seagreen','hot pink':'hotpink','deep pink':'deeppink','dark violet':'darkviolet','slate grey':'slategrey','slate gray':'slategray','dim grey':'dimgrey','dim gray':'dimgray','steel blue':'steelblue','pale green':'palegreen','off white':'#f5f5f0','burgundy':'#800020','charcoal':'#36454f','champagne':'#f7e7ce','sand':'#c2b280','taupe':'#483c32','wine':'#722f37','rust':'#b7410e','sage':'#bcb88a','mint':'#98ff98','peach':'#ffcba4','cream':'#fffdd0','mauve':'#e0b0ff'};
-              bgColor = _clr[lc] || lc;
-            }
-            return '<button type="button" class="variant-option color-swatch" data-attr="' + attrKey + '" data-value="' + value + '" style="background-color: ' + bgColor + ';" title="' + value + '"></button>';
+            var bgColor = getConfiguredColorSwatchHex(product, attrKey, value);
+            return '<button type="button" class="variant-option color-swatch" data-attr="' + attrKey + '" data-value="' + value + '" data-color-hex="' + bgColor + '" style="background-color: ' + bgColor + ';" title="' + value + '"></button>';
           }
           return '<button type="button" class="variant-option" data-attr="' + attrKey + '" data-value="' + value + '">' + value + '</button>';
         }).join('');
@@ -9351,6 +9385,30 @@ async function loadRelatedProducts(currentProduct, t) {
   } catch (e) {}
 })();
 /* END ZAPPY_FAQ_ACCORDION_TOGGLE */
+
+
+/* ZAPPY_NAV_SCROLL_PADDING */
+(function(){
+  try {
+    if (window.__zappyNavScrollPaddingInit) return;
+    window.__zappyNavScrollPaddingInit = true;
+    function updateScrollPadding() {
+      var nav = document.querySelector('nav.navbar') || document.querySelector('nav') || document.querySelector('header');
+      if (!nav) return;
+      var s = window.getComputedStyle(nav);
+      if (s.position !== 'fixed' && s.position !== 'sticky') return;
+      var h = nav.offsetHeight;
+      if (h > 0) document.documentElement.style.scrollPaddingTop = h + 'px';
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', updateScrollPadding, { once: true });
+    } else {
+      updateScrollPadding();
+    }
+    window.addEventListener('resize', updateScrollPadding, { passive: true });
+  } catch (e) {}
+})();
+/* END ZAPPY_NAV_SCROLL_PADDING */
 
 
 /* ZAPPY_CONTACT_FORM_PREVENT_DEFAULT */
