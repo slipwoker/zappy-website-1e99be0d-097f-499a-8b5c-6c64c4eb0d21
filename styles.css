@@ -14449,3 +14449,6 @@ html[dir="rtl"] .footer-contact li, html[dir="rtl"] .site-footer .footer-contact
 html[dir="rtl"] .footer-contact .contact-icon { order: 0 !important; }
 html[dir="rtl"] .footer-contact .contact-text { order: 1 !important; }
 html[dir="rtl"] .footer-contact li > a { flex-direction: row !important; }
+
+/* Spec table BiDi fix: isolate cells so mixed LTR/RTL content renders correctly */
+.specs-table th, .specs-table td { unicode-bidi: plaintext !important; }
