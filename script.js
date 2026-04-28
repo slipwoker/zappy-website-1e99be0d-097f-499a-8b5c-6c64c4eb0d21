@@ -2172,6 +2172,8 @@ window.onload = function() {
 ;
 
 ;
+
+;
 /* ==ZAPPY E-COMMERCE JS START== */
 // E-commerce functionality
 (function() {
@@ -8421,10 +8423,14 @@ function renderProductDetail(container, product, t) {
             // navigate to the product page without also flipping the
             // selection. The <input>'s native change handler still works
             // when users click the checkbox directly or use the keyboard.
+            // Keyboard activation (Space / Enter) is handled by
+            // handleUpsellRowKey to keep the inline attribute free of
+            // nested quotes (which break when this script body is itself
+            // emitted from a JS template literal).
             return '<li class="upsell-row ' + (inStock ? '' : 'is-out-of-stock') + '" data-upsell-id="' + _eA(u.id) + '" data-upsell-price="' + p + '"' +
               (inStock ? ' onclick="toggleUpsellRow(event, this)"' : '') +
               ' role="button" tabindex="' + (inStock ? '0' : '-1') + '"' +
-              ' onkeydown="if(event.key===' '||event.key==='Enter'){event.preventDefault();toggleUpsellRow(event, this);}">' +
+              ' onkeydown="handleUpsellRowKey(event, this)">' +
               '<input type="checkbox" class="upsell-checkbox"' +
                 (preChecked ? ' checked' : '') +
                 (!inStock ? ' disabled' : '') +
@@ -9473,12 +9479,25 @@ function toggleUpsellRow(event, row) {
   const cb = row.querySelector('.upsell-checkbox');
   if (!cb || cb.disabled) return;
   cb.checked = !cb.checked;
-  // Mirror the change handler we'd get on a real input click.
   if (typeof window.recomputeBundleTotal === 'function') {
     window.recomputeBundleTotal();
   }
 }
 window.toggleUpsellRow = toggleUpsellRow;
+
+// Keyboard activation for the upsell row (role="button"). Space/Enter
+// toggle the selection just like a click. Lives in a named function so
+// the inline onkeydown attribute can stay quote-free — this whole script
+// body is emitted from a JS template literal, so nested single quotes in
+// inline handlers would otherwise break the surrounding JS string.
+function handleUpsellRowKey(event, row) {
+  if (!event) return;
+  if (event.key === ' ' || event.key === 'Spacebar' || event.key === 'Enter') {
+    event.preventDefault();
+    toggleUpsellRow(event, row);
+  }
+}
+window.handleUpsellRowKey = handleUpsellRowKey;
 
 async function loadRelatedProducts(currentProduct, t) {
   const section = document.getElementById('related-products-section');
