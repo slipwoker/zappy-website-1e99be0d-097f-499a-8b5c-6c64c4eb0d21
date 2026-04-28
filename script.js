@@ -2168,6 +2168,8 @@ window.onload = function() {
 ;
 
 ;
+
+;
 /* ==ZAPPY E-COMMERCE JS START== */
 // E-commerce functionality
 (function() {
@@ -8378,7 +8380,6 @@ function renderProductDetail(container, product, t) {
         ${(() => {
           const upsellsArr = (product.upsells || []).filter(u => u && u.is_active !== false);
           if (upsellsArr.length === 0 || isCatalogMode) return '';
-          const tFreqTitle = getEcomText('frequentlyBoughtTogether', t.frequentlyBoughtTogether || 'Frequently bought together');
           const tFreqSub = getEcomText('frequentlyBoughtTogetherSubtitle', t.frequentlyBoughtTogetherSubtitle || 'Save time and get everything you need');
           const tBundleTotalLabel = getEcomText('bundleTotal', t.bundleTotal || 'Bundle total');
           const tOutOfStockLabel = getEcomText('outOfStock', t.outOfStock || 'Out of stock');
@@ -8428,7 +8429,6 @@ function renderProductDetail(container, product, t) {
           }).join('');
           return '<div class="product-upsells" id="product-upsells">' +
             '<div class="upsells-header">' +
-              '<h3 class="upsells-title">' + tFreqTitle + '</h3>' +
               '<p class="upsells-subtitle">' + tFreqSub + '</p>' +
             '</div>' +
             '<ul class="upsells-list">' + rowsHtml + '</ul>' +
