@@ -2170,6 +2170,8 @@ window.onload = function() {
 ;
 
 ;
+
+;
 /* ==ZAPPY E-COMMERCE JS START== */
 // E-commerce functionality
 (function() {
@@ -8413,18 +8415,26 @@ function renderProductDetail(container, product, t) {
             const priceLabel = p === 0
               ? '<span class="upsell-price upsell-price-free">' + tFreeLabel + '</span>'
               : '<span class="upsell-price">+' + t.currency + p.toFixed(2) + '</span>';
-            return '<li class="upsell-row ' + (inStock ? '' : 'is-out-of-stock') + '" data-upsell-id="' + _eA(u.id) + '" data-upsell-price="' + p + '">' +
-              '<label class="upsell-row-label">' +
-                '<input type="checkbox" class="upsell-checkbox"' +
-                  (preChecked ? ' checked' : '') +
-                  (!inStock ? ' disabled' : '') +
-                  ' onchange="recomputeBundleTotal()" />' +
-                '<span class="upsell-row-text">' +
-                  '<a class="upsell-name" href="/product/' + _eA(slug) + '">' + _eA(u.name || '') + '</a>' +
-                  (!inStock ? '<span class="upsell-stock-badge">' + tOutOfStockLabel + '</span>' : '') +
-                '</span>' +
-                priceLabel +
-              '</label>' +
+            // The whole <li> is a click target via toggleUpsellRow — clicking
+            // anywhere on the row (incl. padding / empty space) toggles the
+            // checkbox. The .upsell-name <a> stops propagation so it can
+            // navigate to the product page without also flipping the
+            // selection. The <input>'s native change handler still works
+            // when users click the checkbox directly or use the keyboard.
+            return '<li class="upsell-row ' + (inStock ? '' : 'is-out-of-stock') + '" data-upsell-id="' + _eA(u.id) + '" data-upsell-price="' + p + '"' +
+              (inStock ? ' onclick="toggleUpsellRow(event, this)"' : '') +
+              ' role="button" tabindex="' + (inStock ? '0' : '-1') + '"' +
+              ' onkeydown="if(event.key===' '||event.key==='Enter'){event.preventDefault();toggleUpsellRow(event, this);}">' +
+              '<input type="checkbox" class="upsell-checkbox"' +
+                (preChecked ? ' checked' : '') +
+                (!inStock ? ' disabled' : '') +
+                ' onclick="event.stopPropagation()"' +
+                ' onchange="recomputeBundleTotal()" />' +
+              '<span class="upsell-row-text">' +
+                '<a class="upsell-name" href="/product/' + _eA(slug) + '" onclick="event.stopPropagation()">' + _eA(u.name || '') + '</a>' +
+                (!inStock ? '<span class="upsell-stock-badge">' + tOutOfStockLabel + '</span>' : '') +
+              '</span>' +
+              priceLabel +
             '</li>';
           }).join('');
           return '<div class="product-upsells" id="product-upsells">' +
@@ -9453,6 +9463,22 @@ function recomputeBundleTotal() {
   }
 }
 window.recomputeBundleTotal = recomputeBundleTotal;
+
+// Toggle the upsell row's checkbox when the user clicks anywhere on the row
+// EXCEPT the embedded product link (which stops propagation so it can
+// navigate). The native <input> click also stops propagation so we don't
+// double-toggle. Out-of-stock rows have no onclick wired up at all.
+function toggleUpsellRow(event, row) {
+  if (!row || row.classList.contains('is-out-of-stock')) return;
+  const cb = row.querySelector('.upsell-checkbox');
+  if (!cb || cb.disabled) return;
+  cb.checked = !cb.checked;
+  // Mirror the change handler we'd get on a real input click.
+  if (typeof window.recomputeBundleTotal === 'function') {
+    window.recomputeBundleTotal();
+  }
+}
+window.toggleUpsellRow = toggleUpsellRow;
 
 async function loadRelatedProducts(currentProduct, t) {
   const section = document.getElementById('related-products-section');

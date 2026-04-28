@@ -7668,6 +7668,9 @@ a, button {
 }
 
 /* Upsells (frequently bought together) on the product detail page.
+   Rendered inline with the rest of the product info — no card chrome
+   (border / background / radius) so it blends with the surrounding
+   variant selectors and stock badge.
    The Star Shoes site (and other branded V2 sites) cascade an accent color
    onto descendant links/text inside .product-info, which made the upsell
    product names render in the brand accent (e.g. yellow) instead of body
@@ -7675,19 +7678,13 @@ a, button {
    set color: var(--text-dark) so theme accents do NOT bleed into upsell rows.
    List bullets are also suppressed since the rows render their own checkbox. */
 .product-upsells {
-  background: var(--bg-light, #fff);
-  border: 1px solid var(--border-light);
-  border-radius: 12px;
-  padding: 16px 18px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
   margin: 16px 0;
 }
 .product-upsells .upsells-header { margin: 0 0 8px; }
-.product-upsells .upsells-title {
-  margin: 0 0 4px;
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: var(--text-dark);
-}
 .product-upsells .upsells-subtitle {
   margin: 0;
   font-size: 0.875rem;
@@ -7789,7 +7786,6 @@ a, button {
   color: var(--text-muted);
 }
 @media (max-width: 480px) {
-  .product-upsells { padding: 14px 14px; }
   .product-upsells .upsell-row-label { gap: 8px; }
 }
 
@@ -11908,18 +11904,21 @@ a, button {
 .product-upsells .upsell-row {
   list-style: none !important;
   border-top: 1px solid var(--border-light);
-}
-.product-upsells .upsell-row::marker { content: '' !important; }
-.product-upsells .upsell-row::before { content: none !important; }
-.product-upsells .upsell-row:first-child { border-top: none; }
-.product-upsells .upsell-row-label {
   display: flex;
   align-items: center;
   gap: 10px;
   padding: 10px 0;
   cursor: pointer;
+  outline: none;
 }
-.product-upsells .upsell-row.is-out-of-stock .upsell-row-label {
+.product-upsells .upsell-row::marker { content: '' !important; }
+.product-upsells .upsell-row::before { content: none !important; }
+.product-upsells .upsell-row:first-child { border-top: none; }
+.product-upsells .upsell-row:focus-visible {
+  box-shadow: inset 0 0 0 2px var(--accent, var(--primary));
+  border-radius: 4px;
+}
+.product-upsells .upsell-row.is-out-of-stock {
   cursor: not-allowed;
   opacity: 0.55;
 }
@@ -11996,7 +11995,7 @@ a, button {
   color: var(--text-muted);
 }
 @media (max-width: 480px) {
-  .product-upsells .upsell-row-label { gap: 8px; }
+  .product-upsells .upsell-row { gap: 8px; }
 }
 
 /* Category page */
