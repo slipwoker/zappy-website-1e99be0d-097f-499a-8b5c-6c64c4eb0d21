@@ -4,7 +4,19 @@
     <title>Star Shoes</title>
     <link>https://star-shoes.zappy5.app</link>
     <description>Product feed for Star Shoes</description>
-    <lastBuildDate>Sat, 09 May 2026 10:21:28 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 09 May 2026 10:58:25 GMT</lastBuildDate>
+    <item>
+      <g:id>b8b38871-f91d-4921-af6e-5e8031e12266</g:id>
+      <g:title>test</g:title>
+      <g:description>gsdfsd</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/test-h3jxwj</g:link>
+      <g:image_link>https://star-shoes.zappy5.app/assets/product-1778324244646-8wqxdv.webp</g:image_link>
+      <g:availability>out_of_stock</g:availability>
+      <g:price>14.00 ILS</g:price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+    </item>
     <item>
       <g:id>cb1031cb-aef7-42bb-9d17-17d2d7bf3132</g:id>
       <g:title>שרשרת יוונית</g:title>

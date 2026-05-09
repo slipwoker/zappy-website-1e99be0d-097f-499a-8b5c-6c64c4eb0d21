@@ -1,10 +1,35 @@
 {
   "@context": "https://schema.org",
-  "generated_at": "2026-05-09T10:21:28.834Z",
+  "generated_at": "2026-05-09T10:58:25.018Z",
   "base_url": "https://star-shoes.zappy5.app",
   "currency": "ILS",
-  "count": 4,
+  "count": 5,
   "products": [
+    {
+      "id": "b8b38871-f91d-4921-af6e-5e8031e12266",
+      "slug": "test-h3jxwj",
+      "name": "test",
+      "name_translations": {
+        "en": "test",
+        "he": "בדיקה"
+      },
+      "description": "",
+      "short_description": "gsdfsd",
+      "sku": null,
+      "brand": null,
+      "price": 14,
+      "base_price": 14,
+      "sale_price": null,
+      "currency": "ILS",
+      "images": [
+        "https://star-shoes.zappy5.app/assets/product-1778324244646-8wqxdv.webp"
+      ],
+      "in_stock": false,
+      "stock_status": "out_of_stock",
+      "url": "https://star-shoes.zappy5.app/product/test-h3jxwj",
+      "categories": [],
+      "updated_at": "2026-05-09T10:57:48.360Z"
+    },
     {
       "id": "cb1031cb-aef7-42bb-9d17-17d2d7bf3132",
       "slug": "shrshrt-yvvnyt-grtkg4",
