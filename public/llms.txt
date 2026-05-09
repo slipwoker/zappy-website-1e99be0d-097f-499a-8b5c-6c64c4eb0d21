@@ -1,4 +1,6 @@
-# Business — Generative Engine Optimization Map
+# Star Shoes — Generative Engine Optimization Map
+
+> A קמעונאות business.
 
 ---
 
@@ -65,12 +67,60 @@ Information about WCAG compliance and accessibility features.
 
 ---
 
-# Business Context (for LLM understanding)
+## Products
 
-## About Business
+**Total active products: 4**
+
+### שרשרת יוונית
+https://star-shoes.zappy5.app/product/shrshrt-yvvnyt-rywi6j
+- Price: 89.00 ILS (sale, was 100.00 ILS)
+- Availability: In stock
+- Category: שרשראות
+- SKU: greek_neckless
+- Description: שרשרת מדהימה מהמקורות היווניים
+- Image: https://star-shoes.zappy5.app/assets/image-product-image-1774278944611-4rihn1.webp
+
+### טחינה
+https://star-shoes.zappy5.app/product/tchynh-g3djv4
+- Price: 0.00 ILS
+- Availability: In stock
+- Description: טחינה גולמית איכותית – מוצר טבעי ובריא העשוי משומשום טחון באיכות פרימיום הטחינה שלנו מיוצרת משומשום מובחר ומעובדת בקפידה רבה כדי לשמור על הטעם האותנטי והערכים התזונתיים הגבוהים. עשירה בחלבון, סידן וברזל , הטחינה מהווה תוספת מושלמת למגוון מנות – ממרקים וממרחים ועד רטבים וקינוחים. יתרונות המוצר: עשויה מ-100% שומשום טבעי ללא תוספים מלאכותיים או חומרים משמרים מקור מצוין לחלבון צמחי מתאימה לתזונה צמחונית וטבעונית רב-תכליתית – מושלמת לחומוס, סלטים, אפייה ועוד
+- Image: https://star-shoes.zappy5.app/assets/product-enhanced-1771433190821-wk72kr.webp
+
+### חולצה מדהימה
+https://star-shoes.zappy5.app/product/chvltsh-mdhymh-kmdmbl
+- Price: 150.00 ILS
+- Availability: In stock
+- Description: החולצה הזו כך וכך
+- Image: https://star-shoes.zappy5.app/assets/product-1771163744817-dppqj.webp
+
+### נעלי נייק דאנק לו רטרו לגברים
+https://star-shoes.zappy5.app/product/naly-nyyk-dank-lv-rtrv-lgbrym-1gx59p
+- Price: 399.00 ILS (sale, was 433.00 ILS)
+- Availability: In stock
+- Category: נעלי ספורט - כותב פה בכוונה טקסט ארוך בשביל מובייל
+- Description: נעלי נייק דאנק לו רטרו לגברים, מצוינות לספורט
+- Image: https://star-shoes.zappy5.app/assets/product-autofit-1774378967085-skh38d.webp
+
 ---
 
-# Additional Resources
+# Business Context (for LLM understanding)
 
-- **Sitemap**: https://star-shoes.zappy5.app/sitemap.xml
-- **Robots.txt**: https://star-shoes.zappy5.app/robots.txt
+## About Star Shoes
+Star Shoes is a business in the קמעונאות industry.
+
+## Target Audience
+כל הגילאים שצריכים נעליים
+
+## Industry
+קמעונאות
+
+---
+
+# Machine-readable feeds
+
+- Sitemap (XML): https://star-shoes.zappy5.app/sitemap.xml
+- Robots: https://star-shoes.zappy5.app/robots.txt
+- Flattened page text (for LLMs): https://star-shoes.zappy5.app/llms-full.txt
+- Products (JSON): https://star-shoes.zappy5.app/products.json
+- Products (Google Merchant RSS): https://star-shoes.zappy5.app/product-feed.xml

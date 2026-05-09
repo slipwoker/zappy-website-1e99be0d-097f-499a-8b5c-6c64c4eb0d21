@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:g="http://base.google.com/ns/1.0" version="2.0">
+  <channel>
+    <title>Star Shoes</title>
+    <link>https://star-shoes.zappy5.app</link>
+    <description>Product feed for Star Shoes</description>
+    <lastBuildDate>Sat, 09 May 2026 07:13:31 GMT</lastBuildDate>
+    <item>
+      <g:id>cb1031cb-aef7-42bb-9d17-17d2d7bf3132</g:id>
+      <g:title>שרשרת יוונית</g:title>
+      <g:description>שרשרת מדהימה מהמקורות היווניים</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/shrshrt-yvvnyt-rywi6j</g:link>
+      <g:image_link>https://star-shoes.zappy5.app/assets/image-product-image-1774278944611-4rihn1.webp</g:image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/image-product-image-1776321291520-xbz86e.webp</g:additional_image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>89.00 ILS</g:price>
+      <g:sale_price>89.00 ILS</g:sale_price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:mpn>greek_neckless</g:mpn>
+      <g:product_type>שרשראות</g:product_type>
+    </item>
+    <item>
+      <g:id>e7305c1c-15e5-49b2-9042-a6487a33ce7a</g:id>
+      <g:title>טחינה</g:title>
+      <g:description>טחינה גולמית איכותית – מוצר טבעי ובריא העשוי משומשום טחון באיכות פרימיום הטחינה שלנו מיוצרת משומשום מובחר ומעובדת בקפידה רבה כדי לשמור על הטעם האותנטי והערכים התזונתיים הגבוהים. עשירה בחלבון, סידן וברזל , הטחינה מהווה תוספת מושלמת למגוון מנות – ממרקים וממרחים ועד רטבים וקינוחים. יתרונות המוצר: עשויה מ-100% שומשום טבעי ללא תוספים מלאכותיים או חומרים משמרים מקור מצוין לחלבון צמחי מתאימה לתזונה צמחונית וטבעונית רב-תכליתית – מושלמת לחומוס, סלטים, אפייה ועוד</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/tchynh-g3djv4</g:link>
+      <g:image_link>https://star-shoes.zappy5.app/assets/product-enhanced-1771433190821-wk72kr.webp</g:image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>0.00 ILS</g:price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+    </item>
+    <item>
+      <g:id>31cf6eb6-8ba3-4ff6-8af5-e385ba3c3ff0</g:id>
+      <g:title>חולצה מדהימה</g:title>
+      <g:description>החולצה הזו כך וכך</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/chvltsh-mdhymh-kmdmbl</g:link>
+      <g:image_link>https://star-shoes.zappy5.app/assets/product-1771163744817-dppqj.webp</g:image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>150.00 ILS</g:price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+    </item>
+    <item>
+      <g:id>8365eec2-d95b-40ce-b84a-18a184d05cd1</g:id>
+      <g:title>נעלי נייק דאנק לו רטרו לגברים</g:title>
+      <g:description>נעלי נייק דאנק לו רטרו לגברים, מצוינות לספורט</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/naly-nyyk-dank-lv-rtrv-lgbrym-1gx59p</g:link>
+      <g:image_link>https://star-shoes.zappy5.app/assets/product-autofit-1774378967085-skh38d.webp</g:image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068135247-8a1jxq.webp</g:additional_image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068140781-i83gu.webp</g:additional_image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>399.00 ILS</g:price>
+      <g:sale_price>399.00 ILS</g:sale_price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>נעלי ספורט - כותב פה בכוונה טקסט ארוך בשביל מובייל</g:product_type>
+    </item>
+  </channel>
+</rss>

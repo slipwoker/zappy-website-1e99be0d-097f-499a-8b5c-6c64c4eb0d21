@@ -1,0 +1,104 @@
+{
+  "@context": "https://schema.org",
+  "generated_at": "2026-05-09T07:13:31.612Z",
+  "base_url": "https://star-shoes.zappy5.app",
+  "currency": "ILS",
+  "count": 4,
+  "products": [
+    {
+      "id": "cb1031cb-aef7-42bb-9d17-17d2d7bf3132",
+      "slug": "shrshrt-yvvnyt-rywi6j",
+      "name": "שרשרת יוונית",
+      "name_translations": {},
+      "description": "<p><strong>שרשרת יוונית אלגנטית לאישה המודרנית</strong></p><p><br></p><p>שרשרת בעיצוב יווני קלאסי, המשלבת אסתטיקה עדינה עם עיצוב מושלם — מתאימה לכל אירוע, מיומיומי ועד חגיגי.</p><p><br></p><p><strong>יתרונות מרכזיים:</strong></p><ul><li>עיצוב יווני ייחודי ומרשים</li><li>מתאימה למגוון רחב של סגנונות לבוש</li><li>תוספת מושלמת לכל תכשיט קיים</li><li>מתנה אידיאלית לאישה שמעריכה סטייל ואיכות</li></ul><p><em>הרגישי מיוחדת ובולטת בכל מקום שתגיעי אליו.</em></p>",
+      "short_description": "שרשרת מדהימה מהמקורות היווניים",
+      "sku": "greek_neckless",
+      "brand": null,
+      "price": 89,
+      "base_price": 100,
+      "sale_price": 89,
+      "currency": "ILS",
+      "images": [
+        "https://star-shoes.zappy5.app/assets/image-product-image-1774278944611-4rihn1.webp",
+        "https://star-shoes.zappy5.app/assets/image-product-image-1776321291520-xbz86e.webp"
+      ],
+      "in_stock": true,
+      "stock_status": "in_stock",
+      "url": "https://star-shoes.zappy5.app/product/shrshrt-yvvnyt-rywi6j",
+      "categories": [
+        "שרשראות"
+      ],
+      "updated_at": "2026-04-21T06:16:56.307Z"
+    },
+    {
+      "id": "e7305c1c-15e5-49b2-9042-a6487a33ce7a",
+      "slug": "tchynh-g3djv4",
+      "name": "טחינה",
+      "name_translations": {},
+      "description": "<p><strong>טחינה גולמית איכותית</strong> – מוצר טבעי ובריא העשוי משומשום טחון באיכות פרימיום</p><p><br></p><p>הטחינה שלנו מיוצרת משומשום מובחר ומעובדת בקפידה רבה כדי לשמור על הטעם האותנטי והערכים התזונתיים הגבוהים. <strong>עשירה בחלבון, סידן וברזל</strong>, הטחינה מהווה תוספת מושלמת למגוון מנות – ממרקים וממרחים ועד רטבים וקינוחים.</p><p><br></p><ul><li><strong>יתרונות המוצר:</strong>עשויה מ-100% שומשום טבעי</li><li>ללא תוספים מלאכותיים או חומרים משמרים</li><li>מקור מצוין לחלבון צמחי</li><li>מתאימה לתזונה צמחונית וטבעונית</li><li>רב-תכליתית – מושלמת לחומוס, סלטים, אפייה ועוד</li></ul>",
+      "short_description": null,
+      "sku": null,
+      "brand": null,
+      "price": 0,
+      "base_price": 0,
+      "sale_price": null,
+      "currency": "ILS",
+      "images": [
+        "https://star-shoes.zappy5.app/assets/product-enhanced-1771433190821-wk72kr.webp"
+      ],
+      "in_stock": true,
+      "stock_status": "in_stock",
+      "url": "https://star-shoes.zappy5.app/product/tchynh-g3djv4",
+      "categories": [],
+      "updated_at": "2026-03-23T15:01:55.437Z"
+    },
+    {
+      "id": "31cf6eb6-8ba3-4ff6-8af5-e385ba3c3ff0",
+      "slug": "chvltsh-mdhymh-kmdmbl",
+      "name": "חולצה מדהימה",
+      "name_translations": {},
+      "description": "<p>החולצה הזו כך וכך</p>",
+      "short_description": null,
+      "sku": null,
+      "brand": null,
+      "price": 150,
+      "base_price": 150,
+      "sale_price": null,
+      "currency": "ILS",
+      "images": [
+        "https://star-shoes.zappy5.app/assets/product-1771163744817-dppqj.webp"
+      ],
+      "in_stock": true,
+      "stock_status": "in_stock",
+      "url": "https://star-shoes.zappy5.app/product/chvltsh-mdhymh-kmdmbl",
+      "categories": [],
+      "updated_at": "2026-03-24T19:13:43.286Z"
+    },
+    {
+      "id": "8365eec2-d95b-40ce-b84a-18a184d05cd1",
+      "slug": "naly-nyyk-dank-lv-rtrv-lgbrym-1gx59p",
+      "name": "נעלי נייק דאנק לו רטרו לגברים",
+      "name_translations": {},
+      "description": "<p>נעלי נייק דאנק לו רטרו לגברים, מצוינות לספורט</p>",
+      "short_description": null,
+      "sku": null,
+      "brand": null,
+      "price": 399,
+      "base_price": 433,
+      "sale_price": 399,
+      "currency": "ILS",
+      "images": [
+        "https://star-shoes.zappy5.app/assets/product-autofit-1774378967085-skh38d.webp",
+        "https://star-shoes.zappy5.app/assets/product-1771068135247-8a1jxq.webp",
+        "https://star-shoes.zappy5.app/assets/product-1771068140781-i83gu.webp"
+      ],
+      "in_stock": true,
+      "stock_status": "in_stock",
+      "url": "https://star-shoes.zappy5.app/product/naly-nyyk-dank-lv-rtrv-lgbrym-1gx59p",
+      "categories": [
+        "נעלי ספורט - כותב פה בכוונה טקסט ארוך בשביל מובייל"
+      ],
+      "updated_at": "2026-04-16T06:10:14.460Z"
+    }
+  ]
+}

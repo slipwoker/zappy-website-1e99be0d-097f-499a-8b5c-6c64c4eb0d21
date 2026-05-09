@@ -2,92 +2,116 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://star-shoes.zappy5.app</loc>
-    <lastmod>2026-04-28</lastmod>
+    <lastmod>2026-05-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://star-shoes.zappy5.app/display</loc>
-    <lastmod>2026-04-28</lastmod>
+    <lastmod>2026-05-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://star-shoes.zappy5.app/about</loc>
-    <lastmod>2026-04-28</lastmod>
+    <lastmod>2026-05-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://star-shoes.zappy5.app/products</loc>
-    <lastmod>2026-04-28</lastmod>
+    <lastmod>2026-05-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://star-shoes.zappy5.app/cart</loc>
-    <lastmod>2026-04-28</lastmod>
+    <lastmod>2026-05-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://star-shoes.zappy5.app/checkout</loc>
-    <lastmod>2026-04-28</lastmod>
+    <lastmod>2026-05-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://star-shoes.zappy5.app/login</loc>
-    <lastmod>2026-04-28</lastmod>
+    <lastmod>2026-05-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://star-shoes.zappy5.app/account</loc>
-    <lastmod>2026-04-28</lastmod>
+    <lastmod>2026-05-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://star-shoes.zappy5.app/order-success</loc>
-    <lastmod>2026-04-28</lastmod>
+    <lastmod>2026-05-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://star-shoes.zappy5.app/product/:slug</loc>
-    <lastmod>2026-04-28</lastmod>
+    <lastmod>2026-05-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://star-shoes.zappy5.app/category/:slug</loc>
-    <lastmod>2026-04-28</lastmod>
+    <lastmod>2026-05-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://star-shoes.zappy5.app/contact</loc>
-    <lastmod>2026-04-28</lastmod>
+    <lastmod>2026-05-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://star-shoes.zappy5.app/privacy</loc>
-    <lastmod>2026-04-28</lastmod>
+    <lastmod>2026-05-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://star-shoes.zappy5.app/terms</loc>
-    <lastmod>2026-04-28</lastmod>
+    <lastmod>2026-05-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://star-shoes.zappy5.app/accessibility</loc>
-    <lastmod>2026-04-28</lastmod>
+    <lastmod>2026-05-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://star-shoes.zappy5.app/product/shrshrt-yvvnyt-rywi6j</loc>
+    <lastmod>2026-04-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://star-shoes.zappy5.app/product/tchynh-g3djv4</loc>
+    <lastmod>2026-03-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://star-shoes.zappy5.app/product/chvltsh-mdhymh-kmdmbl</loc>
+    <lastmod>2026-03-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://star-shoes.zappy5.app/product/naly-nyyk-dank-lv-rtrv-lgbrym-1gx59p</loc>
+    <lastmod>2026-04-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>
