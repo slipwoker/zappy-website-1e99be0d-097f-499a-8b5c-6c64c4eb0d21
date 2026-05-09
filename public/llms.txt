@@ -74,7 +74,7 @@ Information about WCAG compliance and accessibility features.
 ### test
 https://star-shoes.zappy5.app/product/test-bufvc0
 - Price: 14.00 ILS
-- Availability: In stock
+- Availability: Out of stock
 - Description: gsdfsd
 - Image: https://star-shoes.zappy5.app/assets/product-1778324244646-8wqxdv.webp
 

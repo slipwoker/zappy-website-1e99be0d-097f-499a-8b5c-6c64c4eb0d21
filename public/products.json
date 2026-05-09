@@ -1,6 +1,6 @@
 {
   "@context": "https://schema.org",
-  "generated_at": "2026-05-09T14:56:29.395Z",
+  "generated_at": "2026-05-09T15:02:13.283Z",
   "base_url": "https://star-shoes.zappy5.app",
   "currency": "ILS",
   "count": 5,
@@ -24,11 +24,11 @@
       "images": [
         "https://star-shoes.zappy5.app/assets/product-1778324244646-8wqxdv.webp"
       ],
-      "in_stock": true,
-      "stock_status": "in_stock",
+      "in_stock": false,
+      "stock_status": "out_of_stock",
       "url": "https://star-shoes.zappy5.app/product/test-bufvc0",
       "categories": [],
-      "updated_at": "2026-05-09T14:09:37.284Z"
+      "updated_at": "2026-05-09T15:01:22.969Z"
     },
     {
       "id": "cb1031cb-aef7-42bb-9d17-17d2d7bf3132",
