@@ -1974,6 +1974,8 @@ window.onload = function() {
 ;
 
 ;
+
+;
 /* ==ZAPPY E-COMMERCE JS START== */
 // E-commerce functionality
 (function() {
@@ -9089,6 +9091,26 @@ function toggleProductDetails(header) {
   }
 }
 
+/** True when variant cannot be purchased (explicit OOS, finite qty ≤ 0, inactive, or legacy stock_quantity).
+ *  NULL/absent inventory quantity = unlimited stock (still available when active / in_stock).
+ *  Keep aligned with server/utils/ecommerceVariantStorefrontAvailability.js */
+function variantRowUnavailable(v) {
+  if (!v) return true;
+  if (v.is_active === false) return true;
+  if (v.stock_status === 'out_of_stock') return true;
+  var iq = v.inventory_quantity != null ? v.inventory_quantity : v.inventoryQuantity;
+  if (iq !== null && iq !== undefined && iq !== '') {
+    var n = parseFloat(iq);
+    if (!isNaN(n) && isFinite(n)) return n <= 0;
+  }
+  var sq = v.stock_quantity;
+  if (sq !== null && sq !== undefined && sq !== '') {
+    var n2 = parseFloat(sq);
+    if (!isNaN(n2) && isFinite(n2)) return n2 <= 0;
+  }
+  return false;
+}
+
 // Initialize variant selection functionality
 function initVariantSelection(product, t) {
   const variants = product.variants || [];
@@ -9159,8 +9181,8 @@ function initVariantSelection(product, t) {
       }
       return true;
     });
-    // If all matching variants are out of stock, it's out of stock
-    return matched.length > 0 && matched.every(v => v.stock_status === 'out_of_stock');
+    // Unavailable when every matching row has no sellable quantity (inventory-aware + legacy stock flags)
+    return matched.length > 0 && matched.every(v => variantRowUnavailable(v));
   }
   
   // Update visibility and stock styling of options in other groups based on current selections
@@ -9179,21 +9201,18 @@ function initVariantSelection(product, t) {
       groupBtns.forEach(function(btn) {
         var val = btn.getAttribute('data-value');
         var exists = variantExistsWith(groupKey, val, otherSelections);
-        var outOfStock = exists && isVariantOutOfStock(groupKey, val, otherSelections);
-        
-        // Hide options that don't exist as a combination
-        if (exists) {
-          btn.classList.remove('disabled');
-        } else {
+        var unavailable = exists && isVariantOutOfStock(groupKey, val, otherSelections);
+
+        if (!exists) {
           btn.classList.add('disabled');
+          btn.disabled = true;
           btn.classList.remove('selected', 'out-of-stock');
-        }
-        
-        // Mark out-of-stock options with strikethrough
-        if (outOfStock) {
-          btn.classList.add('out-of-stock');
+        } else if (unavailable) {
+          btn.classList.add('disabled', 'out-of-stock');
+          btn.disabled = true;
         } else {
-          btn.classList.remove('out-of-stock');
+          btn.classList.remove('disabled', 'out-of-stock');
+          btn.disabled = false;
         }
       });
     });
@@ -9201,15 +9220,18 @@ function initVariantSelection(product, t) {
   
   variantButtons.forEach(btn => {
     btn.addEventListener('click', function() {
+      if (this.disabled || this.classList.contains('disabled')) return;
+
       const variantId = this.getAttribute('data-variant-id');
       const attrKey = this.getAttribute('data-attr');
       const attrValue = this.getAttribute('data-value');
       
       if (variantId) {
         // Simple variant selection (no attributes)
+        const matchedVariant = variants.find(variant => variant.id === variantId);
+        if (variantRowUnavailable(matchedVariant)) return;
         variantButtons.forEach(b => b.classList.remove('selected'));
         this.classList.add('selected');
-        const matchedVariant = variants.find(variant => variant.id === variantId);
         updateVariantUI(matchedVariant || null, product, t, {});
         return;
       }
@@ -9273,9 +9295,9 @@ function initVariantSelection(product, t) {
   // Auto-select the first option in each variant group on page load
   var variantGroups = document.querySelectorAll('.variant-group');
   var groupArray = Array.from(variantGroups);
-  if (groupArray.length > 0) {
-    // Select first option in the first group
-    var firstBtn = groupArray[0].querySelector('.variant-option');
+    if (groupArray.length > 0) {
+    // Select first in-stock option in the first group (skip qty=0 / unavailable)
+    var firstBtn = groupArray[0].querySelector('.variant-option:not(.disabled)');
     if (firstBtn && !firstBtn.getAttribute('data-variant-id')) {
       firstBtn.click();
     }
@@ -9397,7 +9419,7 @@ function updateVariantUI(variant, product, t, selectedAttributes) {
     updatePricePerUnitDisplay(displayedFinalPrice, product, t);
     
     // Update stock status
-    const variantInStock = variant.stock_status !== 'out_of_stock';
+    const variantInStock = !variantRowUnavailable(variant);
     if (stockDisplay) {
       if (!additionalJsShowStockStatus) { stockDisplay.style.display = 'none'; }
       else {
@@ -11390,7 +11412,15 @@ async function loadRelatedProducts(currentProduct, t) {
     function _gak() { var k=[],s={}; document.querySelectorAll('.variant-option').forEach(function(b){var a=b.getAttribute('data-attr');if(a&&!s[a]){s[a]=true;k.push(a)}}); return k; }
     function _ce(sel) { return _gv().some(function(v){if(!v.attributes)return false;for(var k in sel){if(!sel.hasOwnProperty(k))continue;if(v.attributes[k]!==sel[k])return false}return true}); }
     function _fm(sel) { return _gv().filter(function(v){if(!v.attributes)return false;for(var k in sel){if(!sel.hasOwnProperty(k))continue;if(v.attributes[k]!==sel[k])return false}return true}); }
-    function _oos(v) { return v.stock_status==='out_of_stock'||(v.stock_quantity!=null&&v.stock_quantity<=0); }
+    function _oos(v) {
+      if(!v)return true;
+      if(v.stock_status==='out_of_stock')return true;
+      var i=v.inventory_quantity!=null?v.inventory_quantity:v.inventoryQuantity;
+      if(i!=null&&i!==''){var n=parseFloat(i);if(isFinite(n))return n<=0}
+      var s=v.stock_quantity;
+      if(s!=null&&s!==''){var m=parseFloat(s);if(isFinite(m))return m<=0}
+      return false;
+    }
 
     function _uv() {
       if(_gv().length===0)return;
@@ -11398,7 +11428,8 @@ async function loadRelatedProducts(currentProduct, t) {
         var ak=btn.getAttribute('data-attr'),av=btn.getAttribute('data-value');
         var t={};for(var k in selectedAttributes){if(selectedAttributes.hasOwnProperty(k)&&k!==ak)t[k]=selectedAttributes[k]}t[ak]=av;
         var m=_fm(t);btn.classList.remove('disabled','out-of-stock');btn.disabled=false;
-        if(m.length===0){btn.classList.add('disabled')}else if(m.every(function(v){return _oos(v)})){btn.classList.add('disabled');btn.classList.add('out-of-stock')}
+        if(m.length===0){btn.classList.add('disabled');btn.disabled=true}
+        else if(m.every(function(v){return _oos(v)})){btn.classList.add('disabled');btn.classList.add('out-of-stock');btn.disabled=true}
       });
     }
 
@@ -11439,6 +11470,7 @@ async function loadRelatedProducts(currentProduct, t) {
       if(!_vProduct||_gv().length===0)return;
       e.preventDefault();e.stopImmediatePropagation();
       var ak=btn.getAttribute('data-attr'),av=btn.getAttribute('data-value');if(!ak||!av)return;
+      if(btn.disabled)return;
       if(selectedAttributes[ak]===av)return;
       document.querySelectorAll('.variant-option[data-attr="'+ak+'"]').forEach(function(b){b.classList.remove('selected')});selectedAttributes[ak]=av;btn.classList.add('selected');
       if(Object.keys(selectedAttributes).length>1){if(!_ce(selectedAttributes)){document.querySelectorAll('.variant-option').forEach(function(b){b.classList.remove('selected')});selectedAttributes={};selectedAttributes[ak]=av;btn.classList.add('selected')}}
@@ -11995,8 +12027,19 @@ async function loadRelatedProducts(currentProduct, t) {
     }
     
     function _isOOS(v) {
-      return v.stock_status === 'out_of_stock' ||
-        (v.stock_quantity !== null && v.stock_quantity !== undefined && v.stock_quantity <= 0);
+      if (!v) return true;
+      if (v.stock_status === 'out_of_stock') return true;
+      var i = v.inventory_quantity != null ? v.inventory_quantity : v.inventoryQuantity;
+      if (i != null && i !== '') {
+        var n = parseFloat(i);
+        if (isFinite(n)) return n <= 0;
+      }
+      var s = v.stock_quantity;
+      if (s != null && s !== '') {
+        var m = parseFloat(s);
+        if (isFinite(m)) return m <= 0;
+      }
+      return false;
     }
     
     function _updateVisuals() {
@@ -12015,9 +12058,11 @@ async function loadRelatedProducts(currentProduct, t) {
         btn.disabled = false;
         if (matching.length === 0) {
           btn.classList.add('disabled');
+          btn.disabled = true;
         } else if (matching.every(function(v) { return _isOOS(v); })) {
           btn.classList.add('disabled');
           btn.classList.add('out-of-stock');
+          btn.disabled = true;
         }
       });
     }
@@ -12167,6 +12212,7 @@ async function loadRelatedProducts(currentProduct, t) {
       var ak = btn.getAttribute('data-attr');
       var av = btn.getAttribute('data-value');
       if (!ak || !av) return;
+      if (btn.disabled || btn.classList.contains('disabled')) return;
       
       // If already selected, do nothing (no manual deselect)
       if (selectedAttributes[ak] === av) {
