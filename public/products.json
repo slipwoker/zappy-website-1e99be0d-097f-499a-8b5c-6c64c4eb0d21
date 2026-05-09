@@ -1,13 +1,13 @@
 {
   "@context": "https://schema.org",
-  "generated_at": "2026-05-09T10:58:25.018Z",
+  "generated_at": "2026-05-09T14:10:14.019Z",
   "base_url": "https://star-shoes.zappy5.app",
   "currency": "ILS",
   "count": 5,
   "products": [
     {
       "id": "b8b38871-f91d-4921-af6e-5e8031e12266",
-      "slug": "test-h3jxwj",
+      "slug": "test-bufvc0",
       "name": "test",
       "name_translations": {
         "en": "test",
@@ -24,11 +24,11 @@
       "images": [
         "https://star-shoes.zappy5.app/assets/product-1778324244646-8wqxdv.webp"
       ],
-      "in_stock": false,
-      "stock_status": "out_of_stock",
-      "url": "https://star-shoes.zappy5.app/product/test-h3jxwj",
+      "in_stock": true,
+      "stock_status": "in_stock",
+      "url": "https://star-shoes.zappy5.app/product/test-bufvc0",
       "categories": [],
-      "updated_at": "2026-05-09T10:57:48.360Z"
+      "updated_at": "2026-05-09T14:09:37.284Z"
     },
     {
       "id": "cb1031cb-aef7-42bb-9d17-17d2d7bf3132",
