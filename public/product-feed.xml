@@ -4,7 +4,7 @@
     <title>Star Shoes</title>
     <link>https://star-shoes.zappy5.app</link>
     <description>Product feed for Star Shoes</description>
-    <lastBuildDate>Wed, 13 May 2026 08:07:32 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 18 May 2026 13:19:27 GMT</lastBuildDate>
     <item>
       <g:id>b8b38871-f91d-4921-af6e-5e8031e12266</g:id>
       <g:title>test</g:title>
@@ -18,14 +18,175 @@
       <g:identifier_exists>no</g:identifier_exists>
     </item>
     <item>
-      <g:id>cb1031cb-aef7-42bb-9d17-17d2d7bf3132</g:id>
-      <g:title>שרשרת יוונית</g:title>
+      <g:id>cb1031cb-aef7-42bb-9d17-17d2d7bf3132__104538f4-1613-49e6-9138-db0649c57363</g:id>
+      <g:title>שרשרת יוונית - Rose Gold / black / 12 מ״מ</g:title>
       <g:description>שרשרת מדהימה מהמקורות היווניים</g:description>
       <g:link>https://star-shoes.zappy5.app/product/shrshrt-yvvnyt-grtkg4</g:link>
+      <g:item_group_id>cb1031cb-aef7-42bb-9d17-17d2d7bf3132</g:item_group_id>
       <g:image_link>https://star-shoes.zappy5.app/assets/image-product-image-1774278944611-4rihn1.webp</g:image_link>
       <g:additional_image_link>https://star-shoes.zappy5.app/assets/image-product-image-1776321291520-xbz86e.webp</g:additional_image_link>
       <g:availability>in_stock</g:availability>
-      <g:price>89.00 ILS</g:price>
+      <g:price>100.00 ILS</g:price>
+      <g:sale_price>89.00 ILS</g:sale_price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:mpn>1802</g:mpn>
+      <g:product_type>שרשראות</g:product_type>
+    </item>
+    <item>
+      <g:id>cb1031cb-aef7-42bb-9d17-17d2d7bf3132__9319f676-8e41-4e2b-b591-4e161797d8a1</g:id>
+      <g:title>שרשרת יוונית - Rose Gold / black / 8 מ״מ</g:title>
+      <g:description>שרשרת מדהימה מהמקורות היווניים</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/shrshrt-yvvnyt-grtkg4</g:link>
+      <g:item_group_id>cb1031cb-aef7-42bb-9d17-17d2d7bf3132</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/image-product-image-1774278944611-4rihn1.webp</g:image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/image-product-image-1776321291520-xbz86e.webp</g:additional_image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>100.00 ILS</g:price>
+      <g:sale_price>89.00 ILS</g:sale_price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:mpn>1801</g:mpn>
+      <g:product_type>שרשראות</g:product_type>
+    </item>
+    <item>
+      <g:id>cb1031cb-aef7-42bb-9d17-17d2d7bf3132__24e6d407-8477-4dec-9882-caee8a048a6c</g:id>
+      <g:title>שרשרת יוונית - Rose Gold / Gray / 12 מ״מ</g:title>
+      <g:description>שרשרת מדהימה מהמקורות היווניים</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/shrshrt-yvvnyt-grtkg4</g:link>
+      <g:item_group_id>cb1031cb-aef7-42bb-9d17-17d2d7bf3132</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/image-product-image-1774278944611-4rihn1.webp</g:image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/image-product-image-1776321291520-xbz86e.webp</g:additional_image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>100.00 ILS</g:price>
+      <g:sale_price>89.00 ILS</g:sale_price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:mpn>1800</g:mpn>
+      <g:product_type>שרשראות</g:product_type>
+    </item>
+    <item>
+      <g:id>cb1031cb-aef7-42bb-9d17-17d2d7bf3132__b410f792-374e-4b67-9d06-d943bdb5d709</g:id>
+      <g:title>שרשרת יוונית - Rose Gold / Gray / 8 מ״מ</g:title>
+      <g:description>שרשרת מדהימה מהמקורות היווניים</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/shrshrt-yvvnyt-grtkg4</g:link>
+      <g:item_group_id>cb1031cb-aef7-42bb-9d17-17d2d7bf3132</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/image-product-image-1774278944611-4rihn1.webp</g:image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/image-product-image-1776321291520-xbz86e.webp</g:additional_image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>100.00 ILS</g:price>
+      <g:sale_price>89.00 ILS</g:sale_price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:mpn>1803</g:mpn>
+      <g:product_type>שרשראות</g:product_type>
+    </item>
+    <item>
+      <g:id>cb1031cb-aef7-42bb-9d17-17d2d7bf3132__3d53cae9-7211-47e1-a997-dba3b477d9d6</g:id>
+      <g:title>שרשרת יוונית - Rose Gold / Pink / 12 מ״מ</g:title>
+      <g:description>שרשרת מדהימה מהמקורות היווניים</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/shrshrt-yvvnyt-grtkg4</g:link>
+      <g:item_group_id>cb1031cb-aef7-42bb-9d17-17d2d7bf3132</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/image-product-image-1776321291520-xbz86e.webp</g:image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/image-product-image-1774278944611-4rihn1.webp</g:additional_image_link>
+      <g:availability>out_of_stock</g:availability>
+      <g:price>100.00 ILS</g:price>
+      <g:sale_price>89.00 ILS</g:sale_price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:mpn>1800</g:mpn>
+      <g:product_type>שרשראות</g:product_type>
+    </item>
+    <item>
+      <g:id>cb1031cb-aef7-42bb-9d17-17d2d7bf3132__fc20427d-608c-4eaf-97a3-a3bcb2adc67e</g:id>
+      <g:title>שרשרת יוונית - Rose Gold / Pink / 8 מ״מ</g:title>
+      <g:description>שרשרת מדהימה מהמקורות היווניים</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/shrshrt-yvvnyt-grtkg4</g:link>
+      <g:item_group_id>cb1031cb-aef7-42bb-9d17-17d2d7bf3132</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/image-product-image-1776321291520-xbz86e.webp</g:image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/image-product-image-1774278944611-4rihn1.webp</g:additional_image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>100.00 ILS</g:price>
+      <g:sale_price>89.00 ILS</g:sale_price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:mpn>1800</g:mpn>
+      <g:product_type>שרשראות</g:product_type>
+    </item>
+    <item>
+      <g:id>cb1031cb-aef7-42bb-9d17-17d2d7bf3132__ba5f8e2a-fdd1-41fa-81db-d68dda29e7a7</g:id>
+      <g:title>שרשרת יוונית - Rose Gold / Yellow / 12 מ״מ</g:title>
+      <g:description>שרשרת מדהימה מהמקורות היווניים</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/shrshrt-yvvnyt-grtkg4</g:link>
+      <g:item_group_id>cb1031cb-aef7-42bb-9d17-17d2d7bf3132</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/image-product-image-1774278944611-4rihn1.webp</g:image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/image-product-image-1776321291520-xbz86e.webp</g:additional_image_link>
+      <g:availability>out_of_stock</g:availability>
+      <g:price>100.00 ILS</g:price>
+      <g:sale_price>89.00 ILS</g:sale_price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:mpn>1800</g:mpn>
+      <g:product_type>שרשראות</g:product_type>
+    </item>
+    <item>
+      <g:id>cb1031cb-aef7-42bb-9d17-17d2d7bf3132__8fe71dcd-c495-4424-a029-4de46d824624</g:id>
+      <g:title>שרשרת יוונית - Rose Gold / Yellow / 8 מ״מ</g:title>
+      <g:description>שרשרת מדהימה מהמקורות היווניים</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/shrshrt-yvvnyt-grtkg4</g:link>
+      <g:item_group_id>cb1031cb-aef7-42bb-9d17-17d2d7bf3132</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/image-product-image-1774278944611-4rihn1.webp</g:image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/image-product-image-1776321291520-xbz86e.webp</g:additional_image_link>
+      <g:availability>out_of_stock</g:availability>
+      <g:price>100.00 ILS</g:price>
+      <g:sale_price>89.00 ILS</g:sale_price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:mpn>1800</g:mpn>
+      <g:product_type>שרשראות</g:product_type>
+    </item>
+    <item>
+      <g:id>cb1031cb-aef7-42bb-9d17-17d2d7bf3132__93f1a411-d185-407b-a943-3107864a5508</g:id>
+      <g:title>שרשרת יוונית - Rose Gold / תכלת / 12 מ״מ</g:title>
+      <g:description>שרשרת מדהימה מהמקורות היווניים</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/shrshrt-yvvnyt-grtkg4</g:link>
+      <g:item_group_id>cb1031cb-aef7-42bb-9d17-17d2d7bf3132</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/image-product-image-1774278944611-4rihn1.webp</g:image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/image-product-image-1776321291520-xbz86e.webp</g:additional_image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>100.00 ILS</g:price>
+      <g:sale_price>89.00 ILS</g:sale_price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:mpn>1800</g:mpn>
+      <g:product_type>שרשראות</g:product_type>
+    </item>
+    <item>
+      <g:id>cb1031cb-aef7-42bb-9d17-17d2d7bf3132__06e1fa8f-929b-4123-ba7c-47980bbcb25b</g:id>
+      <g:title>שרשרת יוונית - Rose Gold / תכלת / 8 מ״מ</g:title>
+      <g:description>שרשרת מדהימה מהמקורות היווניים</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/shrshrt-yvvnyt-grtkg4</g:link>
+      <g:item_group_id>cb1031cb-aef7-42bb-9d17-17d2d7bf3132</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/image-product-image-1774278944611-4rihn1.webp</g:image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/image-product-image-1776321291520-xbz86e.webp</g:additional_image_link>
+      <g:availability>out_of_stock</g:availability>
+      <g:price>100.00 ILS</g:price>
+      <g:sale_price>89.00 ILS</g:sale_price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:mpn>1800</g:mpn>
+      <g:product_type>שרשראות</g:product_type>
+    </item>
+    <item>
+      <g:id>cb1031cb-aef7-42bb-9d17-17d2d7bf3132__ce8d7301-2a07-4ae6-8087-0d7917586f27</g:id>
+      <g:title>שרשרת יוונית - Cotton / black / 12 מ״מ</g:title>
+      <g:description>שרשרת מדהימה מהמקורות היווניים</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/shrshrt-yvvnyt-grtkg4</g:link>
+      <g:item_group_id>cb1031cb-aef7-42bb-9d17-17d2d7bf3132</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/image-product-image-1774278944611-4rihn1.webp</g:image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/image-product-image-1776321291520-xbz86e.webp</g:additional_image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>100.00 ILS</g:price>
       <g:sale_price>89.00 ILS</g:sale_price>
       <g:condition>new</g:condition>
       <g:brand>Star Shoes</g:brand>
@@ -33,10 +194,155 @@
       <g:product_type>שרשראות</g:product_type>
     </item>
     <item>
-      <g:id>e7305c1c-15e5-49b2-9042-a6487a33ce7a</g:id>
-      <g:title>טחינה</g:title>
+      <g:id>cb1031cb-aef7-42bb-9d17-17d2d7bf3132__0dac8d3a-255d-4fe1-bde8-9c8deb19b799</g:id>
+      <g:title>שרשרת יוונית - Cotton / black / 8 מ״מ</g:title>
+      <g:description>שרשרת מדהימה מהמקורות היווניים</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/shrshrt-yvvnyt-grtkg4</g:link>
+      <g:item_group_id>cb1031cb-aef7-42bb-9d17-17d2d7bf3132</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/image-product-image-1774278944611-4rihn1.webp</g:image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/image-product-image-1776321291520-xbz86e.webp</g:additional_image_link>
+      <g:availability>out_of_stock</g:availability>
+      <g:price>100.00 ILS</g:price>
+      <g:sale_price>89.00 ILS</g:sale_price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:mpn>greek_neckless</g:mpn>
+      <g:product_type>שרשראות</g:product_type>
+    </item>
+    <item>
+      <g:id>cb1031cb-aef7-42bb-9d17-17d2d7bf3132__6a2ee13d-4ce7-4514-a0ea-44abba3c881b</g:id>
+      <g:title>שרשרת יוונית - Cotton / Gray / 12 מ״מ</g:title>
+      <g:description>שרשרת מדהימה מהמקורות היווניים</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/shrshrt-yvvnyt-grtkg4</g:link>
+      <g:item_group_id>cb1031cb-aef7-42bb-9d17-17d2d7bf3132</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/image-product-image-1774278944611-4rihn1.webp</g:image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/image-product-image-1776321291520-xbz86e.webp</g:additional_image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>100.00 ILS</g:price>
+      <g:sale_price>89.00 ILS</g:sale_price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:mpn>greek_neckless</g:mpn>
+      <g:product_type>שרשראות</g:product_type>
+    </item>
+    <item>
+      <g:id>cb1031cb-aef7-42bb-9d17-17d2d7bf3132__be2b64bf-7690-42d8-be8c-463bfaa6343e</g:id>
+      <g:title>שרשרת יוונית - Cotton / Gray / 8 מ״מ</g:title>
+      <g:description>שרשרת מדהימה מהמקורות היווניים</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/shrshrt-yvvnyt-grtkg4</g:link>
+      <g:item_group_id>cb1031cb-aef7-42bb-9d17-17d2d7bf3132</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/image-product-image-1774278944611-4rihn1.webp</g:image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/image-product-image-1776321291520-xbz86e.webp</g:additional_image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>100.00 ILS</g:price>
+      <g:sale_price>89.00 ILS</g:sale_price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:mpn>greek_neckless</g:mpn>
+      <g:product_type>שרשראות</g:product_type>
+    </item>
+    <item>
+      <g:id>cb1031cb-aef7-42bb-9d17-17d2d7bf3132__5643bf26-5d44-49b1-af22-4614bd3f8ca8</g:id>
+      <g:title>שרשרת יוונית - Cotton / Pink / 12 מ״מ</g:title>
+      <g:description>שרשרת מדהימה מהמקורות היווניים</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/shrshrt-yvvnyt-grtkg4</g:link>
+      <g:item_group_id>cb1031cb-aef7-42bb-9d17-17d2d7bf3132</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/image-product-image-1774278944611-4rihn1.webp</g:image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/image-product-image-1776321291520-xbz86e.webp</g:additional_image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>100.00 ILS</g:price>
+      <g:sale_price>89.00 ILS</g:sale_price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:mpn>greek_neckless</g:mpn>
+      <g:product_type>שרשראות</g:product_type>
+    </item>
+    <item>
+      <g:id>cb1031cb-aef7-42bb-9d17-17d2d7bf3132__0e96c419-9f41-4e84-a970-28b11f676304</g:id>
+      <g:title>שרשרת יוונית - Cotton / Pink / 8 מ״מ</g:title>
+      <g:description>שרשרת מדהימה מהמקורות היווניים</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/shrshrt-yvvnyt-grtkg4</g:link>
+      <g:item_group_id>cb1031cb-aef7-42bb-9d17-17d2d7bf3132</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/image-product-image-1774278944611-4rihn1.webp</g:image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/image-product-image-1776321291520-xbz86e.webp</g:additional_image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>100.00 ILS</g:price>
+      <g:sale_price>89.00 ILS</g:sale_price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:mpn>greek_neckless</g:mpn>
+      <g:product_type>שרשראות</g:product_type>
+    </item>
+    <item>
+      <g:id>cb1031cb-aef7-42bb-9d17-17d2d7bf3132__a07ea40d-ca06-4ceb-944e-9ebf76d46036</g:id>
+      <g:title>שרשרת יוונית - Cotton / Yellow / 12 מ״מ</g:title>
+      <g:description>שרשרת מדהימה מהמקורות היווניים</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/shrshrt-yvvnyt-grtkg4</g:link>
+      <g:item_group_id>cb1031cb-aef7-42bb-9d17-17d2d7bf3132</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/image-product-image-1774278944611-4rihn1.webp</g:image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/image-product-image-1776321291520-xbz86e.webp</g:additional_image_link>
+      <g:availability>out_of_stock</g:availability>
+      <g:price>100.00 ILS</g:price>
+      <g:sale_price>89.00 ILS</g:sale_price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:mpn>greek_neckless</g:mpn>
+      <g:product_type>שרשראות</g:product_type>
+    </item>
+    <item>
+      <g:id>cb1031cb-aef7-42bb-9d17-17d2d7bf3132__3e9db87b-cdd4-4847-b509-e0b5b8b1a1c4</g:id>
+      <g:title>שרשרת יוונית - Cotton / Yellow / 8 מ״מ</g:title>
+      <g:description>שרשרת מדהימה מהמקורות היווניים</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/shrshrt-yvvnyt-grtkg4</g:link>
+      <g:item_group_id>cb1031cb-aef7-42bb-9d17-17d2d7bf3132</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/image-product-image-1774278944611-4rihn1.webp</g:image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/image-product-image-1776321291520-xbz86e.webp</g:additional_image_link>
+      <g:availability>out_of_stock</g:availability>
+      <g:price>100.00 ILS</g:price>
+      <g:sale_price>89.00 ILS</g:sale_price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:mpn>greek_neckless</g:mpn>
+      <g:product_type>שרשראות</g:product_type>
+    </item>
+    <item>
+      <g:id>cb1031cb-aef7-42bb-9d17-17d2d7bf3132__334990c9-df1f-4649-8869-ed26f57bbf1f</g:id>
+      <g:title>שרשרת יוונית - Cotton / תכלת / 12 מ״מ</g:title>
+      <g:description>שרשרת מדהימה מהמקורות היווניים</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/shrshrt-yvvnyt-grtkg4</g:link>
+      <g:item_group_id>cb1031cb-aef7-42bb-9d17-17d2d7bf3132</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/image-product-image-1774278944611-4rihn1.webp</g:image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/image-product-image-1776321291520-xbz86e.webp</g:additional_image_link>
+      <g:availability>out_of_stock</g:availability>
+      <g:price>100.00 ILS</g:price>
+      <g:sale_price>89.00 ILS</g:sale_price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:mpn>greek_neckless</g:mpn>
+      <g:product_type>שרשראות</g:product_type>
+    </item>
+    <item>
+      <g:id>cb1031cb-aef7-42bb-9d17-17d2d7bf3132__b8581cf2-972a-492e-ba1d-1f4130302ef5</g:id>
+      <g:title>שרשרת יוונית - Cotton / תכלת / 8 מ״מ</g:title>
+      <g:description>שרשרת מדהימה מהמקורות היווניים</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/shrshrt-yvvnyt-grtkg4</g:link>
+      <g:item_group_id>cb1031cb-aef7-42bb-9d17-17d2d7bf3132</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/image-product-image-1774278944611-4rihn1.webp</g:image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/image-product-image-1776321291520-xbz86e.webp</g:additional_image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>100.00 ILS</g:price>
+      <g:sale_price>89.00 ILS</g:sale_price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:mpn>greek_neckless</g:mpn>
+      <g:product_type>שרשראות</g:product_type>
+    </item>
+    <item>
+      <g:id>e7305c1c-15e5-49b2-9042-a6487a33ce7a__957e4088-b5c6-425a-bba5-30177d005812</g:id>
+      <g:title>טחינה - 500ml</g:title>
       <g:description>טחינה גולמית איכותית – מוצר טבעי ובריא העשוי משומשום טחון באיכות פרימיום הטחינה שלנו מיוצרת משומשום מובחר ומעובדת בקפידה רבה כדי לשמור על הטעם האותנטי והערכים התזונתיים הגבוהים. עשירה בחלבון, סידן וברזל , הטחינה מהווה תוספת מושלמת למגוון מנות – ממרקים וממרחים ועד רטבים וקינוחים. יתרונות המוצר: עשויה מ-100% שומשום טבעי ללא תוספים מלאכותיים או חומרים משמרים מקור מצוין לחלבון צמחי מתאימה לתזונה צמחונית וטבעונית רב-תכליתית – מושלמת לחומוס, סלטים, אפייה ועוד</g:description>
       <g:link>https://star-shoes.zappy5.app/product/tchynh-g3djv4</g:link>
+      <g:item_group_id>e7305c1c-15e5-49b2-9042-a6487a33ce7a</g:item_group_id>
       <g:image_link>https://star-shoes.zappy5.app/assets/product-enhanced-1771433190821-wk72kr.webp</g:image_link>
       <g:availability>in_stock</g:availability>
       <g:price>0.00 ILS</g:price>
@@ -45,10 +351,24 @@
       <g:identifier_exists>no</g:identifier_exists>
     </item>
     <item>
-      <g:id>31cf6eb6-8ba3-4ff6-8af5-e385ba3c3ff0</g:id>
-      <g:title>חולצה מדהימה</g:title>
+      <g:id>e7305c1c-15e5-49b2-9042-a6487a33ce7a__16b86efe-5cfc-4845-9cec-d7f7fe37f1c6</g:id>
+      <g:title>טחינה - 1L</g:title>
+      <g:description>טחינה גולמית איכותית – מוצר טבעי ובריא העשוי משומשום טחון באיכות פרימיום הטחינה שלנו מיוצרת משומשום מובחר ומעובדת בקפידה רבה כדי לשמור על הטעם האותנטי והערכים התזונתיים הגבוהים. עשירה בחלבון, סידן וברזל , הטחינה מהווה תוספת מושלמת למגוון מנות – ממרקים וממרחים ועד רטבים וקינוחים. יתרונות המוצר: עשויה מ-100% שומשום טבעי ללא תוספים מלאכותיים או חומרים משמרים מקור מצוין לחלבון צמחי מתאימה לתזונה צמחונית וטבעונית רב-תכליתית – מושלמת לחומוס, סלטים, אפייה ועוד</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/tchynh-g3djv4</g:link>
+      <g:item_group_id>e7305c1c-15e5-49b2-9042-a6487a33ce7a</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/product-enhanced-1771433190821-wk72kr.webp</g:image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>0.00 ILS</g:price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+    </item>
+    <item>
+      <g:id>31cf6eb6-8ba3-4ff6-8af5-e385ba3c3ff0__61701724-3fed-47ee-a3b5-3eb1dce7463a</g:id>
+      <g:title>חולצה מדהימה - Gray / Regular / Classic</g:title>
       <g:description>החולצה הזו כך וכך</g:description>
       <g:link>https://star-shoes.zappy5.app/product/chvltsh-mdhymh-kmdmbl</g:link>
+      <g:item_group_id>31cf6eb6-8ba3-4ff6-8af5-e385ba3c3ff0</g:item_group_id>
       <g:image_link>https://star-shoes.zappy5.app/assets/product-1771163744817-dppqj.webp</g:image_link>
       <g:availability>in_stock</g:availability>
       <g:price>150.00 ILS</g:price>
@@ -57,15 +377,701 @@
       <g:identifier_exists>no</g:identifier_exists>
     </item>
     <item>
-      <g:id>8365eec2-d95b-40ce-b84a-18a184d05cd1</g:id>
-      <g:title>נעלי נייק דאנק לו רטרו לגברים</g:title>
+      <g:id>31cf6eb6-8ba3-4ff6-8af5-e385ba3c3ff0__325b8e66-424d-49c1-a9c6-9cd6d18fe5f7</g:id>
+      <g:title>חולצה מדהימה - Gray / Regular / Modern</g:title>
+      <g:description>החולצה הזו כך וכך</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/chvltsh-mdhymh-kmdmbl</g:link>
+      <g:item_group_id>31cf6eb6-8ba3-4ff6-8af5-e385ba3c3ff0</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/product-1771163744817-dppqj.webp</g:image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>150.00 ILS</g:price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+    </item>
+    <item>
+      <g:id>31cf6eb6-8ba3-4ff6-8af5-e385ba3c3ff0__b08b54f0-2145-40bc-95a0-745bbc0aff32</g:id>
+      <g:title>חולצה מדהימה - Gray / Slim / Classic</g:title>
+      <g:description>החולצה הזו כך וכך</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/chvltsh-mdhymh-kmdmbl</g:link>
+      <g:item_group_id>31cf6eb6-8ba3-4ff6-8af5-e385ba3c3ff0</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/product-1771163744817-dppqj.webp</g:image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>160.00 ILS</g:price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+    </item>
+    <item>
+      <g:id>31cf6eb6-8ba3-4ff6-8af5-e385ba3c3ff0__924336c0-5a37-4cb1-a029-5132fac27baa</g:id>
+      <g:title>חולצה מדהימה - Gray / Slim / Modern</g:title>
+      <g:description>החולצה הזו כך וכך</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/chvltsh-mdhymh-kmdmbl</g:link>
+      <g:item_group_id>31cf6eb6-8ba3-4ff6-8af5-e385ba3c3ff0</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/product-1771163744817-dppqj.webp</g:image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>160.00 ILS</g:price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+    </item>
+    <item>
+      <g:id>31cf6eb6-8ba3-4ff6-8af5-e385ba3c3ff0__220e0a43-93fd-43cb-9513-29a61e5aa304</g:id>
+      <g:title>חולצה מדהימה - Green / Regular / Classic</g:title>
+      <g:description>החולצה הזו כך וכך</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/chvltsh-mdhymh-kmdmbl</g:link>
+      <g:item_group_id>31cf6eb6-8ba3-4ff6-8af5-e385ba3c3ff0</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/product-1771163744817-dppqj.webp</g:image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>150.00 ILS</g:price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+    </item>
+    <item>
+      <g:id>31cf6eb6-8ba3-4ff6-8af5-e385ba3c3ff0__bb1cb908-0a42-4002-8c38-deab205ded02</g:id>
+      <g:title>חולצה מדהימה - Green / Regular / Modern</g:title>
+      <g:description>החולצה הזו כך וכך</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/chvltsh-mdhymh-kmdmbl</g:link>
+      <g:item_group_id>31cf6eb6-8ba3-4ff6-8af5-e385ba3c3ff0</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/product-1771163744817-dppqj.webp</g:image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>150.00 ILS</g:price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+    </item>
+    <item>
+      <g:id>31cf6eb6-8ba3-4ff6-8af5-e385ba3c3ff0__19adec43-291d-48a9-966a-c1ce1871764a</g:id>
+      <g:title>חולצה מדהימה - Green / Slim / Classic</g:title>
+      <g:description>החולצה הזו כך וכך</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/chvltsh-mdhymh-kmdmbl</g:link>
+      <g:item_group_id>31cf6eb6-8ba3-4ff6-8af5-e385ba3c3ff0</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/product-1771163744817-dppqj.webp</g:image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>150.00 ILS</g:price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+    </item>
+    <item>
+      <g:id>31cf6eb6-8ba3-4ff6-8af5-e385ba3c3ff0__36fdb2fa-527c-4d72-87df-0dcdf47d8724</g:id>
+      <g:title>חולצה מדהימה - Green / Slim / Modern</g:title>
+      <g:description>החולצה הזו כך וכך</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/chvltsh-mdhymh-kmdmbl</g:link>
+      <g:item_group_id>31cf6eb6-8ba3-4ff6-8af5-e385ba3c3ff0</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/product-1771163744817-dppqj.webp</g:image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>150.00 ILS</g:price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+    </item>
+    <item>
+      <g:id>31cf6eb6-8ba3-4ff6-8af5-e385ba3c3ff0__ea84609d-4e39-4a18-9937-9c64dd83d397</g:id>
+      <g:title>חולצה מדהימה - Red / Regular / Classic</g:title>
+      <g:description>החולצה הזו כך וכך</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/chvltsh-mdhymh-kmdmbl</g:link>
+      <g:item_group_id>31cf6eb6-8ba3-4ff6-8af5-e385ba3c3ff0</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/product-1771163744817-dppqj.webp</g:image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>150.00 ILS</g:price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+    </item>
+    <item>
+      <g:id>31cf6eb6-8ba3-4ff6-8af5-e385ba3c3ff0__565bfe77-d027-48df-a9c7-f4874760947c</g:id>
+      <g:title>חולצה מדהימה - Red / Regular / Modern</g:title>
+      <g:description>החולצה הזו כך וכך</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/chvltsh-mdhymh-kmdmbl</g:link>
+      <g:item_group_id>31cf6eb6-8ba3-4ff6-8af5-e385ba3c3ff0</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/product-1771163744817-dppqj.webp</g:image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>150.00 ILS</g:price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+    </item>
+    <item>
+      <g:id>31cf6eb6-8ba3-4ff6-8af5-e385ba3c3ff0__7d4a35d1-f9b9-4f07-bdb8-2700012bf433</g:id>
+      <g:title>חולצה מדהימה - Red / Slim / Classic</g:title>
+      <g:description>החולצה הזו כך וכך</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/chvltsh-mdhymh-kmdmbl</g:link>
+      <g:item_group_id>31cf6eb6-8ba3-4ff6-8af5-e385ba3c3ff0</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/product-1771163744817-dppqj.webp</g:image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>150.00 ILS</g:price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+    </item>
+    <item>
+      <g:id>31cf6eb6-8ba3-4ff6-8af5-e385ba3c3ff0__9551ef96-ea1d-4858-bd49-56ee2d033cce</g:id>
+      <g:title>חולצה מדהימה - Red / Slim / Modern</g:title>
+      <g:description>החולצה הזו כך וכך</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/chvltsh-mdhymh-kmdmbl</g:link>
+      <g:item_group_id>31cf6eb6-8ba3-4ff6-8af5-e385ba3c3ff0</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/product-1771163744817-dppqj.webp</g:image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>150.00 ILS</g:price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+    </item>
+    <item>
+      <g:id>31cf6eb6-8ba3-4ff6-8af5-e385ba3c3ff0__3103f72a-69fd-4945-9fae-0a4581fd0088</g:id>
+      <g:title>חולצה מדהימה - White / Regular / Classic</g:title>
+      <g:description>החולצה הזו כך וכך</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/chvltsh-mdhymh-kmdmbl</g:link>
+      <g:item_group_id>31cf6eb6-8ba3-4ff6-8af5-e385ba3c3ff0</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/product-1771163744817-dppqj.webp</g:image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>160.00 ILS</g:price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+    </item>
+    <item>
+      <g:id>31cf6eb6-8ba3-4ff6-8af5-e385ba3c3ff0__ea61d2ee-93a6-4821-8088-0db540d92c46</g:id>
+      <g:title>חולצה מדהימה - White / Regular / Modern</g:title>
+      <g:description>החולצה הזו כך וכך</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/chvltsh-mdhymh-kmdmbl</g:link>
+      <g:item_group_id>31cf6eb6-8ba3-4ff6-8af5-e385ba3c3ff0</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/product-1771163744817-dppqj.webp</g:image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>160.00 ILS</g:price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+    </item>
+    <item>
+      <g:id>31cf6eb6-8ba3-4ff6-8af5-e385ba3c3ff0__01553349-8e1b-43db-916c-35292ff7be3d</g:id>
+      <g:title>חולצה מדהימה - White / Slim / Classic</g:title>
+      <g:description>החולצה הזו כך וכך</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/chvltsh-mdhymh-kmdmbl</g:link>
+      <g:item_group_id>31cf6eb6-8ba3-4ff6-8af5-e385ba3c3ff0</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/product-1771163744817-dppqj.webp</g:image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>160.00 ILS</g:price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+    </item>
+    <item>
+      <g:id>31cf6eb6-8ba3-4ff6-8af5-e385ba3c3ff0__637eca8c-e82a-4b7e-bb83-4a71b907ff20</g:id>
+      <g:title>חולצה מדהימה - White / Slim / Modern</g:title>
+      <g:description>החולצה הזו כך וכך</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/chvltsh-mdhymh-kmdmbl</g:link>
+      <g:item_group_id>31cf6eb6-8ba3-4ff6-8af5-e385ba3c3ff0</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/product-1771163744817-dppqj.webp</g:image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>160.00 ILS</g:price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+    </item>
+    <item>
+      <g:id>8365eec2-d95b-40ce-b84a-18a184d05cd1__483640f9-7448-455b-b11f-a301e247b4de</g:id>
+      <g:title>נעלי נייק דאנק לו רטרו לגברים - Green / 42</g:title>
       <g:description>נעלי נייק דאנק לו רטרו לגברים, מצוינות לספורט</g:description>
       <g:link>https://star-shoes.zappy5.app/product/naly-nyyk-dank-lv-rtrv-lgbrym-1gx59p</g:link>
+      <g:item_group_id>8365eec2-d95b-40ce-b84a-18a184d05cd1</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/product-1771068140781-i83gu.webp</g:image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-autofit-1774378967085-skh38d.webp</g:additional_image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068135247-8a1jxq.webp</g:additional_image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>433.00 ILS</g:price>
+      <g:sale_price>399.00 ILS</g:sale_price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>נעלי ספורט - כותב פה בכוונה טקסט ארוך בשביל מובייל</g:product_type>
+    </item>
+    <item>
+      <g:id>8365eec2-d95b-40ce-b84a-18a184d05cd1__bdb69ce0-ace8-4882-8293-ea3fa842e6cf</g:id>
+      <g:title>נעלי נייק דאנק לו רטרו לגברים - Green / 43</g:title>
+      <g:description>נעלי נייק דאנק לו רטרו לגברים, מצוינות לספורט</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/naly-nyyk-dank-lv-rtrv-lgbrym-1gx59p</g:link>
+      <g:item_group_id>8365eec2-d95b-40ce-b84a-18a184d05cd1</g:item_group_id>
       <g:image_link>https://star-shoes.zappy5.app/assets/product-autofit-1774378967085-skh38d.webp</g:image_link>
       <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068135247-8a1jxq.webp</g:additional_image_link>
       <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068140781-i83gu.webp</g:additional_image_link>
       <g:availability>in_stock</g:availability>
-      <g:price>399.00 ILS</g:price>
+      <g:price>433.00 ILS</g:price>
+      <g:sale_price>399.00 ILS</g:sale_price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>נעלי ספורט - כותב פה בכוונה טקסט ארוך בשביל מובייל</g:product_type>
+    </item>
+    <item>
+      <g:id>8365eec2-d95b-40ce-b84a-18a184d05cd1__68c5cecc-0f61-455f-ae7a-7f127e87ea37</g:id>
+      <g:title>נעלי נייק דאנק לו רטרו לגברים - Green / 44</g:title>
+      <g:description>נעלי נייק דאנק לו רטרו לגברים, מצוינות לספורט</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/naly-nyyk-dank-lv-rtrv-lgbrym-1gx59p</g:link>
+      <g:item_group_id>8365eec2-d95b-40ce-b84a-18a184d05cd1</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/product-autofit-1774378967085-skh38d.webp</g:image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068135247-8a1jxq.webp</g:additional_image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068140781-i83gu.webp</g:additional_image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>433.00 ILS</g:price>
+      <g:sale_price>399.00 ILS</g:sale_price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>נעלי ספורט - כותב פה בכוונה טקסט ארוך בשביל מובייל</g:product_type>
+    </item>
+    <item>
+      <g:id>8365eec2-d95b-40ce-b84a-18a184d05cd1__83b1d1a0-83c7-4559-a554-5fd4596bf3d9</g:id>
+      <g:title>נעלי נייק דאנק לו רטרו לגברים - Green / 45</g:title>
+      <g:description>נעלי נייק דאנק לו רטרו לגברים, מצוינות לספורט</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/naly-nyyk-dank-lv-rtrv-lgbrym-1gx59p</g:link>
+      <g:item_group_id>8365eec2-d95b-40ce-b84a-18a184d05cd1</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/product-autofit-1774378967085-skh38d.webp</g:image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068135247-8a1jxq.webp</g:additional_image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068140781-i83gu.webp</g:additional_image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>145.20 ILS</g:price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>נעלי ספורט - כותב פה בכוונה טקסט ארוך בשביל מובייל</g:product_type>
+    </item>
+    <item>
+      <g:id>8365eec2-d95b-40ce-b84a-18a184d05cd1__f87e1cf2-d03d-4245-a5b0-f4892080d049</g:id>
+      <g:title>נעלי נייק דאנק לו רטרו לגברים - Green / 46</g:title>
+      <g:description>נעלי נייק דאנק לו רטרו לגברים, מצוינות לספורט</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/naly-nyyk-dank-lv-rtrv-lgbrym-1gx59p</g:link>
+      <g:item_group_id>8365eec2-d95b-40ce-b84a-18a184d05cd1</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/product-autofit-1774378967085-skh38d.webp</g:image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068135247-8a1jxq.webp</g:additional_image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068140781-i83gu.webp</g:additional_image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>145.20 ILS</g:price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>נעלי ספורט - כותב פה בכוונה טקסט ארוך בשביל מובייל</g:product_type>
+    </item>
+    <item>
+      <g:id>8365eec2-d95b-40ce-b84a-18a184d05cd1__0e1d7da0-e295-4ea4-9d6e-f2a6363ca00a</g:id>
+      <g:title>נעלי נייק דאנק לו רטרו לגברים - ivory / 42</g:title>
+      <g:description>נעלי נייק דאנק לו רטרו לגברים, מצוינות לספורט</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/naly-nyyk-dank-lv-rtrv-lgbrym-1gx59p</g:link>
+      <g:item_group_id>8365eec2-d95b-40ce-b84a-18a184d05cd1</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/product-autofit-1774378967085-skh38d.webp</g:image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068135247-8a1jxq.webp</g:additional_image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068140781-i83gu.webp</g:additional_image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>433.00 ILS</g:price>
+      <g:sale_price>399.00 ILS</g:sale_price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>נעלי ספורט - כותב פה בכוונה טקסט ארוך בשביל מובייל</g:product_type>
+    </item>
+    <item>
+      <g:id>8365eec2-d95b-40ce-b84a-18a184d05cd1__5e2d0c76-0763-49b1-b769-987ed1a7484d</g:id>
+      <g:title>נעלי נייק דאנק לו רטרו לגברים - ivory / 43</g:title>
+      <g:description>נעלי נייק דאנק לו רטרו לגברים, מצוינות לספורט</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/naly-nyyk-dank-lv-rtrv-lgbrym-1gx59p</g:link>
+      <g:item_group_id>8365eec2-d95b-40ce-b84a-18a184d05cd1</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/product-autofit-1774378967085-skh38d.webp</g:image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068135247-8a1jxq.webp</g:additional_image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068140781-i83gu.webp</g:additional_image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>433.00 ILS</g:price>
+      <g:sale_price>399.00 ILS</g:sale_price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>נעלי ספורט - כותב פה בכוונה טקסט ארוך בשביל מובייל</g:product_type>
+    </item>
+    <item>
+      <g:id>8365eec2-d95b-40ce-b84a-18a184d05cd1__8f92abc8-a4ce-4ebf-a355-e1c1988bea46</g:id>
+      <g:title>נעלי נייק דאנק לו רטרו לגברים - ivory / 44</g:title>
+      <g:description>נעלי נייק דאנק לו רטרו לגברים, מצוינות לספורט</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/naly-nyyk-dank-lv-rtrv-lgbrym-1gx59p</g:link>
+      <g:item_group_id>8365eec2-d95b-40ce-b84a-18a184d05cd1</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/product-autofit-1774378967085-skh38d.webp</g:image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068135247-8a1jxq.webp</g:additional_image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068140781-i83gu.webp</g:additional_image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>433.00 ILS</g:price>
+      <g:sale_price>399.00 ILS</g:sale_price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>נעלי ספורט - כותב פה בכוונה טקסט ארוך בשביל מובייל</g:product_type>
+    </item>
+    <item>
+      <g:id>8365eec2-d95b-40ce-b84a-18a184d05cd1__99afed07-6dea-426a-906b-7455c5935bdb</g:id>
+      <g:title>נעלי נייק דאנק לו רטרו לגברים - ivory / 45</g:title>
+      <g:description>נעלי נייק דאנק לו רטרו לגברים, מצוינות לספורט</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/naly-nyyk-dank-lv-rtrv-lgbrym-1gx59p</g:link>
+      <g:item_group_id>8365eec2-d95b-40ce-b84a-18a184d05cd1</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/product-autofit-1774378967085-skh38d.webp</g:image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068135247-8a1jxq.webp</g:additional_image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068140781-i83gu.webp</g:additional_image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>433.00 ILS</g:price>
+      <g:sale_price>399.00 ILS</g:sale_price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>נעלי ספורט - כותב פה בכוונה טקסט ארוך בשביל מובייל</g:product_type>
+    </item>
+    <item>
+      <g:id>8365eec2-d95b-40ce-b84a-18a184d05cd1__78be80aa-b281-462a-a25f-816261f6595c</g:id>
+      <g:title>נעלי נייק דאנק לו רטרו לגברים - ivory / 46</g:title>
+      <g:description>נעלי נייק דאנק לו רטרו לגברים, מצוינות לספורט</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/naly-nyyk-dank-lv-rtrv-lgbrym-1gx59p</g:link>
+      <g:item_group_id>8365eec2-d95b-40ce-b84a-18a184d05cd1</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/product-autofit-1774378967085-skh38d.webp</g:image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068135247-8a1jxq.webp</g:additional_image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068140781-i83gu.webp</g:additional_image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>433.00 ILS</g:price>
+      <g:sale_price>399.00 ILS</g:sale_price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>נעלי ספורט - כותב פה בכוונה טקסט ארוך בשביל מובייל</g:product_type>
+    </item>
+    <item>
+      <g:id>8365eec2-d95b-40ce-b84a-18a184d05cd1__c2e5af2c-5686-498d-878d-d55299fca7b2</g:id>
+      <g:title>נעלי נייק דאנק לו רטרו לגברים - orange / 42</g:title>
+      <g:description>נעלי נייק דאנק לו רטרו לגברים, מצוינות לספורט</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/naly-nyyk-dank-lv-rtrv-lgbrym-1gx59p</g:link>
+      <g:item_group_id>8365eec2-d95b-40ce-b84a-18a184d05cd1</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/product-autofit-1774378967085-skh38d.webp</g:image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068135247-8a1jxq.webp</g:additional_image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068140781-i83gu.webp</g:additional_image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>433.00 ILS</g:price>
+      <g:sale_price>399.00 ILS</g:sale_price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>נעלי ספורט - כותב פה בכוונה טקסט ארוך בשביל מובייל</g:product_type>
+    </item>
+    <item>
+      <g:id>8365eec2-d95b-40ce-b84a-18a184d05cd1__e5e4cd10-6a96-4902-9951-d9b7d45a12db</g:id>
+      <g:title>נעלי נייק דאנק לו רטרו לגברים - orange / 43</g:title>
+      <g:description>נעלי נייק דאנק לו רטרו לגברים, מצוינות לספורט</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/naly-nyyk-dank-lv-rtrv-lgbrym-1gx59p</g:link>
+      <g:item_group_id>8365eec2-d95b-40ce-b84a-18a184d05cd1</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/product-autofit-1774378967085-skh38d.webp</g:image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068135247-8a1jxq.webp</g:additional_image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068140781-i83gu.webp</g:additional_image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>433.00 ILS</g:price>
+      <g:sale_price>399.00 ILS</g:sale_price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>נעלי ספורט - כותב פה בכוונה טקסט ארוך בשביל מובייל</g:product_type>
+    </item>
+    <item>
+      <g:id>8365eec2-d95b-40ce-b84a-18a184d05cd1__a806eb76-ca7e-40dc-8ee8-ae68bc9cd604</g:id>
+      <g:title>נעלי נייק דאנק לו רטרו לגברים - orange / 44</g:title>
+      <g:description>נעלי נייק דאנק לו רטרו לגברים, מצוינות לספורט</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/naly-nyyk-dank-lv-rtrv-lgbrym-1gx59p</g:link>
+      <g:item_group_id>8365eec2-d95b-40ce-b84a-18a184d05cd1</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/product-autofit-1774378967085-skh38d.webp</g:image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068135247-8a1jxq.webp</g:additional_image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068140781-i83gu.webp</g:additional_image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>433.00 ILS</g:price>
+      <g:sale_price>399.00 ILS</g:sale_price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>נעלי ספורט - כותב פה בכוונה טקסט ארוך בשביל מובייל</g:product_type>
+    </item>
+    <item>
+      <g:id>8365eec2-d95b-40ce-b84a-18a184d05cd1__522d6b16-fdd8-40a5-b048-cb64ecaf126e</g:id>
+      <g:title>נעלי נייק דאנק לו רטרו לגברים - orange / 45</g:title>
+      <g:description>נעלי נייק דאנק לו רטרו לגברים, מצוינות לספורט</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/naly-nyyk-dank-lv-rtrv-lgbrym-1gx59p</g:link>
+      <g:item_group_id>8365eec2-d95b-40ce-b84a-18a184d05cd1</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/product-autofit-1774378967085-skh38d.webp</g:image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068135247-8a1jxq.webp</g:additional_image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068140781-i83gu.webp</g:additional_image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>433.00 ILS</g:price>
+      <g:sale_price>399.00 ILS</g:sale_price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>נעלי ספורט - כותב פה בכוונה טקסט ארוך בשביל מובייל</g:product_type>
+    </item>
+    <item>
+      <g:id>8365eec2-d95b-40ce-b84a-18a184d05cd1__7fe9f182-6249-46de-9afb-17b162345f35</g:id>
+      <g:title>נעלי נייק דאנק לו רטרו לגברים - orange / 46</g:title>
+      <g:description>נעלי נייק דאנק לו רטרו לגברים, מצוינות לספורט</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/naly-nyyk-dank-lv-rtrv-lgbrym-1gx59p</g:link>
+      <g:item_group_id>8365eec2-d95b-40ce-b84a-18a184d05cd1</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/product-autofit-1774378967085-skh38d.webp</g:image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068135247-8a1jxq.webp</g:additional_image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068140781-i83gu.webp</g:additional_image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>433.00 ILS</g:price>
+      <g:sale_price>399.00 ILS</g:sale_price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>נעלי ספורט - כותב פה בכוונה טקסט ארוך בשביל מובייל</g:product_type>
+    </item>
+    <item>
+      <g:id>8365eec2-d95b-40ce-b84a-18a184d05cd1__36634b08-178b-4f2e-b8f7-fa4e528b080f</g:id>
+      <g:title>נעלי נייק דאנק לו רטרו לגברים - purple / 42</g:title>
+      <g:description>נעלי נייק דאנק לו רטרו לגברים, מצוינות לספורט</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/naly-nyyk-dank-lv-rtrv-lgbrym-1gx59p</g:link>
+      <g:item_group_id>8365eec2-d95b-40ce-b84a-18a184d05cd1</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/product-autofit-1774378967085-skh38d.webp</g:image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068135247-8a1jxq.webp</g:additional_image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068140781-i83gu.webp</g:additional_image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>433.00 ILS</g:price>
+      <g:sale_price>399.00 ILS</g:sale_price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>נעלי ספורט - כותב פה בכוונה טקסט ארוך בשביל מובייל</g:product_type>
+    </item>
+    <item>
+      <g:id>8365eec2-d95b-40ce-b84a-18a184d05cd1__db24a5e8-307b-48e4-a2a1-f818b3563e39</g:id>
+      <g:title>נעלי נייק דאנק לו רטרו לגברים - purple / 43</g:title>
+      <g:description>נעלי נייק דאנק לו רטרו לגברים, מצוינות לספורט</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/naly-nyyk-dank-lv-rtrv-lgbrym-1gx59p</g:link>
+      <g:item_group_id>8365eec2-d95b-40ce-b84a-18a184d05cd1</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/product-autofit-1774378967085-skh38d.webp</g:image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068135247-8a1jxq.webp</g:additional_image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068140781-i83gu.webp</g:additional_image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>433.00 ILS</g:price>
+      <g:sale_price>399.00 ILS</g:sale_price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>נעלי ספורט - כותב פה בכוונה טקסט ארוך בשביל מובייל</g:product_type>
+    </item>
+    <item>
+      <g:id>8365eec2-d95b-40ce-b84a-18a184d05cd1__dd62f3b0-7465-4f7b-bb94-9aee13ed6eb3</g:id>
+      <g:title>נעלי נייק דאנק לו רטרו לגברים - purple / 44</g:title>
+      <g:description>נעלי נייק דאנק לו רטרו לגברים, מצוינות לספורט</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/naly-nyyk-dank-lv-rtrv-lgbrym-1gx59p</g:link>
+      <g:item_group_id>8365eec2-d95b-40ce-b84a-18a184d05cd1</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/product-autofit-1774378967085-skh38d.webp</g:image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068135247-8a1jxq.webp</g:additional_image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068140781-i83gu.webp</g:additional_image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>433.00 ILS</g:price>
+      <g:sale_price>399.00 ILS</g:sale_price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>נעלי ספורט - כותב פה בכוונה טקסט ארוך בשביל מובייל</g:product_type>
+    </item>
+    <item>
+      <g:id>8365eec2-d95b-40ce-b84a-18a184d05cd1__a8bf4881-f7e6-419c-ac60-7a2dadcf3bee</g:id>
+      <g:title>נעלי נייק דאנק לו רטרו לגברים - purple / 45</g:title>
+      <g:description>נעלי נייק דאנק לו רטרו לגברים, מצוינות לספורט</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/naly-nyyk-dank-lv-rtrv-lgbrym-1gx59p</g:link>
+      <g:item_group_id>8365eec2-d95b-40ce-b84a-18a184d05cd1</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/product-autofit-1774378967085-skh38d.webp</g:image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068135247-8a1jxq.webp</g:additional_image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068140781-i83gu.webp</g:additional_image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>433.00 ILS</g:price>
+      <g:sale_price>399.00 ILS</g:sale_price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>נעלי ספורט - כותב פה בכוונה טקסט ארוך בשביל מובייל</g:product_type>
+    </item>
+    <item>
+      <g:id>8365eec2-d95b-40ce-b84a-18a184d05cd1__e6e61b58-5cb7-4956-9a48-1606baa68281</g:id>
+      <g:title>נעלי נייק דאנק לו רטרו לגברים - purple / 46</g:title>
+      <g:description>נעלי נייק דאנק לו רטרו לגברים, מצוינות לספורט</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/naly-nyyk-dank-lv-rtrv-lgbrym-1gx59p</g:link>
+      <g:item_group_id>8365eec2-d95b-40ce-b84a-18a184d05cd1</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/product-autofit-1774378967085-skh38d.webp</g:image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068135247-8a1jxq.webp</g:additional_image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068140781-i83gu.webp</g:additional_image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>433.00 ILS</g:price>
+      <g:sale_price>399.00 ILS</g:sale_price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>נעלי ספורט - כותב פה בכוונה טקסט ארוך בשביל מובייל</g:product_type>
+    </item>
+    <item>
+      <g:id>8365eec2-d95b-40ce-b84a-18a184d05cd1__5cc14ca0-9468-4baf-87ce-8ecf8392b8ea</g:id>
+      <g:title>נעלי נייק דאנק לו רטרו לגברים - Red / 42</g:title>
+      <g:description>נעלי נייק דאנק לו רטרו לגברים, מצוינות לספורט</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/naly-nyyk-dank-lv-rtrv-lgbrym-1gx59p</g:link>
+      <g:item_group_id>8365eec2-d95b-40ce-b84a-18a184d05cd1</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/product-autofit-1774378967085-skh38d.webp</g:image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068135247-8a1jxq.webp</g:additional_image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068140781-i83gu.webp</g:additional_image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>433.00 ILS</g:price>
+      <g:sale_price>399.00 ILS</g:sale_price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>נעלי ספורט - כותב פה בכוונה טקסט ארוך בשביל מובייל</g:product_type>
+    </item>
+    <item>
+      <g:id>8365eec2-d95b-40ce-b84a-18a184d05cd1__0c880e08-25c1-4ca9-b75c-8b304aad1d8f</g:id>
+      <g:title>נעלי נייק דאנק לו רטרו לגברים - Red / 43</g:title>
+      <g:description>נעלי נייק דאנק לו רטרו לגברים, מצוינות לספורט</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/naly-nyyk-dank-lv-rtrv-lgbrym-1gx59p</g:link>
+      <g:item_group_id>8365eec2-d95b-40ce-b84a-18a184d05cd1</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/product-autofit-1774378967085-skh38d.webp</g:image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068135247-8a1jxq.webp</g:additional_image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068140781-i83gu.webp</g:additional_image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>433.00 ILS</g:price>
+      <g:sale_price>399.00 ILS</g:sale_price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>נעלי ספורט - כותב פה בכוונה טקסט ארוך בשביל מובייל</g:product_type>
+    </item>
+    <item>
+      <g:id>8365eec2-d95b-40ce-b84a-18a184d05cd1__c81fca41-b0c2-480f-b645-0cc190458b69</g:id>
+      <g:title>נעלי נייק דאנק לו רטרו לגברים - Red / 44</g:title>
+      <g:description>נעלי נייק דאנק לו רטרו לגברים, מצוינות לספורט</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/naly-nyyk-dank-lv-rtrv-lgbrym-1gx59p</g:link>
+      <g:item_group_id>8365eec2-d95b-40ce-b84a-18a184d05cd1</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/product-autofit-1774378967085-skh38d.webp</g:image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068135247-8a1jxq.webp</g:additional_image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068140781-i83gu.webp</g:additional_image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>433.00 ILS</g:price>
+      <g:sale_price>399.00 ILS</g:sale_price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>נעלי ספורט - כותב פה בכוונה טקסט ארוך בשביל מובייל</g:product_type>
+    </item>
+    <item>
+      <g:id>8365eec2-d95b-40ce-b84a-18a184d05cd1__3990f331-c6c7-4348-835a-845a7f5dd2f5</g:id>
+      <g:title>נעלי נייק דאנק לו רטרו לגברים - Red / 45</g:title>
+      <g:description>נעלי נייק דאנק לו רטרו לגברים, מצוינות לספורט</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/naly-nyyk-dank-lv-rtrv-lgbrym-1gx59p</g:link>
+      <g:item_group_id>8365eec2-d95b-40ce-b84a-18a184d05cd1</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/product-autofit-1774378967085-skh38d.webp</g:image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068135247-8a1jxq.webp</g:additional_image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068140781-i83gu.webp</g:additional_image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>145.20 ILS</g:price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>נעלי ספורט - כותב פה בכוונה טקסט ארוך בשביל מובייל</g:product_type>
+    </item>
+    <item>
+      <g:id>8365eec2-d95b-40ce-b84a-18a184d05cd1__f7ef27af-c26e-424c-af3e-38455cd00b44</g:id>
+      <g:title>נעלי נייק דאנק לו רטרו לגברים - Red / 46</g:title>
+      <g:description>נעלי נייק דאנק לו רטרו לגברים, מצוינות לספורט</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/naly-nyyk-dank-lv-rtrv-lgbrym-1gx59p</g:link>
+      <g:item_group_id>8365eec2-d95b-40ce-b84a-18a184d05cd1</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/product-autofit-1774378967085-skh38d.webp</g:image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068135247-8a1jxq.webp</g:additional_image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068140781-i83gu.webp</g:additional_image_link>
+      <g:availability>out_of_stock</g:availability>
+      <g:price>433.00 ILS</g:price>
+      <g:sale_price>399.00 ILS</g:sale_price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>נעלי ספורט - כותב פה בכוונה טקסט ארוך בשביל מובייל</g:product_type>
+    </item>
+    <item>
+      <g:id>8365eec2-d95b-40ce-b84a-18a184d05cd1__89cfcc32-879b-45b1-9202-802752765818</g:id>
+      <g:title>נעלי נייק דאנק לו רטרו לגברים - בורדו / 42</g:title>
+      <g:description>נעלי נייק דאנק לו רטרו לגברים, מצוינות לספורט</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/naly-nyyk-dank-lv-rtrv-lgbrym-1gx59p</g:link>
+      <g:item_group_id>8365eec2-d95b-40ce-b84a-18a184d05cd1</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/product-autofit-1774378967085-skh38d.webp</g:image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068135247-8a1jxq.webp</g:additional_image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068140781-i83gu.webp</g:additional_image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>433.00 ILS</g:price>
+      <g:sale_price>399.00 ILS</g:sale_price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>נעלי ספורט - כותב פה בכוונה טקסט ארוך בשביל מובייל</g:product_type>
+    </item>
+    <item>
+      <g:id>8365eec2-d95b-40ce-b84a-18a184d05cd1__97fefa36-dd3b-4c8e-bf58-ca21ce4a2326</g:id>
+      <g:title>נעלי נייק דאנק לו רטרו לגברים - ירוק בהיר / 43</g:title>
+      <g:description>נעלי נייק דאנק לו רטרו לגברים, מצוינות לספורט</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/naly-nyyk-dank-lv-rtrv-lgbrym-1gx59p</g:link>
+      <g:item_group_id>8365eec2-d95b-40ce-b84a-18a184d05cd1</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/product-autofit-1774378967085-skh38d.webp</g:image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068135247-8a1jxq.webp</g:additional_image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068140781-i83gu.webp</g:additional_image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>433.00 ILS</g:price>
+      <g:sale_price>399.00 ILS</g:sale_price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>נעלי ספורט - כותב פה בכוונה טקסט ארוך בשביל מובייל</g:product_type>
+    </item>
+    <item>
+      <g:id>8365eec2-d95b-40ce-b84a-18a184d05cd1__da9e0a0c-1a70-4cb5-b733-122c14fb858a</g:id>
+      <g:title>נעלי נייק דאנק לו רטרו לגברים - ירוק בהיר / 44</g:title>
+      <g:description>נעלי נייק דאנק לו רטרו לגברים, מצוינות לספורט</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/naly-nyyk-dank-lv-rtrv-lgbrym-1gx59p</g:link>
+      <g:item_group_id>8365eec2-d95b-40ce-b84a-18a184d05cd1</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/product-autofit-1774378967085-skh38d.webp</g:image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068135247-8a1jxq.webp</g:additional_image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068140781-i83gu.webp</g:additional_image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>433.00 ILS</g:price>
+      <g:sale_price>399.00 ILS</g:sale_price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>נעלי ספורט - כותב פה בכוונה טקסט ארוך בשביל מובייל</g:product_type>
+    </item>
+    <item>
+      <g:id>8365eec2-d95b-40ce-b84a-18a184d05cd1__fee23379-22c7-4457-8e1c-d00b89845693</g:id>
+      <g:title>נעלי נייק דאנק לו רטרו לגברים - ירוק בהיר / 45</g:title>
+      <g:description>נעלי נייק דאנק לו רטרו לגברים, מצוינות לספורט</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/naly-nyyk-dank-lv-rtrv-lgbrym-1gx59p</g:link>
+      <g:item_group_id>8365eec2-d95b-40ce-b84a-18a184d05cd1</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/product-autofit-1774378967085-skh38d.webp</g:image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068135247-8a1jxq.webp</g:additional_image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068140781-i83gu.webp</g:additional_image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>433.00 ILS</g:price>
+      <g:sale_price>399.00 ILS</g:sale_price>
+      <g:condition>new</g:condition>
+      <g:brand>Star Shoes</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:product_type>נעלי ספורט - כותב פה בכוונה טקסט ארוך בשביל מובייל</g:product_type>
+    </item>
+    <item>
+      <g:id>8365eec2-d95b-40ce-b84a-18a184d05cd1__8f7ee6f8-ddb4-49fb-917e-1d84d0324b1d</g:id>
+      <g:title>נעלי נייק דאנק לו רטרו לגברים - ירוק בהיר / 46</g:title>
+      <g:description>נעלי נייק דאנק לו רטרו לגברים, מצוינות לספורט</g:description>
+      <g:link>https://star-shoes.zappy5.app/product/naly-nyyk-dank-lv-rtrv-lgbrym-1gx59p</g:link>
+      <g:item_group_id>8365eec2-d95b-40ce-b84a-18a184d05cd1</g:item_group_id>
+      <g:image_link>https://star-shoes.zappy5.app/assets/product-autofit-1774378967085-skh38d.webp</g:image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068135247-8a1jxq.webp</g:additional_image_link>
+      <g:additional_image_link>https://star-shoes.zappy5.app/assets/product-1771068140781-i83gu.webp</g:additional_image_link>
+      <g:availability>in_stock</g:availability>
+      <g:price>433.00 ILS</g:price>
       <g:sale_price>399.00 ILS</g:sale_price>
       <g:condition>new</g:condition>
       <g:brand>Star Shoes</g:brand>
