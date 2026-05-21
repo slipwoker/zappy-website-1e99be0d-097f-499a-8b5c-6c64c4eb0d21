@@ -1984,6 +1984,8 @@ window.onload = function() {
 ;
 
 ;
+
+;
 /* ==ZAPPY E-COMMERCE JS START== */
 // E-commerce functionality
 (function() {
@@ -4500,6 +4502,14 @@ function stripHtmlToText(html) {
     window.__zappyCustomerDiscountConfig = customerDiscountConfig;
   }
 
+  function refreshProductListingAfterDiscount() {
+    if (productsCache && productsCache.length > 0 && typeof applyAllFiltersAndRender === 'function') {
+      applyAllFiltersAndRender();
+    } else if (typeof loadProducts === 'function') {
+      loadProducts();
+    }
+  }
+
   async function fetchCustomerDiscount() {
     var tokenKey = 'zappy_customer_token_' + websiteId;
     var token = localStorage.getItem(tokenKey);
@@ -4508,11 +4518,7 @@ function stripHtmlToText(html) {
     syncCustomerDiscountToWindow();
     if (!token) {
       updateOrderTotals();
-      if (typeof applyAllFiltersAndRender === 'function') {
-        applyAllFiltersAndRender();
-      } else if (typeof loadProducts === 'function') {
-        loadProducts();
-      }
+      refreshProductListingAfterDiscount();
       return;
     }
     try {
@@ -4528,11 +4534,7 @@ function stripHtmlToText(html) {
     }
     syncCustomerDiscountToWindow();
     updateOrderTotals();
-    if (typeof applyAllFiltersAndRender === 'function') {
-      applyAllFiltersAndRender();
-    } else if (typeof loadProducts === 'function') {
-      loadProducts();
-    }
+    refreshProductListingAfterDiscount();
     if (window.currentProduct && typeof window.__zappyUpdateVariantUI === 'function' && window.productTranslations) {
       window.__zappyUpdateVariantUI(window.selectedVariant || null, window.currentProduct, window.productTranslations, {});
     }
@@ -4542,6 +4544,7 @@ function stripHtmlToText(html) {
   window.__zappyApplyCustomerPercentToPrice = applyCustomerPercentToPrice;
   window.__zappyGetCustomerDiscountForProduct = getCustomerDiscountForProduct;
   window.__zappyFetchCustomerDiscount = fetchCustomerDiscount;
+  window.loadProducts = loadProducts;
   syncCustomerDiscountToWindow();
 
   function calcCustomerCartDiscount() {
@@ -6653,6 +6656,7 @@ function stripHtmlToText(html) {
   
   function initAll() {
     updateCartCount();
+    loadProducts();
     initFilterButtons();
     renderCart();
     loadShippingMethods();
