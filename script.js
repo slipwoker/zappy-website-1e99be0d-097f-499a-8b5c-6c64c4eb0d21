@@ -1982,6 +1982,8 @@ window.onload = function() {
 ;
 
 ;
+
+;
 /* ==ZAPPY E-COMMERCE JS START== */
 // E-commerce functionality
 (function() {
@@ -4506,7 +4508,11 @@ function stripHtmlToText(html) {
     syncCustomerDiscountToWindow();
     if (!token) {
       updateOrderTotals();
-      if (typeof loadProducts === 'function') loadProducts();
+      if (typeof applyAllFiltersAndRender === 'function') {
+        applyAllFiltersAndRender();
+      } else if (typeof loadProducts === 'function') {
+        loadProducts();
+      }
       return;
     }
     try {
@@ -4522,7 +4528,11 @@ function stripHtmlToText(html) {
     }
     syncCustomerDiscountToWindow();
     updateOrderTotals();
-    if (typeof loadProducts === 'function') loadProducts();
+    if (typeof applyAllFiltersAndRender === 'function') {
+      applyAllFiltersAndRender();
+    } else if (typeof loadProducts === 'function') {
+      loadProducts();
+    }
     if (window.currentProduct && typeof window.__zappyUpdateVariantUI === 'function' && window.productTranslations) {
       window.__zappyUpdateVariantUI(window.selectedVariant || null, window.currentProduct, window.productTranslations, {});
     }
