@@ -11082,6 +11082,28 @@ a, button {
   opacity: 0.7;
 }
 
+/* Minimum order amount banner */
+.minimum-order-banner {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  margin-top: 12px;
+  border-radius: 8px;
+  background: #fef3c7;
+  border: 1px solid #fbbf24;
+  color: #92400e !important;
+  font-size: 13px;
+  line-height: 1.4;
+}
+.minimum-order-banner.minimum-order-banner-ok {
+  background: #ecfdf5;
+  border-color: #a7f3d0;
+  color: #047857;
+}
+.minimum-order-banner svg { color: #d97706; }
+.minimum-order-banner.minimum-order-banner-ok svg { color: #059669; }
+
 /* Validation error overrides (prevent theme color inheritance) */
 .field-error {
   color: #dc2626 !important;
@@ -13170,6 +13192,72 @@ body.zappy-focused-page .zappy-announcement-bar {
   visibility: hidden !important;
 }
 
+/* Hide cookie consent while cart drawer is open; reappears when drawer closes if still needed *//* Checkout focus: hide cookie bar so it does not compete with payment UI *//* Checkout focus: minimal navbar (logo + cart) and compact footer */
+body.zappy-checkout-page nav.navbar:not(.zappy-catalog-menu) .nav-menu,
+body.zappy-checkout-page nav.navbar:not(.zappy-catalog-menu) .nav-links,
+body.zappy-checkout-page nav.navbar:not(.zappy-catalog-menu) .nav-cta,
+body.zappy-checkout-page nav.navbar:not(.zappy-catalog-menu) .nav-right-group .nav-menu,
+body.zappy-checkout-page .lang-switcher,
+body.zappy-checkout-page .nav-icons-right,
+body.zappy-checkout-page .nav-search-box,
+body.zappy-checkout-page .nav-search-toggle,
+body.zappy-checkout-page #mobile-search-toggle,
+body.zappy-checkout-page .mobile-search-panel,
+body.zappy-checkout-page .login-link.nav-login,
+body.zappy-checkout-page .nav-ecommerce-icons > *:not(.cart-link),
+body.zappy-checkout-page .mobile-hamburger-btn,
+body.zappy-checkout-page .mobile-toggle,
+body.zappy-checkout-page .hamburger,
+body.zappy-checkout-page .menu-toggle,
+body.zappy-checkout-page #mobileToggle,
+body.zappy-checkout-page nav.navbar:not(.zappy-catalog-menu) .phone-header-btn,
+body.zappy-checkout-page nav.navbar:not(.zappy-catalog-menu) .mobile-close-btn {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+body.zappy-checkout-page nav.navbar:not(.zappy-catalog-menu) .nav-container {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+}
+body.zappy-checkout-page .nav-brand,
+body.zappy-checkout-page .cart-link.nav-cart,
+body.zappy-checkout-page #cart-drawer-toggle {
+  display: flex !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+body.zappy-checkout-page .nav-ecommerce-icons {
+  display: inline-flex !important;
+  align-items: center !important;
+  margin-inline-start: auto !important;
+}
+@media (max-width: 768px) {
+  body.zappy-checkout-page nav.navbar:not(.zappy-catalog-menu) .nav-menu,
+  body.zappy-checkout-page nav.navbar:not(.zappy-catalog-menu) .nav-menu.active,
+  body.zappy-checkout-page nav.navbar:not(.zappy-catalog-menu) .nav-menu.open {
+    display: none !important;
+    visibility: hidden !important;
+  }
+}
+/* Footer: keep footer-bottom only; hide whole footer when structure unknown */
+body.zappy-checkout-page .site-footer > *:not(.footer-bottom),
+body.zappy-checkout-page footer.site-footer > *:not(.footer-bottom) {
+  display: none !important;
+  visibility: hidden !important;
+}
+body.zappy-checkout-page .site-footer .footer-bottom,
+body.zappy-checkout-page footer.site-footer .footer-bottom {
+  display: block !important;
+  visibility: visible !important;
+}
+body.zappy-checkout-page .site-footer:not(:has(.footer-bottom)),
+body.zappy-checkout-page footer.site-footer:not(:has(.footer-bottom)) {
+  display: none !important;
+}
+
 /* Catalog menu (secondary navigation) - desktop only */
 /* NOTE: Mobile visibility is handled via @media (max-width: 768px) { .zappy-catalog-menu { display: none !important; } } */
 /* Catalog menu always inherits navbar colors, NOT ecommerce pages bg */
@@ -14715,14 +14803,22 @@ nav .sub-menu.zappy-empty-submenu,
 
   /* The zoom wrapper's image is position:absolute (so it contributes 0 to the
      wrapper's intrinsic content width). Inserted-element parents that carry a
-     desktop pixel height (e.g. height:234px) collapse to 0px wide on mobile
-     because nothing in the subtree pushes back on the cross-axis. Force them
-     to fill the parent container so the wrapper's aspect-ratio chain resolves. */
+     desktop pixel height can either collapse to 0px wide or preserve a stale
+     desktop height after their child wrapper shrinks on mobile. Force them
+     to fill the parent container and let the wrapper's aspect-ratio determine
+     the real height, eliminating empty space before following text. */
   .zappy-inserted-element:has(> [data-zappy-zoom-wrapper="true"]) {
     width: 100% !important;
     max-width: 100% !important;
     height: auto !important;
     min-height: 0 !important;
+    max-height: none !important;
+  }
+
+  .zappy-inserted-element:has(> [data-zappy-zoom-wrapper="true"]) > [data-zappy-zoom-wrapper="true"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
   }
 
   /* Reset zoom wrapper images on mobile to responsive display.
@@ -15615,7 +15711,7 @@ html[dir="ltr"] .service-detail.service-reverse .service-detail-content { order:
 
 
 /* ZAPPY_MOBILE_NAV_ICON_ALIGNMENT_FIX */
-/* ZAPPY_MOBILE_NAV_ICON_ALIGNMENT_FIX_V2 */
+/* ZAPPY_MOBILE_NAV_ICON_ALIGNMENT_FIX_V3 */
 /* The mobile hamburger / phone buttons are absolutely positioned. Keep the
    navbar itself as a non-collapsing containing block so auto-margin centering
    stays aligned even when generated mobile CSS moves every nav child out of flow. */
@@ -15623,6 +15719,41 @@ html[dir="ltr"] .service-detail.service-reverse .service-detail-content { order:
   .navbar,
   nav.navbar {
     min-height: 70px !important;
+  }
+
+  /* Some generated RTL nav CSS sets both left:50% and right:50% on the
+     absolute .nav-brand. That collapses it to 0px wide, so the logo flows
+     left from the center instead of being centered on it. */
+  .navbar .nav-brand,
+  nav.navbar .nav-brand,
+  html[dir="rtl"] .navbar .nav-brand,
+  html[dir="rtl"] nav.navbar .nav-brand,
+  html[lang="he"] .navbar .nav-brand,
+  html[lang="he"] nav.navbar .nav-brand,
+  html[lang="ar"] .navbar .nav-brand,
+  html[lang="ar"] nav.navbar .nav-brand {
+    position: absolute !important;
+    left: 50% !important;
+    right: auto !important;
+    top: 50% !important;
+    width: auto !important;
+    min-width: max-content !important;
+    max-width: calc(100% - 168px) !important;
+    transform: translate(-50%, -50%) !important;
+    margin: 0 !important;
+    text-align: center !important;
+    justify-content: center !important;
+  }
+
+  .navbar .nav-brand .logo-link,
+  nav.navbar .nav-brand .logo-link,
+  .navbar .nav-brand a,
+  nav.navbar .nav-brand a {
+    display: inline-flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
   }
 
   .navbar > .mobile-toggle,
