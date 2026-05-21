@@ -4480,10 +4480,11 @@ function stripHtmlToText(html) {
   let customerCartDiscount = 0;
 
   function getCustomerDiscountForProduct(productId) {
-    if (!customerDiscountConfig || !customerDiscountConfig.discountPercent) return null;
-    var excluded = customerDiscountConfig.excludedProductIds || [];
+    var cfg = customerDiscountConfig || window.__zappyCustomerDiscountConfig;
+    if (!cfg || !cfg.discountPercent) return null;
+    var excluded = cfg.excludedProductIds || [];
     if (excluded.indexOf(productId) !== -1) return null;
-    return customerDiscountConfig;
+    return cfg;
   }
 
   function applyCustomerPercentToPrice(basePrice, productId) {
@@ -9644,6 +9645,7 @@ function updateVariantUI(variant, product, t, selectedAttributes) {
     const finalPrice = variantPrice !== null ? variantPrice : basePrice;
     let displayedFinalPrice = finalPrice;
     let displayOriginalPrice = variantPrice !== null ? finalPrice : originalPrice;
+    var customerDiscountApplied = false;
 
     const seasonalD = typeof getSeasonalDiscountForProduct === 'function'
       ? getSeasonalDiscountForProduct(product.id)
@@ -9664,18 +9666,19 @@ function updateVariantUI(variant, product, t, selectedAttributes) {
     if (zappyHasActiveCustomerDiscount() && product && product.id) {
       var custAdjDetail = zappyApplyCustomerPercentToPrice(displayedFinalPrice, product.id);
       if (custAdjDetail.applied) {
+        customerDiscountApplied = true;
         displayOriginalPrice = displayedFinalPrice;
         displayedFinalPrice = custAdjDetail.price;
       }
     }
     
     if (priceDisplay) {
-      if (displayedFinalPrice < finalPrice) {
+      if (displayedFinalPrice < finalPrice || customerDiscountApplied) {
         priceDisplay.innerHTML = t.currency + displayedFinalPrice.toFixed(2) + ' <span class="original-price">' + t.currency + displayOriginalPrice.toFixed(2) + '</span>';
       } else if (variantPrice === null && hasSalePrice) {
         priceDisplay.innerHTML = t.currency + finalPrice.toFixed(2) + ' <span class="original-price">' + t.currency + originalPrice.toFixed(2) + '</span>';
       } else {
-        priceDisplay.textContent = t.currency + finalPrice.toFixed(2);
+        priceDisplay.textContent = t.currency + displayedFinalPrice.toFixed(2);
       }
     }
     
@@ -14904,3 +14907,5 @@ function withConsent(category, callback) {
     setTimeout(injectMobileNavIconAlignmentFix, 1000);
   } catch (e) {}
 })();
+
+/* ZAPPY_CUSTOMER_DISCOUNT_CONFIG_FALLBACK_V1 */
