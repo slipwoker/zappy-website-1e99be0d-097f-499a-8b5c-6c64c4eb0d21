@@ -4517,7 +4517,17 @@ function stripHtmlToText(html) {
     }
   }
 
-  async function fetchCustomerDiscount() {
+  
+function scheduleProductDetailDiscountRefreshZappy() {
+  if (!document.getElementById('product-detail')) return;
+  [0, 250, 750, 2000].forEach(function(delayMs) {
+    setTimeout(function() {
+      if (!window.currentProduct || typeof window.__zappyUpdateVariantUI !== 'function' || !window.productTranslations) return;
+      window.__zappyUpdateVariantUI(window.selectedVariant || null, window.currentProduct, window.productTranslations, {});
+    }, delayMs);
+  });
+}
+async function fetchCustomerDiscount() {
     var tokenKey = 'zappy_customer_token_' + websiteId;
     var token = localStorage.getItem(tokenKey);
     customerDiscountConfig = null;
@@ -4542,9 +4552,8 @@ function stripHtmlToText(html) {
     syncCustomerDiscountToWindow();
     updateOrderTotals();
     refreshProductListingAfterDiscount();
-    if (window.currentProduct && typeof window.__zappyUpdateVariantUI === 'function' && window.productTranslations) {
-      window.__zappyUpdateVariantUI(window.selectedVariant || null, window.currentProduct, window.productTranslations, {});
-    }
+    refreshProductDetailDiscountPricing();
+    scheduleProductDetailDiscountRefresh();
   }
 
   // Expose for additionalJs (renderProductGrid, product detail) which runs outside this IIFE
@@ -14927,3 +14936,7 @@ function withConsent(category, callback) {
     setTimeout(injectMobileNavIconAlignmentFix, 1000);
   } catch (e) {}
 })();
+
+/* ZAPPY_CUSTOMER_DISCOUNT_PRODUCT_DETAIL_RACE_V1 */
+
+/* ZAPPY_CUSTOMER_DISCOUNT_DELAYED_REFRESH_V1 */
