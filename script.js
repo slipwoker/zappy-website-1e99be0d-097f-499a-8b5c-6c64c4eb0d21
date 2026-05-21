@@ -8082,6 +8082,19 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Load product detail page
+
+async function syncProductDetailCustomerDiscount() {
+  if (!document.getElementById('product-detail') || !window.currentProduct) return;
+  if (window.__zappyCustomerDiscountConfig && window.__zappyCustomerDiscountConfig.discountPercent > 0) {
+    if (typeof window.__zappyUpdateVariantUI === 'function' && window.productTranslations) {
+      window.__zappyUpdateVariantUI(window.selectedVariant || null, window.currentProduct, window.productTranslations, {});
+    }
+    return;
+  }
+  if (typeof window.__zappyFetchCustomerDiscount === 'function') {
+    await window.__zappyFetchCustomerDiscount();
+  }
+}
 async function loadProductDetailPage() {
   const detailSection = document.getElementById('product-detail');
   if (!detailSection) return; // Not on product detail page
@@ -8121,6 +8134,7 @@ async function loadProductDetailPage() {
     
     const product = data.data;
     renderProductDetail(detailSection, product, t);
+    await syncProductDetailCustomerDiscount();
     
     // Update page title and meta
     document.title = product.name + ' - ' + (document.title.split(' - ').pop() || '');
@@ -14911,3 +14925,5 @@ function withConsent(category, callback) {
     setTimeout(injectMobileNavIconAlignmentFix, 1000);
   } catch (e) {}
 })();
+
+/* ZAPPY_CUSTOMER_DISCOUNT_PRODUCT_DETAIL_RACE_V1 */
