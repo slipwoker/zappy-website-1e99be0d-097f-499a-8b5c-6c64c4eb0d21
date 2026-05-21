@@ -1992,6 +1992,8 @@ window.onload = function() {
 ;
 
 ;
+
+;
 /* ==ZAPPY E-COMMERCE JS START== */
 // E-commerce functionality
 (function() {
@@ -4515,6 +4517,24 @@ function stripHtmlToText(html) {
     } else if (typeof loadProducts === 'function') {
       loadProducts();
     }
+  }
+
+  function refreshProductDetailDiscountPricing() {
+    if (!document.getElementById('product-detail') || !window.currentProduct) return;
+    if (typeof window.__zappyUpdateVariantUI !== 'function' || !window.productTranslations) return;
+    window.__zappyUpdateVariantUI(
+      window.selectedVariant || null,
+      window.currentProduct,
+      window.productTranslations,
+      {}
+    );
+  }
+
+  function scheduleProductDetailDiscountRefresh() {
+    if (!document.getElementById('product-detail')) return;
+    [0, 250, 750, 2000].forEach(function(delayMs) {
+      setTimeout(refreshProductDetailDiscountPricing, delayMs);
+    });
   }
 
   
@@ -7323,10 +7343,29 @@ function stripHtmlToText(html) {
 
 
 function zappyApplyCustomerPercentToPrice(basePrice, productId) {
-  if (typeof window.__zappyApplyCustomerPercentToPrice === 'function') {
-    return window.__zappyApplyCustomerPercentToPrice(basePrice, productId);
+  function applyFromWindowConfig() {
+    var cfg = window.__zappyCustomerDiscountConfig;
+    if (!cfg || !cfg.discountPercent || !Number.isFinite(basePrice) || basePrice <= 0) {
+      return { price: basePrice, applied: false };
+    }
+    var excluded = cfg.excludedProductIds || [];
+    if (excluded.indexOf(productId) !== -1) return { price: basePrice, applied: false };
+    var discounted = basePrice - (basePrice * parseFloat(cfg.discountPercent) / 100);
+    if (!Number.isFinite(discounted) || discounted >= basePrice) {
+      return { price: basePrice, applied: false };
+    }
+    return { price: discounted, applied: true, originalPrice: basePrice };
   }
-  return { price: basePrice, applied: false };
+
+  if (typeof window.__zappyApplyCustomerPercentToPrice === 'function') {
+    var delegated = window.__zappyApplyCustomerPercentToPrice(basePrice, productId);
+    if (delegated.applied) return delegated;
+    if (window.__zappyCustomerDiscountConfig && window.__zappyCustomerDiscountConfig.discountPercent > 0) {
+      return applyFromWindowConfig();
+    }
+    return delegated;
+  }
+  return applyFromWindowConfig();
 }
 
 function zappyHasActiveCustomerDiscount() {
@@ -7343,6 +7382,9 @@ async function syncProductDetailCustomerDiscount() {
   }
   if (typeof window.__zappyFetchCustomerDiscount === 'function') {
     await window.__zappyFetchCustomerDiscount();
+    if (typeof window.__zappyUpdateVariantUI === 'function' && window.productTranslations) {
+      window.__zappyUpdateVariantUI(window.selectedVariant || null, window.currentProduct, window.productTranslations, {});
+    }
   }
 }
 
@@ -9594,6 +9636,10 @@ function initVariantSelection(product, t) {
         availBtn.click();
       }
     }
+  }
+
+  if (typeof syncProductDetailCustomerDiscount === 'function') {
+    syncProductDetailCustomerDiscount();
   }
 }
 
