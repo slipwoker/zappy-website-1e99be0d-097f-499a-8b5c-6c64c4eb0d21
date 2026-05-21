@@ -1990,6 +1990,8 @@ window.onload = function() {
 ;
 
 ;
+
+;
 /* ==ZAPPY E-COMMERCE JS START== */
 // E-commerce functionality
 (function() {
@@ -7322,6 +7324,19 @@ function zappyHasActiveCustomerDiscount() {
   return !!(window.__zappyCustomerDiscountConfig && window.__zappyCustomerDiscountConfig.discountPercent > 0);
 }
 
+async function syncProductDetailCustomerDiscount() {
+  if (!document.getElementById('product-detail') || !window.currentProduct) return;
+  if (window.__zappyCustomerDiscountConfig && window.__zappyCustomerDiscountConfig.discountPercent > 0) {
+    if (typeof window.__zappyUpdateVariantUI === 'function' && window.productTranslations) {
+      window.__zappyUpdateVariantUI(window.selectedVariant || null, window.currentProduct, window.productTranslations, {});
+    }
+    return;
+  }
+  if (typeof window.__zappyFetchCustomerDiscount === 'function') {
+    await window.__zappyFetchCustomerDiscount();
+  }
+}
+
 function renderProductGrid(grid, products, t, isFeaturedSection, viewMode) {
   // Update grid class based on layout (only for product grids, not featured section which has its own styling)
   var layout = additionalJsProductLayout || 'standard';
@@ -8082,19 +8097,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Load product detail page
-
-async function syncProductDetailCustomerDiscount() {
-  if (!document.getElementById('product-detail') || !window.currentProduct) return;
-  if (window.__zappyCustomerDiscountConfig && window.__zappyCustomerDiscountConfig.discountPercent > 0) {
-    if (typeof window.__zappyUpdateVariantUI === 'function' && window.productTranslations) {
-      window.__zappyUpdateVariantUI(window.selectedVariant || null, window.currentProduct, window.productTranslations, {});
-    }
-    return;
-  }
-  if (typeof window.__zappyFetchCustomerDiscount === 'function') {
-    await window.__zappyFetchCustomerDiscount();
-  }
-}
 async function loadProductDetailPage() {
   const detailSection = document.getElementById('product-detail');
   if (!detailSection) return; // Not on product detail page
@@ -14925,5 +14927,3 @@ function withConsent(category, callback) {
     setTimeout(injectMobileNavIconAlignmentFix, 1000);
   } catch (e) {}
 })();
-
-/* ZAPPY_CUSTOMER_DISCOUNT_PRODUCT_DETAIL_RACE_V1 */
