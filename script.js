@@ -1986,6 +1986,8 @@ window.onload = function() {
 ;
 
 ;
+
+;
 /* ==ZAPPY E-COMMERCE JS START== */
 // E-commerce functionality
 (function() {
@@ -14907,5 +14909,3 @@ function withConsent(category, callback) {
     setTimeout(injectMobileNavIconAlignmentFix, 1000);
   } catch (e) {}
 })();
-
-/* ZAPPY_CUSTOMER_DISCOUNT_CONFIG_FALLBACK_V1 */
