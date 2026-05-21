@@ -1978,6 +1978,10 @@ window.onload = function() {
 ;
 
 ;
+
+;
+
+;
 /* ==ZAPPY E-COMMERCE JS START== */
 // E-commerce functionality
 (function() {
@@ -3065,13 +3069,42 @@ function stripHtmlToText(html) {
       var variantMaxPrice = parseFloat(p.variant_max_price);
       var hasVariantPriceRange = variantCount > 1 && variantPriceCount > 1 && Number.isFinite(variantMinPrice) && Number.isFinite(variantMaxPrice) && variantMinPrice !== variantMaxPrice;
       var startingAtLabel = getEcomText('startingAt', t.startingAt || 'Starting at');
-      var displayPrice = showPrice 
-        ? (hasVariantPriceRange
-          ? startingAtLabel + ' ' + t.currency + variantMinPrice.toFixed(2)
-          : (hasSalePrice 
-            ? t.currency + parseFloat(p.sale_price).toFixed(2) + ' <span class="original-price">' + t.currency + parseFloat(p.price).toFixed(2) + '</span>'
-            : t.currency + parseFloat(p.price).toFixed(2)))
-        : '';
+      var effectivePrice = parseFloat(p.price);
+      var effectiveSalePrice = hasSalePrice ? parseFloat(p.sale_price) : null;
+      var discountApplied = false;
+
+      if (customerDiscountConfig && !hasVariantPriceRange) {
+        var custBase = effectiveSalePrice !== null ? effectiveSalePrice : effectivePrice;
+        var custAdj = applyCustomerPercentToPrice(custBase, p.id);
+        if (custAdj.applied) {
+          effectiveSalePrice = custAdj.price;
+          discountApplied = true;
+        }
+      }
+
+      var displayPrice;
+      if (!showPrice) {
+        displayPrice = '';
+      } else if (hasVariantPriceRange) {
+        var variantDisplayMin = variantMinPrice;
+        if (customerDiscountConfig) {
+          var custAdjRange = applyCustomerPercentToPrice(variantMinPrice, p.id);
+          if (custAdjRange.applied) {
+            variantDisplayMin = custAdjRange.price;
+            displayPrice = startingAtLabel + ' ' + t.currency + variantDisplayMin.toFixed(2) + ' <span class="original-price">' + t.currency + variantMinPrice.toFixed(2) + '</span>';
+          } else {
+            displayPrice = startingAtLabel + ' ' + t.currency + variantMinPrice.toFixed(2);
+          }
+        } else {
+          displayPrice = startingAtLabel + ' ' + t.currency + variantMinPrice.toFixed(2);
+        }
+      } else if (discountApplied && effectiveSalePrice !== null) {
+        displayPrice = t.currency + effectiveSalePrice.toFixed(2) + ' <span class="original-price">' + t.currency + effectivePrice.toFixed(2) + '</span>';
+      } else if (hasSalePrice) {
+        displayPrice = t.currency + parseFloat(p.sale_price).toFixed(2) + ' <span class="original-price">' + t.currency + parseFloat(p.price).toFixed(2) + '</span>';
+      } else {
+        displayPrice = t.currency + parseFloat(p.price).toFixed(2);
+      }
       
       // Get first image with correct URL in preview/live
       var imageUrl = p.images && p.images[0] ? resolveProductImageUrl(p.images[0]) : '';
@@ -4461,11 +4494,16 @@ function stripHtmlToText(html) {
     return { price: discounted, applied: true, originalPrice: basePrice };
   }
 
+  function syncCustomerDiscountToWindow() {
+    window.__zappyCustomerDiscountConfig = customerDiscountConfig;
+  }
+
   async function fetchCustomerDiscount() {
     var tokenKey = 'zappy_customer_token_' + websiteId;
     var token = localStorage.getItem(tokenKey);
     customerDiscountConfig = null;
     customerCartDiscount = 0;
+    syncCustomerDiscountToWindow();
     if (!token) {
       updateOrderTotals();
       if (typeof loadProducts === 'function') loadProducts();
@@ -4482,9 +4520,19 @@ function stripHtmlToText(html) {
     } catch (e) {
       console.warn('[E-COMMERCE] Failed to load customer discount', e);
     }
+    syncCustomerDiscountToWindow();
     updateOrderTotals();
     if (typeof loadProducts === 'function') loadProducts();
+    if (window.currentProduct && typeof window.__zappyUpdateVariantUI === 'function' && window.productTranslations) {
+      window.__zappyUpdateVariantUI(window.selectedVariant || null, window.currentProduct, window.productTranslations, {});
+    }
   }
+
+  // Expose for additionalJs (renderProductGrid, product detail) which runs outside this IIFE
+  window.__zappyApplyCustomerPercentToPrice = applyCustomerPercentToPrice;
+  window.__zappyGetCustomerDiscountForProduct = getCustomerDiscountForProduct;
+  window.__zappyFetchCustomerDiscount = fetchCustomerDiscount;
+  syncCustomerDiscountToWindow();
 
   function calcCustomerCartDiscount() {
     customerCartDiscount = 0;
@@ -6595,7 +6643,6 @@ function stripHtmlToText(html) {
   
   function initAll() {
     updateCartCount();
-    loadProducts();
     initFilterButtons();
     renderCart();
     loadShippingMethods();
@@ -7245,6 +7292,17 @@ function stripHtmlToText(html) {
 }
 
 
+function zappyApplyCustomerPercentToPrice(basePrice, productId) {
+  if (typeof window.__zappyApplyCustomerPercentToPrice === 'function') {
+    return window.__zappyApplyCustomerPercentToPrice(basePrice, productId);
+  }
+  return { price: basePrice, applied: false };
+}
+
+function zappyHasActiveCustomerDiscount() {
+  return !!(window.__zappyCustomerDiscountConfig && window.__zappyCustomerDiscountConfig.discountPercent > 0);
+}
+
 function renderProductGrid(grid, products, t, isFeaturedSection, viewMode) {
   // Update grid class based on layout (only for product grids, not featured section which has its own styling)
   var layout = additionalJsProductLayout || 'standard';
@@ -7289,9 +7347,9 @@ function renderProductGrid(grid, products, t, isFeaturedSection, viewMode) {
       }
     }
 
-    if (customerDiscountConfig && !hasVariantPriceRange) {
+    if (zappyHasActiveCustomerDiscount() && !hasVariantPriceRange) {
       var custBase = effectiveSalePrice !== null ? effectiveSalePrice : effectivePrice;
-      var custAdj = applyCustomerPercentToPrice(custBase, p.id);
+      var custAdj = zappyApplyCustomerPercentToPrice(custBase, p.id);
       if (custAdj.applied) {
         effectiveSalePrice = custAdj.price;
         seasonalApplied = true;
@@ -7302,7 +7360,18 @@ function renderProductGrid(grid, products, t, isFeaturedSection, viewMode) {
     if (!showPrice) {
       displayPrice = '';
     } else if (hasVariantPriceRange) {
-      displayPrice = startingAtLabel + ' ' + t.currency + variantMinPrice.toFixed(2);
+      var variantDisplayMin = variantMinPrice;
+      if (zappyHasActiveCustomerDiscount()) {
+        var custAdjRange = zappyApplyCustomerPercentToPrice(variantMinPrice, p.id);
+        if (custAdjRange.applied) {
+          variantDisplayMin = custAdjRange.price;
+          displayPrice = startingAtLabel + ' ' + t.currency + variantDisplayMin.toFixed(2) + ' <span class="original-price">' + t.currency + variantMinPrice.toFixed(2) + '</span>';
+        } else {
+          displayPrice = startingAtLabel + ' ' + t.currency + variantMinPrice.toFixed(2);
+        }
+      } else {
+        displayPrice = startingAtLabel + ' ' + t.currency + variantMinPrice.toFixed(2);
+      }
     } else if (seasonalApplied && effectiveSalePrice !== null) {
       displayPrice = t.currency + effectiveSalePrice.toFixed(2) + ' <span class="original-price">' + t.currency + effectivePrice.toFixed(2) + '</span>';
     } else if (hasSalePrice) {
@@ -8983,6 +9052,8 @@ function renderProductDetail(container, product, t) {
   // Initialize variant selection if product has variants
   if (hasVariants) {
     initVariantSelection(product, t);
+  } else if (typeof updateVariantUI === 'function') {
+    updateVariantUI(null, product, t, {});
   }
 
   // Wire up quantity input changes so the bundle total stays in sync when
@@ -9576,8 +9647,8 @@ function updateVariantUI(variant, product, t, selectedAttributes) {
       }
     }
 
-    if (customerDiscountConfig && product && product.id) {
-      var custAdjDetail = applyCustomerPercentToPrice(displayedFinalPrice, product.id);
+    if (zappyHasActiveCustomerDiscount() && product && product.id) {
+      var custAdjDetail = zappyApplyCustomerPercentToPrice(displayedFinalPrice, product.id);
       if (custAdjDetail.applied) {
         displayOriginalPrice = displayedFinalPrice;
         displayedFinalPrice = custAdjDetail.price;
@@ -9681,11 +9752,32 @@ function updateVariantUI(variant, product, t, selectedAttributes) {
       // Partial selection - show base product info
       if (priceDisplay) {
         if (hasVariantPriceRange && Number.isFinite(variantMinPrice)) {
-          priceDisplay.textContent = startingAtLabel + ' ' + t.currency + variantMinPrice.toFixed(2);
-        } else if (hasSalePrice) {
-          priceDisplay.innerHTML = t.currency + basePrice.toFixed(2) + ' <span class="original-price">' + t.currency + originalPrice.toFixed(2) + '</span>';
+          if (zappyHasActiveCustomerDiscount() && product && product.id) {
+            var custAdjPartial = zappyApplyCustomerPercentToPrice(variantMinPrice, product.id);
+            if (custAdjPartial.applied) {
+              priceDisplay.innerHTML = startingAtLabel + ' ' + t.currency + custAdjPartial.price.toFixed(2) + ' <span class="original-price">' + t.currency + variantMinPrice.toFixed(2) + '</span>';
+            } else {
+              priceDisplay.textContent = startingAtLabel + ' ' + t.currency + variantMinPrice.toFixed(2);
+            }
+          } else {
+            priceDisplay.textContent = startingAtLabel + ' ' + t.currency + variantMinPrice.toFixed(2);
+          }
         } else {
-          priceDisplay.textContent = t.currency + basePrice.toFixed(2);
+          var detailBase = basePrice;
+          var detailDisplayed = detailBase;
+          if (zappyHasActiveCustomerDiscount() && product && product.id) {
+            var custAdjSimple = zappyApplyCustomerPercentToPrice(detailBase, product.id);
+            if (custAdjSimple.applied) {
+              detailDisplayed = custAdjSimple.price;
+            }
+          }
+          if (detailDisplayed < detailBase) {
+            priceDisplay.innerHTML = t.currency + detailDisplayed.toFixed(2) + ' <span class="original-price">' + t.currency + detailBase.toFixed(2) + '</span>';
+          } else if (hasSalePrice) {
+            priceDisplay.innerHTML = t.currency + basePrice.toFixed(2) + ' <span class="original-price">' + t.currency + originalPrice.toFixed(2) + '</span>';
+          } else {
+            priceDisplay.textContent = t.currency + basePrice.toFixed(2);
+          }
         }
       }
       
@@ -9711,12 +9803,18 @@ function updateVariantUI(variant, product, t, selectedAttributes) {
     
     // Reset price-per-unit to match the base display price
     var resetPrice = hasVariantPriceRange && Number.isFinite(variantMinPrice) ? variantMinPrice : basePrice;
+    if (zappyHasActiveCustomerDiscount() && product && product.id) {
+      var custAdjReset = zappyApplyCustomerPercentToPrice(resetPrice, product.id);
+      if (custAdjReset.applied) resetPrice = custAdjReset.price;
+    }
     updatePricePerUnitDisplay(resetPrice, product, t);
     
     window.selectedVariant = null;
     if (typeof recomputeBundleTotal === 'function') recomputeBundleTotal();
   }
 }
+
+window.__zappyUpdateVariantUI = updateVariantUI;
 
 function addProductToCart() {
   const product = window.currentProduct;
