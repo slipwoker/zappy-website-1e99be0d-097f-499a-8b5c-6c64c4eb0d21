@@ -1996,6 +1996,8 @@ window.onload = function() {
 ;
 
 ;
+
+;
 /* ==ZAPPY E-COMMERCE JS START== */
 // E-commerce functionality
 (function() {
@@ -12565,15 +12567,41 @@ function fixContrast(){
             }
             if (addBtn) { addBtn.disabled = false; addBtn.style.opacity = ''; addBtn.style.cursor = ''; }
           }
-          // Always update price when a variant is matched
+          // Always update price when a variant is matched.
+          //
+          // CUSTOMER-DISCOUNT AWARENESS (per-customer percentage off):
+          // When the active shopper has a customer-specific percentage discount
+          // configured (delivered into window.__zappyCustomerDiscountConfig by
+          // the storefront's customer-discount runtime), we MUST apply it here
+          // too — otherwise variant clicks in the fullscreen-preview editor
+          // overwrite the discounted price with the raw variant price, leaving
+          // merchants unable to preview "what their customer sees" while
+          // editing. This mirrors the V2 patch in
+          // githubService.ensureVariantSelectionFix that runs on the published
+          // site; the two click-handler paths must stay in sync since the
+          // editor's capture-phase handler (this one) runs first and
+          // stopImmediatePropagation()s the published-site V2 handler. Pinned
+          // by server/tests/previewVariantDisplayCustomerDiscount.test.js.
           if (priceDisplay) {
             var currency = product.currency || t.currency || '₪';
             var baseP = window.productBasePrice || parseFloat(product.price) || 0;
             var origP = window.productOriginalPrice || parseFloat(product.compare_at_price || product.original_price || 0);
             var hasSale = window.productHasSalePrice;
             var finalPrice = (v.price != null) ? parseFloat(v.price) : baseP;
+            var _cdApplied = false;
+            var _cdOrig = finalPrice;
+            if (typeof window.__zappyApplyCustomerPercentToPrice === 'function' && product && product.id) {
+              var _cdRes = window.__zappyApplyCustomerPercentToPrice(finalPrice, product.id);
+              if (_cdRes && _cdRes.applied) {
+                _cdApplied = true;
+                _cdOrig = finalPrice;
+                finalPrice = _cdRes.price;
+              }
+            }
             var html = currency + finalPrice.toFixed(2);
-            if (v.price != null) {
+            if (_cdApplied) {
+              html += ' <span class="original-price">' + currency + _cdOrig.toFixed(2) + '</span>';
+            } else if (v.price != null) {
               if (origP && origP > finalPrice) {
                 html += ' <span class="original-price">' + currency + origP.toFixed(2) + '</span>';
               }
@@ -12582,9 +12610,15 @@ function fixContrast(){
             }
             priceDisplay.innerHTML = html;
           }
-          // Update price-per-unit if the function exists
+          // Update price-per-unit if the function exists. Feed the discounted
+          // price (when a customer discount applied) so per-unit math matches
+          // the headline price.
           if (typeof updatePricePerUnitDisplay === 'function') {
             var effPrice = (v.price != null) ? parseFloat(v.price) : (window.productBasePrice || parseFloat(product.price) || 0);
+            if (typeof window.__zappyApplyCustomerPercentToPrice === 'function' && product && product.id) {
+              var _cdResUnit = window.__zappyApplyCustomerPercentToPrice(effPrice, product.id);
+              if (_cdResUnit && _cdResUnit.applied) effPrice = _cdResUnit.price;
+            }
             updatePricePerUnitDisplay(effPrice, product, t);
           }
           // Update SKU: prefer variant SKU, fall back to base product SKU.
@@ -12627,7 +12661,10 @@ function fixContrast(){
           stockDisplay.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>' + (t.inStock || 'In Stock');
         }
         if (addBtn) { addBtn.disabled = false; addBtn.style.opacity = ''; addBtn.style.cursor = ''; }
-        // Reset price to initial state (Starting at / base price)
+        // Reset price to initial state (Starting at / base price). Same
+        // customer-discount path as the variant-matched branch above; without
+        // this, partially-selecting a variant and then deselecting another
+        // wipes the customer's discount until they re-pick a full combo.
         if (priceDisplay) {
           var currency = product.currency || t.currency || '₪';
           var baseP = window.productBasePrice || parseFloat(product.price) || 0;
@@ -12635,21 +12672,50 @@ function fixContrast(){
           var hasSale = window.productHasSalePrice;
           var hasRange = window.productHasVariantPriceRange;
           var minP = window.productVariantMinPrice;
+          var _cdFn = (typeof window.__zappyApplyCustomerPercentToPrice === 'function' && product && product.id)
+            ? window.__zappyApplyCustomerPercentToPrice
+            : null;
           if (hasRange && minP != null && isFinite(minP)) {
             var startLabel = (typeof getEcomText === 'function') ? getEcomText('startingAt', t.startingAt || 'Starting at') : (t.startingAt || 'Starting at');
-            priceDisplay.textContent = startLabel + ' ' + currency + minP.toFixed(2);
+            if (_cdFn) {
+              var _cdRange = _cdFn(minP, product.id);
+              if (_cdRange && _cdRange.applied) {
+                priceDisplay.innerHTML = startLabel + ' ' + currency + _cdRange.price.toFixed(2) +
+                  ' <span class="original-price">' + currency + minP.toFixed(2) + '</span>';
+              } else {
+                priceDisplay.textContent = startLabel + ' ' + currency + minP.toFixed(2);
+              }
+            } else {
+              priceDisplay.textContent = startLabel + ' ' + currency + minP.toFixed(2);
+            }
+          } else if (_cdFn) {
+            var _cdBase = _cdFn(baseP, product.id);
+            if (_cdBase && _cdBase.applied) {
+              priceDisplay.innerHTML = currency + _cdBase.price.toFixed(2) +
+                ' <span class="original-price">' + currency + baseP.toFixed(2) + '</span>';
+            } else if (hasSale && origP > baseP) {
+              priceDisplay.innerHTML = currency + baseP.toFixed(2) +
+                ' <span class="original-price">' + currency + origP.toFixed(2) + '</span>';
+            } else {
+              priceDisplay.textContent = currency + baseP.toFixed(2);
+            }
           } else if (hasSale && origP > baseP) {
             priceDisplay.innerHTML = currency + baseP.toFixed(2) + ' <span class="original-price">' + currency + origP.toFixed(2) + '</span>';
           } else {
             priceDisplay.textContent = currency + baseP.toFixed(2);
           }
         }
-        // Reset price-per-unit
+        // Reset price-per-unit (apply customer discount when active so the
+        // per-unit math matches the headline reset price).
         if (typeof updatePricePerUnitDisplay === 'function') {
-          var hasRange = window.productHasVariantPriceRange;
-          var minP = window.productVariantMinPrice;
-          var baseP = window.productBasePrice || parseFloat(product.price) || 0;
-          var resetPrice = (hasRange && minP != null && isFinite(minP)) ? minP : baseP;
+          var hasRange2 = window.productHasVariantPriceRange;
+          var minP2 = window.productVariantMinPrice;
+          var baseP2 = window.productBasePrice || parseFloat(product.price) || 0;
+          var resetPrice = (hasRange2 && minP2 != null && isFinite(minP2)) ? minP2 : baseP2;
+          if (typeof window.__zappyApplyCustomerPercentToPrice === 'function' && product && product.id) {
+            var _cdResetUnit = window.__zappyApplyCustomerPercentToPrice(resetPrice, product.id);
+            if (_cdResetUnit && _cdResetUnit.applied) resetPrice = _cdResetUnit.price;
+          }
           updatePricePerUnitDisplay(resetPrice, product, t);
         }
         // Restore original image when no variant is fully selected
