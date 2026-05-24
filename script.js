@@ -3091,7 +3091,7 @@ function stripHtmlToText(html) {
       var effectiveSalePrice = hasSalePrice ? parseFloat(p.sale_price) : null;
       var discountApplied = false;
 
-      if (customerDiscountConfig && !hasVariantPriceRange) {
+      if (hasActiveCustomerDiscountCfg() && !hasVariantPriceRange) {
         var custBase = effectiveSalePrice !== null ? effectiveSalePrice : effectivePrice;
         var custAdj = applyCustomerPercentToPrice(custBase, p.id);
         if (custAdj.applied) {
@@ -3105,7 +3105,7 @@ function stripHtmlToText(html) {
         displayPrice = '';
       } else if (hasVariantPriceRange) {
         var variantDisplayMin = variantMinPrice;
-        if (customerDiscountConfig) {
+        if (hasActiveCustomerDiscountCfg()) {
           var custAdjRange = applyCustomerPercentToPrice(variantMinPrice, p.id);
           if (custAdjRange.applied) {
             variantDisplayMin = custAdjRange.price;
@@ -4493,7 +4493,12 @@ function stripHtmlToText(html) {
   let customerDiscountConfig = null;
   let customerCartDiscount = 0;
 
-  function getCustomerDiscountForProduct(productId) {
+  
+  function hasActiveCustomerDiscountCfg() {
+    var cfg = customerDiscountConfig || window.__zappyCustomerDiscountConfig;
+    return !!(cfg && parseFloat(cfg.discountPercent) > 0);
+  }
+function getCustomerDiscountForProduct(productId) {
     var cfg = customerDiscountConfig || window.__zappyCustomerDiscountConfig;
     if (!cfg || !cfg.discountPercent) return null;
     var excluded = cfg.excludedProductIds || [];
@@ -4514,7 +4519,9 @@ function stripHtmlToText(html) {
   }
 
   function syncCustomerDiscountToWindow() {
-    window.__zappyCustomerDiscountConfig = customerDiscountConfig;
+    if (customerDiscountConfig) {
+      window.__zappyCustomerDiscountConfig = customerDiscountConfig;
+    }
   }
 
   function refreshProductListingAfterDiscount() {
@@ -4543,27 +4550,18 @@ function stripHtmlToText(html) {
     });
   }
 
-  
-function scheduleProductDetailDiscountRefreshZappy() {
-  if (!document.getElementById('product-detail')) return;
-  [0, 250, 750, 2000].forEach(function(delayMs) {
-    setTimeout(function() {
-      if (!window.currentProduct || typeof window.__zappyUpdateVariantUI !== 'function' || !window.productTranslations) return;
-      window.__zappyUpdateVariantUI(window.selectedVariant || null, window.currentProduct, window.productTranslations, {});
-    }, delayMs);
-  });
-}
-async function fetchCustomerDiscount() {
+  async function fetchCustomerDiscountImpl() {
     var tokenKey = 'zappy_customer_token_' + websiteId;
     var token = localStorage.getItem(tokenKey);
-    customerDiscountConfig = null;
-    customerCartDiscount = 0;
-    syncCustomerDiscountToWindow();
     if (!token) {
+      customerDiscountConfig = null;
+      customerCartDiscount = 0;
+      window.__zappyCustomerDiscountConfig = null;
       updateOrderTotals();
       refreshProductListingAfterDiscount();
       return;
     }
+    customerCartDiscount = 0;
     try {
       var res = await fetch(buildApiUrl('/api/ecommerce/storefront/customer-discount?websiteId=' + encodeURIComponent(websiteId)), {
         headers: { 'Authorization': 'Bearer ' + token }
@@ -4574,26 +4572,44 @@ async function fetchCustomerDiscount() {
       }
     } catch (e) {
       console.warn('[E-COMMERCE] Failed to load customer discount', e);
+    customerDiscountConfig = null;
+      customerCartDiscount = 0;
+      window.__zappyCustomerDiscountConfig = null;
     }
     syncCustomerDiscountToWindow();
     updateOrderTotals();
     refreshProductListingAfterDiscount();
+    if (typeof window.__zappyScheduleDynamicProductGridsDiscountRefresh === 'function') {
+          window.__zappyScheduleDynamicProductGridsDiscountRefresh();
+        }
     refreshProductDetailDiscountPricing();
     scheduleProductDetailDiscountRefresh();
   }
 
   // Expose for additionalJs (renderProductGrid, product detail) which runs outside this IIFE
   window.__zappyApplyCustomerPercentToPrice = applyCustomerPercentToPrice;
-  window.__zappyGetCustomerDiscountForProduct = getCustomerDiscountForProduct;
+  window.__zappyGetCustomerDiscountForProduct = getCustomerDiscountForProduct
+  async function fetchCustomerDiscount() {
+    if (window.__zappyCustomerDiscountFetchPromise) {
+      return window.__zappyCustomerDiscountFetchPromise;
+    }
+    window.__zappyCustomerDiscountFetchPromise = fetchCustomerDiscountImpl().finally(function() {
+      window.__zappyCustomerDiscountFetchPromise = null;
+    });
+    return window.__zappyCustomerDiscountFetchPromise;
+  }
+
+;
   window.__zappyFetchCustomerDiscount = fetchCustomerDiscount;
+  window.__zappyHasActiveCustomerDiscountCfg = hasActiveCustomerDiscountCfg;
   window.loadProducts = loadProducts;
-  syncCustomerDiscountToWindow();
 
   function calcCustomerCartDiscount() {
     customerCartDiscount = 0;
-    if (!customerDiscountConfig || !customerDiscountConfig.discountPercent || !cart || !cart.length) return;
+    var cfg = customerDiscountConfig || window.__zappyCustomerDiscountConfig;
+    if (!cfg || !cfg.discountPercent || !cart || !cart.length) return;
 
-    var excluded = customerDiscountConfig.excludedProductIds || [];
+    var excluded = cfg.excludedProductIds || [];
     var eligibleSubtotal = 0;
     for (var j = 0; j < cart.length; j++) {
       var item = cart[j];
@@ -4603,7 +4619,7 @@ async function fetchCustomerDiscount() {
       }
     }
     if (eligibleSubtotal > 0) {
-      customerCartDiscount = (eligibleSubtotal * parseFloat(customerDiscountConfig.discountPercent)) / 100;
+      customerCartDiscount = (eligibleSubtotal * parseFloat(cfg.discountPercent)) / 100;
     }
   }
 
@@ -7227,6 +7243,38 @@ function handleDynamicAnnouncementBar(settings) {
 
 // Load featured products on home page (uses public storefront API)
 // Only shows products marked as "featured" - no fallback to all products
+
+function refreshDynamicProductGridsAfterDiscount() {
+  if (typeof loadFeaturedProducts === 'function' && document.getElementById('zappy-featured-products')) {
+    try { loadFeaturedProducts(); } catch (e) {}
+  }
+  if (typeof applyCategoryFiltersAndRender === 'function' && typeof catProductsCache !== 'undefined' && catProductsCache && catProductsCache.length > 0 && document.getElementById('category-products')) {
+    try {
+      var gridEl = document.getElementById('category-products');
+      var symEl = gridEl && gridEl.querySelector('.price');
+      var symMatch = symEl && (symEl.textContent || '').match(/[₪$€£]/);
+      var tStub = { currency: symMatch ? symMatch[0] : '₪', addToCart: 'Add to Cart', viewDetails: 'View Details', startingAt: 'Starting at' };
+      applyCategoryFiltersAndRender(null, tStub);
+    } catch (e) {}
+  } else if (typeof loadCategoryPage === 'function' && document.getElementById('category-page')) {
+    try { loadCategoryPage(); } catch (e) {}
+  }
+  if (typeof loadRelatedProducts === 'function' && window.currentProduct && document.getElementById('related-products-grid')) {
+    try {
+      var priceEl = document.querySelector('#product-price-display, #product-detail .price');
+      var symMatch2 = priceEl && (priceEl.textContent || '').match(/[₪$€£]/);
+      var tStub2 = { currency: symMatch2 ? symMatch2[0] : '₪', addToCart: 'Add to Cart', viewDetails: 'View Details', startingAt: 'Starting at' };
+      loadRelatedProducts(window.currentProduct, tStub2);
+    } catch (e) {}
+  }
+}
+function scheduleDynamicProductGridsDiscountRefresh() {
+  [0, 250, 750, 2000].forEach(function(delayMs) {
+    setTimeout(refreshDynamicProductGridsAfterDiscount, delayMs);
+  });
+}
+window.__zappyRefreshDynamicProductGridsAfterDiscount = refreshDynamicProductGridsAfterDiscount;
+window.__zappyScheduleDynamicProductGridsDiscountRefresh = scheduleDynamicProductGridsDiscountRefresh;
 async function loadFeaturedProducts() {
   const grid = document.getElementById('zappy-featured-products');
   if (!grid) return;
@@ -15053,6 +15101,16 @@ function withConsent(category, callback) {
   } catch (e) {}
 })();
 
+/* ZAPPY_CUSTOMER_DISCOUNT_CONFIG_FALLBACK_V3 */
+
 /* ZAPPY_CUSTOMER_DISCOUNT_PRODUCT_DETAIL_RACE_V1 */
 
 /* ZAPPY_CUSTOMER_DISCOUNT_DELAYED_REFRESH_V1 */
+
+/* ZAPPY_CUSTOMER_DISCOUNT_GRID_REFRESH_V1 */
+
+/* ZAPPY_CUSTOMER_DISCOUNT_WINDOW_RACE_V1 */
+
+/* ZAPPY_CUSTOMER_DISCOUNT_FETCH_FAILURE_CLEAR_V1 */
+
+/* ZAPPY_CUSTOMER_DISCOUNT_SINGLE_FLIGHT_V1 */
