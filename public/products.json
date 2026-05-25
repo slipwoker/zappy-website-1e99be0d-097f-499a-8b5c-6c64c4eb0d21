@@ -1,6 +1,6 @@
 {
   "@context": "https://schema.org",
-  "generated_at": "2026-05-24T08:11:44.645Z",
+  "generated_at": "2026-05-25T06:23:05.233Z",
   "base_url": "https://star-shoes.zappy5.app",
   "currency": "ILS",
   "count": 5,
@@ -57,15 +57,15 @@
     },
     {
       "id": "e7305c1c-15e5-49b2-9042-a6487a33ce7a",
-      "slug": "tchynh-g3djv4",
+      "slug": "tchynh-5a3ijo",
       "name": "טחינה",
       "name_translations": {},
       "description": "<p><strong>טחינה גולמית איכותית</strong> – מוצר טבעי ובריא העשוי משומשום טחון באיכות פרימיום</p><p><br></p><p>הטחינה שלנו מיוצרת משומשום מובחר ומעובדת בקפידה רבה כדי לשמור על הטעם האותנטי והערכים התזונתיים הגבוהים. <strong>עשירה בחלבון, סידן וברזל</strong>, הטחינה מהווה תוספת מושלמת למגוון מנות – ממרקים וממרחים ועד רטבים וקינוחים.</p><p><br></p><ul><li><strong>יתרונות המוצר:</strong>עשויה מ-100% שומשום טבעי</li><li>ללא תוספים מלאכותיים או חומרים משמרים</li><li>מקור מצוין לחלבון צמחי</li><li>מתאימה לתזונה צמחונית וטבעונית</li><li>רב-תכליתית – מושלמת לחומוס, סלטים, אפייה ועוד</li></ul>",
       "short_description": null,
       "sku": null,
       "brand": null,
-      "price": 0,
-      "base_price": 0,
+      "price": 10,
+      "base_price": 10,
       "sale_price": null,
       "currency": "ILS",
       "images": [
@@ -73,9 +73,9 @@
       ],
       "in_stock": true,
       "stock_status": "in_stock",
-      "url": "https://star-shoes.zappy5.app/product/tchynh-g3djv4",
+      "url": "https://star-shoes.zappy5.app/product/tchynh-5a3ijo",
       "categories": [],
-      "updated_at": "2026-03-23T15:01:55.437Z"
+      "updated_at": "2026-05-25T06:22:20.131Z"
     },
     {
       "id": "31cf6eb6-8ba3-4ff6-8af5-e385ba3c3ff0",
