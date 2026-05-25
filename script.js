@@ -2000,6 +2000,8 @@ window.onload = function() {
 ;
 
 ;
+
+;
 /* ==ZAPPY E-COMMERCE JS START== */
 // E-commerce functionality
 (function() {
@@ -2014,6 +2016,14 @@ window.onload = function() {
 
   const websiteId = window.ZAPPY_WEBSITE_ID;
   const isCatalogMode = false; // true = catalog only (no cart), false = full e-commerce
+
+  window.zappyTrackEcomAnalytics = function(eventType, metadata) {
+    try {
+      if (window.zappyAnalytics && typeof window.zappyAnalytics.track === 'function') {
+        window.zappyAnalytics.track(eventType, metadata || {});
+      }
+    } catch (e) {}
+  };
   
   // Set up fixed header heights - NO GAP between header and catalog menu
   function setupFixedHeaders() {
@@ -2570,6 +2580,16 @@ function stripHtmlToText(html) {
     }
     saveCart();
     openCartDrawer(); // Open cart drawer instead of alert
+    if (!isCatalogMode && typeof window.zappyTrackEcomAnalytics === 'function') {
+      var unitPrice = parseFloat(product.sale_price || product.salePrice || product.price || 0) || 0;
+      window.zappyTrackEcomAnalytics('add_to_cart', {
+        productId: product.id,
+        productName: product.name,
+        quantity: qty,
+        value: unitPrice * qty,
+        variantId: variantId || null
+      });
+    }
   }
   
   // Store loaded products for filtering
@@ -3089,12 +3109,14 @@ function stripHtmlToText(html) {
       var startingAtLabel = getEcomText('startingAt', t.startingAt || 'Starting at');
       var effectivePrice = parseFloat(p.price);
       var effectiveSalePrice = hasSalePrice ? parseFloat(p.sale_price) : null;
+      var displayOriginalPrice = effectivePrice;
       var discountApplied = false;
 
       if (hasActiveCustomerDiscountCfg() && !hasVariantPriceRange) {
         var custBase = effectiveSalePrice !== null ? effectiveSalePrice : effectivePrice;
         var custAdj = applyCustomerPercentToPrice(custBase, p.id);
         if (custAdj.applied) {
+          displayOriginalPrice = custBase;
           effectiveSalePrice = custAdj.price;
           discountApplied = true;
         }
@@ -3117,7 +3139,7 @@ function stripHtmlToText(html) {
           displayPrice = startingAtLabel + ' ' + t.currency + variantMinPrice.toFixed(2);
         }
       } else if (discountApplied && effectiveSalePrice !== null) {
-        displayPrice = t.currency + effectiveSalePrice.toFixed(2) + ' <span class="original-price">' + t.currency + effectivePrice.toFixed(2) + '</span>';
+        displayPrice = t.currency + effectiveSalePrice.toFixed(2) + ' <span class="original-price">' + t.currency + displayOriginalPrice.toFixed(2) + '</span>';
       } else if (hasSalePrice) {
         displayPrice = t.currency + parseFloat(p.sale_price).toFixed(2) + ' <span class="original-price">' + t.currency + parseFloat(p.price).toFixed(2) + '</span>';
       } else {
@@ -3727,6 +3749,16 @@ function stripHtmlToText(html) {
   // Initialize checkout / place order button
   function initCheckout() {
     const placeOrderBtn = document.getElementById('place-order-btn');
+    if (placeOrderBtn && !isCatalogMode && !window.__zappyBeginCheckoutTracked) {
+      window.__zappyBeginCheckoutTracked = true;
+      var checkoutValue = typeof getCartSubtotal === 'function' ? getCartSubtotal() : 0;
+      if (typeof window.zappyTrackEcomAnalytics === 'function') {
+        window.zappyTrackEcomAnalytics('begin_checkout', {
+          itemCount: cart ? cart.length : 0,
+          value: checkoutValue
+        });
+      }
+    }
     if (!placeOrderBtn) return;
     
     // Add real-time validation - clear errors when user types and update Place Order state
@@ -4025,7 +4057,7 @@ function stripHtmlToText(html) {
         
         const data = await res.json();
         
-        if (!data.success || !data.data?.checkoutUrl) {
+        if (!data.success || (!data.data?.checkoutUrl && !data.data?.growSdkMode)) {
           throw new Error(data.error || 'Checkout initialization failed');
         }
         
@@ -4062,6 +4094,118 @@ function stripHtmlToText(html) {
           localStorage.setItem('zappy_pending_order_' + reference, JSON.stringify(pendingOrderData));
         }
         
+        // Grow SDK wallet mode: render payment options in-page
+        if (data.data.growSdkMode && data.data.authCode) {
+          const paymentSection = document.getElementById('checkout-payment-section');
+          const sdkContainer = document.getElementById('grow-sdk-container');
+
+          if (paymentSection && sdkContainer) {
+            paymentSection.classList.add('fade-out');
+
+            sdkContainer.style.display = 'block';
+            sdkContainer.querySelector('.grow-sdk-wrapper').innerHTML = '<div class="grow-sdk-loading"><div class="grow-sdk-loading-spinner"></div><span>' + (isRTL ? 'טוען אמצעי תשלום...' : 'Loading payment options...') + '</span></div>';
+
+            var renderGrowWallet = function(authCode) {
+              sdkContainer.querySelector('.grow-sdk-wrapper').innerHTML = '<div id="grow-wallet-target"></div>';
+              growPayment.renderPaymentOptions(authCode);
+            };
+
+            var showGrowError = function(msg) {
+              sdkContainer.querySelector('.grow-sdk-wrapper').innerHTML = '<p style="color:#ef4444; text-align:center; padding:20px;">' + msg + '</p>';
+              placeOrderBtn.disabled = false;
+              placeOrderBtn.innerHTML = t.placeOrder || (isRTL ? 'בצע הזמנה' : 'Place Order');
+            };
+
+            setTimeout(function() {
+              paymentSection.style.display = 'none';
+
+              // SDK already loaded & initialized from a previous attempt
+              if (typeof growPayment !== 'undefined' && window.__growSdkInitDone) {
+                renderGrowWallet(data.data.authCode);
+                return;
+              }
+
+              // Script already loaded but not yet initialized (edge case)
+              if (typeof growPayment !== 'undefined' && !window.__growSdkInitDone) {
+                growPayment.init({
+                  environment: (data.data.sdkEnvironment || 'PRODUCTION'),
+                  version: 1,
+                  events: {
+                    onSuccess: function() {
+                      var dest = data.data.successUrl || (window.location.pathname.replace(/checkout.*/, '') + 'order-success?ref=' + encodeURIComponent(data.data.reference));
+                      window.location.href = dest;
+                    },
+                    onFailure: function(r) { showGrowError(r && r.message ? r.message : (isRTL ? 'התשלום נכשל. נסו שוב.' : 'Payment failed. Please try again.')); },
+                    onError: function(r) { showGrowError(r && r.message ? r.message : (isRTL ? 'שגיאה בתשלום. נסו שוב.' : 'Payment error. Please try again.')); },
+                    onTimeout: function() { showGrowError(isRTL ? 'פג תוקף התשלום. נסו שוב.' : 'Payment session expired. Please try again.'); },
+                    onWalletChange: function(state) {
+                      if (state === 'open') {
+                        var loader = sdkContainer.querySelector('.grow-sdk-loading');
+                        if (loader) loader.style.display = 'none';
+                      }
+                    }
+                  }
+                });
+                window.__growSdkInitDone = true;
+                setTimeout(function() { renderGrowWallet(data.data.authCode); }, 1000);
+                return;
+              }
+
+              var growScript = document.createElement('script');
+              growScript.src = data.data.sdkScriptUrl;
+              growScript.async = true;
+              growScript.onload = function() {
+                if (typeof growPayment === 'undefined') {
+                  showGrowError(isRTL ? 'שגיאה בטעינת מערכת התשלום. נסו שוב.' : 'Failed to load payment system. Please try again.');
+                  return;
+                }
+
+                growPayment.init({
+                  environment: (data.data.sdkEnvironment || 'PRODUCTION'),
+                  version: 1,
+                  events: {
+                    onSuccess: function() {
+                      var dest = data.data.successUrl || (window.location.pathname.replace(/checkout.*/, '') + 'order-success?ref=' + encodeURIComponent(data.data.reference));
+                      window.location.href = dest;
+                    },
+                    onFailure: function(r) { showGrowError(r && r.message ? r.message : (isRTL ? 'התשלום נכשל. נסו שוב.' : 'Payment failed. Please try again.')); },
+                    onError: function(r) { showGrowError(r && r.message ? r.message : (isRTL ? 'שגיאה בתשלום. נסו שוב.' : 'Payment error. Please try again.')); },
+                    onTimeout: function() { showGrowError(isRTL ? 'פג תוקף התשלום. נסו שוב.' : 'Payment session expired. Please try again.'); },
+                    onWalletChange: function(state) {
+                      if (state === 'open') {
+                        var loader = sdkContainer.querySelector('.grow-sdk-loading');
+                        if (loader) loader.style.display = 'none';
+                      }
+                    }
+                  }
+                });
+
+                window.__growSdkInitDone = true;
+                // Poll until SDK is ready (internal async init), then render
+                var attempts = 0;
+                var pollReady = setInterval(function() {
+                  attempts++;
+                  try {
+                    renderGrowWallet(data.data.authCode);
+                    clearInterval(pollReady);
+                  } catch(e) {
+                    if (attempts >= 6) {
+                      clearInterval(pollReady);
+                      showGrowError(isRTL ? 'שגיאה בטעינת מערכת התשלום. נסו שוב.' : 'Failed to load payment system. Please try again.');
+                    }
+                  }
+                }, 500);
+              };
+              growScript.onerror = function() {
+                showGrowError(isRTL ? 'שגיאה בטעינת מערכת התשלום. נסו שוב.' : 'Failed to load payment system. Please try again.');
+              };
+              document.head.appendChild(growScript);
+            }, 300);
+
+            return; // Don't redirect
+          }
+        }
+
         // Check if provider is Green Invoice - show iframe instead of redirect
         if (data.data.provider === 'greeninvoice') {
           // Animate out the payment section and button
@@ -4493,13 +4637,26 @@ function stripHtmlToText(html) {
   let customerDiscountConfig = null;
   let customerCartDiscount = 0;
 
-  
-  function hasActiveCustomerDiscountCfg() {
-    var cfg = customerDiscountConfig || window.__zappyCustomerDiscountConfig;
-    return !!(cfg && parseFloat(cfg.discountPercent) > 0);
+  function resolveCustomerDiscountCfg() {
+    var localActive = customerDiscountConfig && parseFloat(customerDiscountConfig.discountPercent) > 0;
+    if (localActive) return customerDiscountConfig;
+    var windowCfg = window.__zappyCustomerDiscountConfig;
+    var windowActive = windowCfg && parseFloat(windowCfg.discountPercent) > 0;
+    if (windowActive) {
+      // Heal split-brain: ensureCustomerDiscountRuntime may populate window before
+      // fetchCustomerDiscountImpl assigns the IIFE-local customerDiscountConfig.
+      customerDiscountConfig = windowCfg;
+      return customerDiscountConfig;
+    }
+    return null;
   }
-function getCustomerDiscountForProduct(productId) {
-    var cfg = customerDiscountConfig || window.__zappyCustomerDiscountConfig;
+
+  function hasActiveCustomerDiscountCfg() {
+    return !!resolveCustomerDiscountCfg();
+  }
+
+  function getCustomerDiscountForProduct(productId) {
+    var cfg = resolveCustomerDiscountCfg();
     if (!cfg || !cfg.discountPercent) return null;
     var excluded = cfg.excludedProductIds || [];
     if (excluded.indexOf(productId) !== -1) return null;
@@ -4519,9 +4676,17 @@ function getCustomerDiscountForProduct(productId) {
   }
 
   function syncCustomerDiscountToWindow() {
+    // Mirror valid config only — never push null while a concurrent runtime/heal
+    // fetch may have already populated window.__zappyCustomerDiscountConfig.
     if (customerDiscountConfig) {
       window.__zappyCustomerDiscountConfig = customerDiscountConfig;
     }
+  }
+
+  function clearCustomerDiscountConfig() {
+    customerDiscountConfig = null;
+    customerCartDiscount = 0;
+    window.__zappyCustomerDiscountConfig = null;
   }
 
   function refreshProductListingAfterDiscount() {
@@ -4554,11 +4719,12 @@ function getCustomerDiscountForProduct(productId) {
     var tokenKey = 'zappy_customer_token_' + websiteId;
     var token = localStorage.getItem(tokenKey);
     if (!token) {
-      customerDiscountConfig = null;
-      customerCartDiscount = 0;
-      window.__zappyCustomerDiscountConfig = null;
+      clearCustomerDiscountConfig();
       updateOrderTotals();
       refreshProductListingAfterDiscount();
+      if (typeof window.__zappyScheduleDynamicProductGridsDiscountRefresh === 'function') {
+        window.__zappyScheduleDynamicProductGridsDiscountRefresh();
+      }
       return;
     }
     customerCartDiscount = 0;
@@ -4569,26 +4735,23 @@ function getCustomerDiscountForProduct(productId) {
       var data = await res.json();
       if (data.success && data.data && data.data.discountPercent > 0) {
         customerDiscountConfig = data.data;
+        syncCustomerDiscountToWindow();
+      } else {
+        clearCustomerDiscountConfig();
       }
     } catch (e) {
       console.warn('[E-COMMERCE] Failed to load customer discount', e);
-    customerDiscountConfig = null;
-      customerCartDiscount = 0;
-      window.__zappyCustomerDiscountConfig = null;
+      clearCustomerDiscountConfig();
     }
-    syncCustomerDiscountToWindow();
     updateOrderTotals();
     refreshProductListingAfterDiscount();
     if (typeof window.__zappyScheduleDynamicProductGridsDiscountRefresh === 'function') {
-          window.__zappyScheduleDynamicProductGridsDiscountRefresh();
-        }
+      window.__zappyScheduleDynamicProductGridsDiscountRefresh();
+    }
     refreshProductDetailDiscountPricing();
     scheduleProductDetailDiscountRefresh();
   }
 
-  // Expose for additionalJs (renderProductGrid, product detail) which runs outside this IIFE
-  window.__zappyApplyCustomerPercentToPrice = applyCustomerPercentToPrice;
-  window.__zappyGetCustomerDiscountForProduct = getCustomerDiscountForProduct
   async function fetchCustomerDiscount() {
     if (window.__zappyCustomerDiscountFetchPromise) {
       return window.__zappyCustomerDiscountFetchPromise;
@@ -4599,15 +4762,20 @@ function getCustomerDiscountForProduct(productId) {
     return window.__zappyCustomerDiscountFetchPromise;
   }
 
-;
+  // Expose for additionalJs (renderProductGrid, product detail) which runs outside this IIFE
+  window.__zappyApplyCustomerPercentToPrice = applyCustomerPercentToPrice;
+  window.__zappyGetCustomerDiscountForProduct = getCustomerDiscountForProduct;
   window.__zappyFetchCustomerDiscount = fetchCustomerDiscount;
   window.__zappyHasActiveCustomerDiscountCfg = hasActiveCustomerDiscountCfg;
   window.loadProducts = loadProducts;
+  /* ZAPPY_CUSTOMER_DISCOUNT_WINDOW_RACE_V1 */
+  /* ZAPPY_CUSTOMER_DISCOUNT_SINGLE_FLIGHT_V1 */
 
   function calcCustomerCartDiscount() {
     customerCartDiscount = 0;
-    var cfg = customerDiscountConfig || window.__zappyCustomerDiscountConfig;
-    if (!cfg || !cfg.discountPercent || !cart || !cart.length) return;
+    if (!cart || !cart.length) return;
+    var cfg = resolveCustomerDiscountCfg();
+    if (!cfg || !cfg.discountPercent) return;
 
     var excluded = cfg.excludedProductIds || [];
     var eligibleSubtotal = 0;
@@ -5801,6 +5969,15 @@ function getCustomerDiscountForProduct(productId) {
           // Update order number to the official one if available
           if (confirmData.data.orderNumber) {
             orderNumberEl.textContent = '#' + confirmData.data.orderNumber;
+          }
+          if (typeof window.zappyTrackEcomAnalytics === 'function') {
+            window.zappyTrackEcomAnalytics('purchase', {
+              orderId: confirmData.data.orderId || null,
+              orderNumber: confirmData.data.orderNumber || orderDisplay,
+              reference: reference,
+              total: confirmData.data.total || null,
+              source: 'client'
+            });
           }
         } else {
           console.warn('Order confirmation response:', confirmData);
@@ -7241,40 +7418,42 @@ function handleDynamicAnnouncementBar(settings) {
   }
 }
 
-// Load featured products on home page (uses public storefront API)
-// Only shows products marked as "featured" - no fallback to all products
-
+// Re-render featured / category / related product grids after the async
+// customer-discount fetch completes. The main /products listing already has
+// refreshProductListingAfterDiscount(); these sections live in additionalJs
+// and can paint full prices before window.__zappyCustomerDiscountConfig is set.
 function refreshDynamicProductGridsAfterDiscount() {
+  var t = {"products":"מוצרים","ourProducts":"המוצרים שלנו","featuredProducts":"מוצרים מומלצים","noFeaturedProducts":"עוד לא נבחרו מוצרים מומלצים. צפו בכל המוצרים שלנו!","featuredCategories":"קנו לפי קטגוריה","all":"הכל","featured":"מומלצים","new":"חדשים","sale":"מבצעים","loadingProducts":"טוען מוצרים...","cart":"עגלת קניות","yourCart":"עגלת הקניות שלך","emptyCart":"העגלה ריקה","total":"סה\"כ","proceedToCheckout":"המשך לתשלום","checkout":"תשלום","customerInfo":"פרטי לקוח","fullName":"שם מלא","email":"אימייל","phone":"טלפון","shippingAddress":"כתובת למשלוח","street":"רחוב ומספר","streetAndNumber":"רחוב ומספר","apartment":"דירה, קומה, כניסה","apartmentExt":"דירה, קומה, קוד בניין, הערות וכו'","city":"עיר","zip":"מיקוד","zipPostal":"מיקוד","countryRegion":"מדינה / אזור","stateProvince":"מדינה / מחוז","stateRequired":"נא לבחור מדינה / מחוז","saveAddressForNextTime":"שמור את הכתובת לפעם הבאה","shippingMethod":"שיטת משלוח","loadingShipping":"טוען שיטות משלוח...","payment":"תשלום","loadingPayment":"טוען אפשרויות תשלום...","orderSummary":"סיכום הזמנה","subtotal":"סכום ביניים","vat":"מע\"מ","vatIncluded":"כולל מע\"מ","shipping":"משלוח","discount":"הנחה","totalToPay":"סה\"כ לתשלום","placeOrder":"בצע הזמנה","login":"התחברות","customerLogin":"התחברות לקוחות","enterEmail":"הזן את כתובת האימייל שלך ונשלח לך קוד התחברות","emailAddress":"כתובת אימייל","sendCode":"שלח קוד","enterCode":"הזן את הקוד שנשלח לאימייל שלך","verificationCode":"קוד אימות","verify":"אמת","returnPolicy":"מדיניות החזרות","addToCart":"הוסף לעגלה","startingAt":"החל מ","addedToCart":"המוצר נוסף לעגלה!","remove":"הסר","noProducts":"אין מוצרים להצגה כרגע","errorLoading":"שגיאה בטעינה","days":"ימים","currency":"₪","free":"חינם","freeAbove":"משלוח חינם מעל","noShippingMethods":"אין אפשרויות משלוח זמינות","viewAllResults":"הצג את כל התוצאות","searchProducts":"חיפוש מוצרים","productDetails":"פרטי המוצר","viewDetails":"לפרטים נוספים","inStock":"במלאי","outOfStock":"אזל מהמלאי","pleaseSelect":"נא לבחור","sku":"מק\"ט","category":"קטגוריה","relatedProducts":"מוצרים דומים","frequentlyBoughtTogether":"לרכוש יחד","frequentlyBoughtTogetherSubtitle":"הוספת מוצרים נלווים לעגלה","bundleTotal":"סה\"כ לעגלה","addBundleToCart":"הוספת {count} מוצרים לעגלה","upsellFree":"חינם","productNotFound":"המוצר לא נמצא","backToProducts":"חזרה למוצרים","home":"בית","quantity":"כמות","unitLabels":{"piece":"יח'","kg":"ק\"ג","gram":"גרם","liter":"ליטר","ml":"מ\"ל"},"perUnit":"/","couponCode":"קוד קופון","enterCouponCode":"הזן קוד קופון","applyCoupon":"החל","removeCoupon":"הסר","couponApplied":"הקופון הוחל בהצלחה!","invalidCoupon":"קוד קופון לא תקין","couponExpired":"הקופון פג תוקף","couponMinOrder":"סכום הזמנה מינימלי","alreadyHaveAccount":"כבר יש לך חשבון?","loginHere":"התחבר כאן","signInHere":"התחבר כאן","mobileNumber":"מספר טלפון","loggedInAs":"מחובר כ:","logout":"התנתק","haveCouponCode":"יש לי קוד קופון","agreeToTerms":"אני מסכים/ה ל","termsAndConditions":"תנאי השימוש","pleaseAcceptTerms":"נא לאשר את תנאי השימוש","nameRequired":"נא להזין שם מלא","emailRequired":"נא להזין כתובת אימייל","emailInvalid":"כתובת אימייל לא תקינה","phoneRequired":"נא להזין מספר טלפון","shippingRequired":"נא לבחור שיטת משלוח","streetRequired":"נא להזין רחוב ומספר","cityRequired":"נא להזין עיר","paymentNotConfigured":"תשלום מקוון לא מוגדר","orderSuccess":"ההזמנה התקבלה!","thankYouOrder":"תודה על ההזמנה","orderNumber":"מספר הזמנה","orderConfirmation":"אישור הזמנה נשלח לאימייל שלך","orderProcessing":"ההזמנה שלך בטיפול. נעדכן אותך כשהמשלוח יצא לדרך.","continueShopping":"להמשך קניות","next":"הבא","contactInformation":"פרטי התקשרות","items":"פריטים","continueToHomePage":"המשך לדף הבית","transactionDate":"תאריך עסקה","paymentMethod":"אמצעי תשלום","orderDetails":"פרטי ההזמנה","loadingOrder":"טוען פרטי הזמנה...","orderNotFound":"לא נמצאה הזמנה","orderItems":"פריטים בהזמנה","paidAmount":"סכום ששולם","myAccount":"החשבון שלי","accountWelcome":"ברוך הבא","yourOrders":"ההזמנות שלך","noOrders":"אין עדיין הזמנות","orderDate":"תאריך","orderStatus":"סטטוס","orderTotal":"סה\"כ","viewOrder":"צפה בהזמנה","statusPending":"ממתין לתשלום","statusPaid":"שולם","statusProcessing":"בטיפול","statusShipped":"נשלח","statusDelivered":"נמסר","statusCancelled":"בוטל","notLoggedIn":"לא מחובר","pleaseLogin":"יש להתחבר כדי לצפות בחשבון","personalDetails":"פרטים אישיים","editProfile":"עריכת פרופיל","name":"שם","saveChanges":"שמור שינויים","cancel":"ביטול","addresses":"כתובות","addAddress":"הוסף כתובת","editAddress":"ערוך כתובת","deleteAddress":"מחק כתובת","setAsDefault":"הגדר כברירת מחדל","defaultAddress":"כתובת ברירת מחדל","addressLabel":"שם הכתובת","work":"עבודה","other":"אחר","noAddresses":"אין כתובות שמורות","confirmDelete":"האם אתה בטוח שברצונך למחוק?","profileUpdated":"הפרופיל עודכן בהצלחה","addressSaved":"הכתובת נשמרה בהצלחה","addressDeleted":"הכתובת נמחקה","saving":"שומר...","saveToFavorites":"שמור למועדפים","removeFromFavorites":"הסר ממועדפים","shareProduct":"שתף מוצר","linkCopied":"הקישור הועתק!","myFavorites":"המועדפים שלי","noFavorites":"אין עדיין מוצרים מועדפים","addedToFavorites":"נוסף למועדפים","removedFromFavorites":"הוסר מהמועדפים","loginToFavorite":"יש להתחבר כדי לשמור מועדפים","browseFavorites":"גלו את כל המוצרים שלנו","selectVariant":"בחר אפשרות","variantUnavailable":"לא זמין","color":"צבע","size":"מידה","material":"חומר","style":"סגנון","weight":"משקל","capacity":"קיבולת","length":"אורך","inquiryAbout":"פנייה בנושא","sendInquiry":"שלח פנייה","callNow":"התקשר עכשיו","specifications":"מפרט טכני","storeNote":"מידע נוסף","businessPhone":"[business_phone]","businessEmail":"[business_email]"};
+
   if (typeof loadFeaturedProducts === 'function' && document.getElementById('zappy-featured-products')) {
-    try { loadFeaturedProducts(); } catch (e) {}
+    loadFeaturedProducts();
   }
-  if (typeof applyCategoryFiltersAndRender === 'function' && typeof catProductsCache !== 'undefined' && catProductsCache && catProductsCache.length > 0 && document.getElementById('category-products')) {
-    try {
-      var gridEl = document.getElementById('category-products');
-      var symEl = gridEl && gridEl.querySelector('.price');
-      var symMatch = symEl && (symEl.textContent || '').match(/[₪$€£]/);
-      var tStub = { currency: symMatch ? symMatch[0] : '₪', addToCart: 'Add to Cart', viewDetails: 'View Details', startingAt: 'Starting at' };
-      applyCategoryFiltersAndRender(null, tStub);
-    } catch (e) {}
-  } else if (typeof loadCategoryPage === 'function' && document.getElementById('category-page')) {
-    try { loadCategoryPage(); } catch (e) {}
+
+  if (document.getElementById('category-products')) {
+    if (typeof catProductsCache !== 'undefined' && catProductsCache && catProductsCache.length > 0 && typeof applyCategoryFiltersAndRender === 'function') {
+      applyCategoryFiltersAndRender(null, t);
+    } else if (typeof loadCategoryPage === 'function' && document.getElementById('category-page')) {
+      loadCategoryPage();
+    }
   }
+
   if (typeof loadRelatedProducts === 'function' && window.currentProduct && document.getElementById('related-products-grid')) {
-    try {
-      var priceEl = document.querySelector('#product-price-display, #product-detail .price');
-      var symMatch2 = priceEl && (priceEl.textContent || '').match(/[₪$€£]/);
-      var tStub2 = { currency: symMatch2 ? symMatch2[0] : '₪', addToCart: 'Add to Cart', viewDetails: 'View Details', startingAt: 'Starting at' };
-      loadRelatedProducts(window.currentProduct, tStub2);
-    } catch (e) {}
+    loadRelatedProducts(window.currentProduct, t);
   }
 }
+
 function scheduleDynamicProductGridsDiscountRefresh() {
   [0, 250, 750, 2000].forEach(function(delayMs) {
     setTimeout(refreshDynamicProductGridsAfterDiscount, delayMs);
   });
 }
+
 window.__zappyRefreshDynamicProductGridsAfterDiscount = refreshDynamicProductGridsAfterDiscount;
 window.__zappyScheduleDynamicProductGridsDiscountRefresh = scheduleDynamicProductGridsDiscountRefresh;
+/* ZAPPY_CUSTOMER_DISCOUNT_GRID_REFRESH_V1 */
+
+// Load featured products on home page (uses public storefront API)
+// Only shows products marked as "featured" - no fallback to all products
 async function loadFeaturedProducts() {
   const grid = document.getElementById('zappy-featured-products');
   if (!grid) return;
@@ -7423,7 +7602,11 @@ function zappyApplyCustomerPercentToPrice(basePrice, productId) {
 }
 
 function zappyHasActiveCustomerDiscount() {
-  return !!(window.__zappyCustomerDiscountConfig && window.__zappyCustomerDiscountConfig.discountPercent > 0);
+  if (typeof window.__zappyHasActiveCustomerDiscountCfg === 'function') {
+    return window.__zappyHasActiveCustomerDiscountCfg();
+  }
+  var cfg = window.__zappyCustomerDiscountConfig;
+  return !!(cfg && parseFloat(cfg.discountPercent) > 0);
 }
 
 async function syncProductDetailCustomerDiscount() {
@@ -7470,6 +7653,7 @@ function renderProductGrid(grid, products, t, isFeaturedSection, viewMode) {
     var seasonalD = typeof getSeasonalDiscountForProduct === 'function' ? getSeasonalDiscountForProduct(p.id) : null;
     var effectivePrice = parseFloat(p.price);
     var effectiveSalePrice = hasSalePrice ? parseFloat(p.sale_price) : null;
+    var displayOriginalPrice = effectivePrice;
     var seasonalApplied = false;
 
     if (seasonalD && !hasVariantPriceRange) {
@@ -7482,6 +7666,7 @@ function renderProductGrid(grid, products, t, isFeaturedSection, viewMode) {
       }
       if (discountedPrice < basePrice) {
         seasonalApplied = true;
+        displayOriginalPrice = basePrice;
         effectiveSalePrice = discountedPrice;
       }
     }
@@ -7490,6 +7675,7 @@ function renderProductGrid(grid, products, t, isFeaturedSection, viewMode) {
       var custBase = effectiveSalePrice !== null ? effectiveSalePrice : effectivePrice;
       var custAdj = zappyApplyCustomerPercentToPrice(custBase, p.id);
       if (custAdj.applied) {
+        displayOriginalPrice = custBase;
         effectiveSalePrice = custAdj.price;
         seasonalApplied = true;
       }
@@ -7512,7 +7698,7 @@ function renderProductGrid(grid, products, t, isFeaturedSection, viewMode) {
         displayPrice = startingAtLabel + ' ' + t.currency + variantMinPrice.toFixed(2);
       }
     } else if (seasonalApplied && effectiveSalePrice !== null) {
-      displayPrice = t.currency + effectiveSalePrice.toFixed(2) + ' <span class="original-price">' + t.currency + effectivePrice.toFixed(2) + '</span>';
+      displayPrice = t.currency + effectiveSalePrice.toFixed(2) + ' <span class="original-price">' + t.currency + displayOriginalPrice.toFixed(2) + '</span>';
     } else if (hasSalePrice) {
       displayPrice = t.currency + parseFloat(p.sale_price).toFixed(2) + ' <span class="original-price">' + t.currency + parseFloat(p.price).toFixed(2) + '</span>';
     } else {
@@ -8241,6 +8427,14 @@ async function loadProductDetailPage() {
     
     const product = data.data;
     renderProductDetail(detailSection, product, t);
+    if (typeof window.zappyTrackEcomAnalytics === 'function') {
+      window.zappyTrackEcomAnalytics('view_product', {
+        productId: product.id,
+        productName: product.name,
+        price: parseFloat(product.sale_price || product.salePrice || product.price || 0) || 0,
+        categoryId: product.categories && product.categories[0] ? product.categories[0].id : null
+      });
+    }
     await syncProductDetailCustomerDiscount();
     
     // Update page title and meta
@@ -15106,11 +15300,3 @@ function withConsent(category, callback) {
 /* ZAPPY_CUSTOMER_DISCOUNT_PRODUCT_DETAIL_RACE_V1 */
 
 /* ZAPPY_CUSTOMER_DISCOUNT_DELAYED_REFRESH_V1 */
-
-/* ZAPPY_CUSTOMER_DISCOUNT_GRID_REFRESH_V1 */
-
-/* ZAPPY_CUSTOMER_DISCOUNT_WINDOW_RACE_V1 */
-
-/* ZAPPY_CUSTOMER_DISCOUNT_FETCH_FAILURE_CLEAR_V1 */
-
-/* ZAPPY_CUSTOMER_DISCOUNT_SINGLE_FLIGHT_V1 */
