@@ -14375,6 +14375,8 @@ function fixContrast(){
   setTimeout(patch, 250);
   setTimeout(patch, 1500);
 })();
+/* ZAPPY_COURSE_ORDER_SUCCESS_RECEIPT_V1 */
+
 /* ZAPPY_CHECKOUT_FOCUS_UX_V2 */
 (function(){
   if (window.__zappyCheckoutFocusUX >= 2) return;
