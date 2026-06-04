@@ -903,355 +903,165 @@
 /* V2 Regenerated Section CSS */
 .index-cta-section {
   position: relative;
-  background-color: var(--bg-dark);
-  background-image: radial-gradient(2px 2px at 12% 18%, rgba(255,255,255,0.65) 0 60%, rgba(255,255,255,0) 62%), radial-gradient(1.5px 1.5px at 28% 36%, rgba(255,255,255,0.55) 0 60%, rgba(255,255,255,0) 62%), radial-gradient(1px 1px at 43% 22%, rgba(255,255,255,0.45) 0 60%, rgba(255,255,255,0) 62%), radial-gradient(2px 2px at 61% 40%, rgba(255,255,255,0.55) 0 60%, rgba(255,255,255,0) 62%), radial-gradient(1px 1px at 74% 16%, rgba(255,255,255,0.40) 0 60%, rgba(255,255,255,0) 62%), radial-gradient(2px 2px at 86% 32%, rgba(255,255,255,0.60) 0 60%, rgba(255,255,255,0) 62%), radial-gradient(1px 1px at 92% 70%, rgba(255,255,255,0.35) 0 60%, rgba(255,255,255,0) 62%), linear-gradient(180deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.00) 60%);
-  color: var(--text-light);
-  overflow: hidden;
-  padding: 80px 16px;
-  direction: rtl;
-}
-
-.index-cta-section .cta-container {
-  position: relative;
-  z-index: 2;
-  max-width: 1200px;
-  margin: 0 auto;
+  min-height: 500px;
   display: flex;
   align-items: center;
-  gap: 60px;
-  flex-direction: row;
-}
-
-.index-cta-section .cta-image-wrapper {
-  position: relative;
-  flex: 0 0 45%;
-  min-height: 400px;
-  border-radius: 24px;
+  justify-content: center;
+  padding: 80px 24px;
   overflow: hidden;
-  box-shadow: 0 12px 26px rgba(10,17,38,0.14);
-}
-
-.index-cta-section .cta-bg-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  z-index: 1;
-}
-
-.index-cta-section .cta-image-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(180deg, rgba(11, 18, 32, 0.2) 0%, rgba(11, 18, 32, 0.6) 100%);
-  z-index: 2;
-}
-
-.index-cta-section .cta-content {
-  flex: 1;
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  direction: rtl;
   text-align: right;
 }
 
-.index-cta-section .cta-heading {
-  font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
-  font-size: 3rem;
-  font-weight: 700;
-  line-height: 1.2;
-  color: var(--text-light);
-  margin-bottom: 24px;
-  letter-spacing: -0.01em;
+.index-cta-section .index-cta-section-bg-wrapper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
 }
 
-.index-cta-section .cta-description {
+.index-cta-section .index-cta-section-bg-wrapper > div:first-child {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  filter: brightness(0.6);
+}
+
+.index-cta-section .index-cta-section-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 20% 30%, rgba(63, 55, 201, 0.25) 0%, transparent 50%),
+              radial-gradient(circle at 80% 70%, rgba(255, 107, 107, 0.15) 0%, transparent 50%),
+              linear-gradient(180deg, rgba(11, 18, 32, 0.85) 0%, rgba(11, 18, 32, 0.7) 50%, rgba(11, 18, 32, 0.9) 100%);
+  z-index: 1;
+}
+
+.index-cta-section .index-cta-section-container {
+  position: relative;
+  z-index: 10;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+}
+
+.index-cta-section .index-cta-section-content {
+  max-width: 700px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 24px;
+  background: rgba(11, 18, 32, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 24px;
+  padding: 48px 40px;
+  border: 1px solid rgba(247, 248, 252, 0.15);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.index-cta-section .index-cta-section-title {
+  font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  font-size: 3rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--text-light);
+  margin: 0;
+  letter-spacing: -0.5px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.index-cta-section .index-cta-section-text {
   font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
   font-size: 1rem;
-  line-height: 1.7;
-  color: var(--text-muted);
-  margin-bottom: 40px;
+  line-height: 1.8;
+  color: rgba(247, 248, 252, 0.9);
+  margin: 0;
   max-width: 540px;
-  text-align: right;
 }
 
-.index-cta-section .cta-buttons {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-}
-
-.index-cta-section .btn-primary {
-  background: #EE7055;
-  color: #FFFFFF;
-  padding: 12px 26px;
-  border-radius: 12px;
-  border: 0;
-  font-weight: 600;
-  font-size: 14px;
-  letter-spacing: 0.01em;
-  box-shadow: 0 10px 18px rgba(238,112,85,0.25);
-  text-decoration: none;
-  display: inline-block;
-  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  text-align: center;
-}
-
-.index-cta-section .btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 14px 24px rgba(238,112,85,0.35);
-}
-
-.index-cta-section .btn-secondary {
-  background: rgba(255,255,255,0.12);
-  color: #F6F7FB;
-  padding: 12px 26px;
-  border-radius: 12px;
-  border: 1px solid rgba(246,247,251,0.50);
-  font-weight: 500;
-  font-size: 14px;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  text-decoration: none;
-  display: inline-block;
-  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-  transition: background 0.2s ease, border-color 0.2s ease;
-  text-align: center;
-}
-
-.index-cta-section .btn-secondary:hover {
-  background: rgba(255,255,255,0.2);
-  border-color: rgba(246,247,251,0.8);
-}
-
-.index-cta-section .cta-decorative-starfield {
-  position: absolute;
-  top: -20%;
-  right: -10%;
-  width: 60%;
-  height: 140%;
-  background: radial-gradient(circle at 30% 40%, rgba(63, 55, 201, 0.15) 0%, transparent 50%);
-  z-index: 1;
-  pointer-events: none;
-  opacity: 0.6;
-  filter: blur(40px);
-}
-
-@media (max-width: 768px) {
-  .index-cta-section {
-    padding: 60px 16px;
-  }
-
-  .index-cta-section .cta-container {
-    flex-direction: column;
-    gap: 32px;
-  }
-
-  .index-cta-section .cta-image-wrapper {
-    flex: 0 0 auto;
-    width: 100%;
-    min-height: 280px;
-  }
-
-  .index-cta-section .cta-heading {
-    font-size: 2rem;
-  }
-
-  .index-cta-section .cta-description {
-    max-width: 100%;
-    text-align: right;
-  }
-
-  .index-cta-section .cta-buttons {
-    justify-content: flex-start;
-  }
-}
-</style>
-
-<style data-zappy-section-v2-css="true">
-/* V2 Regenerated Section CSS */
-.index-cta-section {
-  background-color: #BFC6E6;
-  background-image: radial-gradient(2px 2px at 12% 18%, rgba(255,255,255,0.65) 0 60%, rgba(255,255,255,0) 62%), radial-gradient(1.5px 1.5px at 28% 36%, rgba(255,255,255,0.55) 0 60%, rgba(255,255,255,0) 62%), radial-gradient(1px 1px at 43% 22%, rgba(255,255,255,0.45) 0 60%, rgba(255,255,255,0) 62%), radial-gradient(2px 2px at 61% 40%, rgba(255,255,255,0.55) 0 60%, rgba(255,255,255,0) 62%), radial-gradient(1px 1px at 74% 16%, rgba(255,255,255,0.40) 0 60%, rgba(255,255,255,0) 62%), radial-gradient(2px 2px at 86% 32%, rgba(255,255,255,0.60) 0 60%, rgba(255,255,255,0) 62%), radial-gradient(1px 1px at 92% 70%, rgba(255,255,255,0.35) 0 60%, rgba(255,255,255,0) 62%), linear-gradient(180deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.00) 60%);
-  color: var(--text-dark);
-  padding: 80px 16px;
-  position: relative;
-  overflow: hidden;
-  direction: rtl;
-  text-align: right;
-}
-
-.index-cta-section__container {
-  max-width: 1200px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 1;
-  display: flex;
+.index-cta-section .index-cta-section-btn {
+  display: inline-flex;
   align-items: center;
-  gap: 60px;
-  background: rgba(255,255,255,0.92);
-  box-shadow: 0 12px 26px rgba(10,17,38,0.10);
-  border-radius: 24px;
-  overflow: hidden;
-}
-
-.index-cta-section__image-wrapper {
-  flex: 0 0 45%;
-  position: relative;
-  min-height: 400px;
-  overflow: hidden;
-}
-
-.index-cta-section__bg-image {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  transition: transform 0.6s ease;
-}
-
-.index-cta-section__container:hover .index-cta-section__bg-image {
-  transform: scale(1.05);
-}
-
-.index-cta-section__overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.1) 100%);
-  z-index: 1;
-}
-
-.index-cta-section__content {
-  flex: 1;
-  padding: 60px 40px 60px 20px;
-  position: relative;
-  z-index: 2;
-}
-
-.index-cta-section__heading {
-  font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
-  font-size: 3rem;
-  font-weight: 700;
-  line-height: 1.2;
-  color: var(--text-dark);
-  margin: 0 0 20px 0;
-  letter-spacing: -0.02em;
-}
-
-.index-cta-section__text {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  font-size: 16px;
-  line-height: 1.7;
-  color: var(--text-muted);
-  margin: 0 0 32px 0;
-  max-width: 480px;
-}
-
-.index-cta-section__cta {
-  display: inline-block;
-  background: #EE7055;
+  justify-content: center;
+  background: var(--accent);
   color: #FFFFFF;
-  padding: 12px 26px;
+  padding: 14px 36px;
   border-radius: 12px;
-  border: 0;
+  border: none;
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
   font-weight: 600;
-  font-size: 14px;
-  letter-spacing: 0.01em;
+  font-size: 16px;
+  letter-spacing: 0.02em;
   text-decoration: none;
-  box-shadow: 0 10px 18px rgba(238,112,85,0.25);
-  transition: all 0.3s ease;
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  box-shadow: 0 12px 24px rgba(255, 107, 107, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  margin-block-start: 8px;
+  cursor: pointer;
 }
 
-.index-cta-section__cta:hover {
-  background: #f45a3d;
-  box-shadow: 0 14px 24px rgba(238,112,85,0.35);
+.index-cta-section .index-cta-section-btn:hover {
   transform: translateY(-2px);
+  box-shadow: 0 16px 32px rgba(255, 107, 107, 0.45);
 }
 
-/* Decorative Motifs */
-.index-cta-section__starfield-dust {
+.index-cta-section .index-cta-section-decor {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: -20px;
+  inset-inline-end: -40px;
+  width: 260px;
+  height: 260px;
+  z-index: 0;
+  pointer-events: none;
+  color: var(--text-light);
+}
+
+.index-cta-section .index-cta-section-decor svg {
   width: 100%;
   height: 100%;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.12;
-  background-image: radial-gradient(1px 1px at 20% 30%, var(--text-dark) 0 50%, transparent 52%), radial-gradient(1px 1px at 80% 70%, var(--text-dark) 0 50%, transparent 52%);
-  background-size: 200px 200px, 300px 300px;
-}
-
-.index-cta-section__thin-divider {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.12;
-  background: currentColor;
 }
 
 @media (max-width: 768px) {
   .index-cta-section {
-    padding: 100px 16px 60px;
+    padding: 100px 20px 60px;
+    min-height: auto;
   }
 
-  .index-cta-section__container {
-    flex-direction: column;
-    gap: 0;
+  .index-cta-section .index-cta-section-content {
+    padding: 32px 24px;
+    gap: 20px;
     border-radius: 20px;
   }
 
-  .index-cta-section__image-wrapper {
-    flex: 0 0 auto;
-    width: 100%;
-    min-height: 280px;
+  .index-cta-section .index-cta-section-title {
+    font-size: 2.2rem;
   }
 
-  .index-cta-section__content {
-    padding: 32px 24px 40px;
-    text-align: center;
+  .index-cta-section .index-cta-section-text {
+    font-size: 1rem;
   }
 
-  .index-cta-section__heading {
-    font-size: 2rem;
+  .index-cta-section .index-cta-section-btn {
+    padding: 12px 28px;
+    font-size: 15px;
   }
 
-  .index-cta-section__text {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: none;
-  }
-
-  .index-cta-section__cta {
-    display: block;
-    width: fit-content;
-    margin: 0 auto;
-  }
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
-  .index-cta-section__container {
-    gap: 30px;
-  }
-  
-  .index-cta-section__image-wrapper {
-    flex: 0 0 40%;
-    min-height: 350px;
-  }
-
-  .index-cta-section__content {
-    padding: 40px 30px 40px 10px;
+  .index-cta-section .index-cta-section-decor {
+    width: 180px;
+    height: 180px;
+    top: -10px;
+    inset-inline-end: -20px;
   }
 }
 </style>
@@ -1498,38 +1308,48 @@
 
   
 
-    <section class="index-cta-section" data-layout-spec="בית-cta" data-zappy-section="true" id="featured-categories">
-  <div class="cta-container">
-    <div class="cta-image-wrapper">
-      <div class="cta-bg-image" style="background-image: url('assets/site-home-cta-image-1.webp'); background-size: cover; background-position: center;"></div>
-      <div class="cta-image-overlay"></div>
-    </div>
-    <div class="cta-content">
-      <h2 class="cta-heading">מחפשים את הנעליים המושלמות?</h2>
-      <p class="cta-description">הצוות המקצועי שלנו כאן כדי לעזור לכם למצוא את ההתאמה האידיאלית. קבלו ייעוץ אישי והמלצות מותאמות אישית לסגנון ולצרכים שלכם.</p>
-      <div class="cta-buttons">
-        <a href="/about" class="btn-primary cta-primary-btn">הסיפור שלנו</a>
-        <a href="/contact" class="btn-secondary cta-secondary-btn">צרו קשר</a>
+    <section class="featured-categories-section" id="featured-categories" data-zappy-dynamic="true">
+      <div class="container">
+        <h2 class="section-title">קנו לפי קטגוריה</h2>
+        <div class="category-blocks" id="zappy-featured-categories">
+          <div class="loading-categories">טוען נעליים...</div>
+        </div>
       </div>
-    </div>
-  </div>
-  <div class="cta-decorative-starfield" aria-hidden="true"></div>
-</section>
+    </section>
   
 
-<section class="index-cta-section" data-layout-spec="בית-cta" data-zappy-section="true" id="zappy-section-5">
-  <div class="index-cta-section__container">
-    <div class="index-cta-section__image-wrapper">
-      <div class="index-cta-section__bg-image" style="background-image: url('assets/site-home-cta-image-1.webp'); background-size: cover; background-position: center; min-height: 400px;"></div>
-      <div class="index-cta-section__overlay"></div>
+<section class="home-story-section" data-layout-spec="בית-story" id="zappy-section-5" style="min-height: 1053.91px !important;">
+  <div class="home-story-container zappy-preserve-css-grid" id="zappy-auto-grid-1771510262083-7adg12" data-zappy-auto-grid="true" data-zappy-grid-align="start" data-original-item-width="570" data-original-gap="60px" style="display: grid; --zappy-grid-cols: repeat(2, minmax(0, 1fr)); grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: stretch !important;" data-zappy-explicit-columns="true">
+    <div class="home-story-content-column" data-grid-item-index="0">
+      <h2>הסיפור שלנו מתחיל עם הרגליים שלך</h2>
+      <p >ב-Star Shoes אנחנו מאמינים שנעליים טובות הן הרבה יותר מאשר סתם אביזר אופנה. הן המפגש המושלם בין עיצוב עכשווי, חומרים איכותיים ונוחות שמרגישים בכל צעד. כל זוג נעליים שאנחנו מביאים לחנות נבחר בקפידה כדי להעניק לך את החוויה הטובה ביותר.</p>
+      <p>אנחנו מחפשים ברחבי העולם את המותגים המובילים, בוחנים כל דגם לפרטי פרטים, ומוודאים שכל נעל עומדת בסטנדרטים הגבוהים שלנו. מהליכה היומיומית ועד לאירועים מיוחדים – יש לנו את הנעל המושלמת בשבילך.</p>
+      
+      <div class="home-story-side-notes"><div class="home-story-note" data-grid-item-index="0">
+          <h3>טיפול ואחזקה</h3>
+        <p>אנחנו מלווים אותך גם אחרי הקניה עם טיפים לשמירה על הנעליים במצב מושלם.</p>
+        </div><div class="home-story-note" data-grid-item-index="1">
+          <h3>נוחות מקסימלית</h3>
+          <p>כל דגם נבדק לנוחות הליכה, תמיכה מושלמת ואיזון אופטימלי לכל סוגי הפעילות.</p>
+        </div><div class="home-story-note" data-grid-item-index="2">
+          <h3>חומרים מובחרים</h3>
+          <p>עור איכותי, בדים נושמים וחומרים חדשניים שמבטיחים עמידות ונוחות לאורך זמן.</p>
+        </div></div>
     </div>
-    <div class="index-cta-section__content">
-      <h2 class="index-cta-section__heading">מחפשים את הנעליים המושלמות?</h2>
-      <p class="index-cta-section__text">הצוות המקצועי שלנו כאן כדי לעזור לכם למצוא את ההתאמה האידיאלית. קבלו ייעוץ אישי והמלצות מותאמות אישית לסגנון ולצרכים שלכם.</p>
-      <a href="/about" class="index-cta-section__cta btn-pill btn-primary">הסיפור שלנו</a>
+    
+    <div class="home-story-image-column zappy-grid-item-no-stretch" data-grid-item-index="1">
+      <div class="home-story-image-wrapper">
+        <div class="home-story-backplate"></div>
+        <img data-placeholder="home-story-image-1" data-context="Elegant lifestyle photo of premium leather shoes displayed on a minimalist white surface with soft natural lighting, showing craftsmanship details and texture, professional product photography for a modern shoe retail store" width="600" height="800" src="/assets/site-home-story-image-1.webp" alt="נעליים איכותיות של Star Shoes" data-element-type="image" data-element-id="img-1771510262066-80mrqtk0z">
+      </div>
     </div>
-    <div class="index-cta-section__starfield-dust" aria-hidden="true"></div>
-    <div class="index-cta-section__thin-divider" aria-hidden="true"></div>
+  </div><div class="zappy-inserted-element" id="zappy-element-1772042189984-u42i3oys3" data-element-id="zappy-element-1772042189984-u42i3oys3" data-element-type="button" data-zappy-newly-inserted="true" style="margin: 20px auto; text-align: center; display: flex; justify-content: center; align-items: flex-start; max-width: 1200px !important; width: 100% !important; align-self: start !important; height: auto !important;"><a href="#" class="btn btn-primary" style="text-decoration: none; padding: 12px 24px; border-radius: 6px; display: inline-block; border-color: var(--primary-color, var(--primary, #8B0000)) !important; border-style: solid; border-width: 2px; border-image: initial; color: rgb(255, 255, 255) !important; width: auto !important; flex: 0 0 auto !important; cursor: pointer !important; background-color: var(--primary-color, var(--primary, #8B0000)) !important; background-image: none !important;" data-element-type="button" data-text-color="auto" data-element-id="zappy-element-1772042189984-u42i3oys3" id="zappy-element-1772042189984-u42i3oys3">לחץ כאן</a></div>
+  
+  <div class="home-story-divider-wrapper">
+    <svg data-no-icon-edit="true" aria-hidden="true" viewBox="0 0 1200 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,60 L0,35 Q60,28 120,36 T240,32 Q300,38 360,30 T480,35 Q540,30 600,36 T720,32 Q780,37 840,31 T960,36 Q1020,30 1080,35 T1200,32 L1200,60 Z" fill="var(--bg-dark)"></path>
+    </svg>
+
   </div>
 </section>
 
@@ -1541,20 +1361,23 @@
 
 
 
-<section class="home-cta-section" data-layout-spec="בית-cta">
-  <div class="home-cta-container">
-    <div class="home-cta-content">
-      <h2 class="home-cta-heading">מחפשים את הנעליים המושלמות?</h2>
-      <p class="home-cta-text">הצוות המקצועי שלנו כאן כדי לעזור לכם למצוא את ההתאמה האידיאלית. קבלו ייעוץ אישי והמלצות מותאמות אישית לסגנון ולצרכים שלכם.</p>
-      
-      <div class="home-cta-buttons">
-        
-        <a href="/about" class="home-cta-btn home-cta-btn-secondary" style="color: #0B1220">הסיפור שלנו</a>
-      </div>
+<section class="index-cta-section" data-layout-spec="בית-cta" data-zappy-section="true">
+  <div class="index-cta-section-bg-wrapper">
+    <div style="background-image: url('assets/site-home-cta-image-1.webp'); background-size: cover; background-position: center; min-height: 100%;"></div>
+    <div class="index-cta-section-overlay"></div>
+  </div>
+  <div class="index-cta-section-container">
+    <div class="index-cta-section-content">
+      <h2 class="index-cta-section-title">מחפשים את הנעליים המושלמות?</h2>
+      <p class="index-cta-section-text">הצוות המקצועי שלנו כאן כדי לעזור לכם למצוא את ההתאמה האידיאלית. קבלו ייעוץ אישי והמלצות מותאמות אישית לסגנון ולצרכים שלכם.</p>
+      <a href="/about" class="index-cta-section-btn btn-primary">הסיפור שלנו</a>
     </div>
-    
-    <div class="home-cta-image-wrapper">
-      <img data-placeholder="home-cta-image-1" data-context="Wide lifestyle banner showing elegant shoe store interior with premium sneakers and casual footwear displayed on modern shelving, warm ambient lighting, sophisticated retail environment for Star Shoes brand" width="1200" height="300" src="/assets/site-home-cta-image-1.webp" alt="חלל חנות Star Shoes עם מבחר נעליים איכותיות" class="home-cta-banner-image">
+    <div class="index-cta-section-decor">
+      <svg data-no-icon-edit="true" aria-hidden="true" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="100" cy="100" r="80" fill="none" stroke="currentColor" stroke-width="1" opacity="0.15"></circle>
+        <circle cx="100" cy="100" r="60" fill="none" stroke="currentColor" stroke-width="1" opacity="0.1"></circle>
+        <circle cx="100" cy="100" r="40" fill="none" stroke="currentColor" stroke-width="1" opacity="0.08"></circle>
+      </svg>
     </div>
   </div>
 </section>
