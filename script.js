@@ -10442,6 +10442,29 @@ async function loadRelatedProducts(currentProduct, t) {
 }
 /* ==ZAPPY E-COMMERCE JS END== */
 
+/* Added Component Script */
+// Optional: Intersection Observer for subtle entrance animation
+document.addEventListener('DOMContentLoaded', () => {
+  const section = document.querySelector('.about-owner-section');
+  if (!section) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        section.style.opacity = '1';
+        section.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.15 });
+
+  // Set initial state for animation
+  section.style.opacity = '0';
+  section.style.transform = 'translateY(30px)';
+  section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+  
+  observer.observe(section);
+});
+
 
 /* ZAPPY_PUBLISHED_LIGHTBOX_RUNTIME */
 (function(){

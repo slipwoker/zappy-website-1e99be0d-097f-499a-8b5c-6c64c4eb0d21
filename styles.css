@@ -14926,6 +14926,275 @@ main,
   outline-offset: 2px;
   border-radius: 16px;
 }
+
+/* Added Component Styles */
+/* ===== About Owner Section ===== */
+.about-owner-section {
+  background: var(--background-color, #FFFDE7);
+  padding: 90px 24px;
+  font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  direction: rtl;
+}
+
+.about-owner-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 70px;
+  flex-wrap: wrap;
+}
+
+/* ===== Image Column ===== */
+.about-owner-image-wrapper {
+  flex: 1 1 320px;
+  max-width: 440px;
+  position: relative;
+}
+
+.about-owner-image-frame {
+  position: relative;
+  z-index: 2;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.about-owner-portrait {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: grayscale(100%) contrast(1.05);
+  transition: filter 0.5s ease, transform 0.5s ease;
+}
+
+.about-owner-image-frame:hover .about-owner-portrait {
+  filter: grayscale(60%) contrast(1.02);
+  transform: scale(1.02);
+}
+
+/* Accent dots decoration */
+.about-owner-accent-dots {
+  position: absolute;
+  bottom: -28px;
+  left: -28px;
+  display: grid;
+  grid-template-columns: repeat(6, 7px);
+  gap: 7px;
+  z-index: 1;
+}
+
+.about-owner-accent-dots .dot {
+  width: 7px;
+  height: 7px;
+  background: var(--primary-color, #FFD700);
+  border-radius: 50%;
+  display: block;
+  opacity: 0.7;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.about-owner-accent-dots .dot:nth-child(odd) {
+  opacity: 0.45;
+}
+
+.about-owner-accent-dots .dot:nth-child(3n) {
+  opacity: 0.9;
+  transform: scale(1.2);
+}
+
+.about-owner-image-wrapper:hover .about-owner-accent-dots .dot {
+  opacity: 0.9;
+}
+
+/* ===== Content Column ===== */
+.about-owner-content {
+  flex: 1 1 380px;
+  max-width: 560px;
+}
+
+.about-owner-eyebrow {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--secondary-color, #FF2D2D);
+  margin-bottom: 12px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.about-owner-title {
+  font-size: 2.7rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--text-color, #1A1A1A);
+  margin: 0 0 20px 0;
+  letter-spacing: -0.01em;
+}
+
+/* Divider */
+.about-owner-divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.divider-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to left, transparent, var(--primary-color, #FFD700), transparent);
+  opacity: 0.5;
+}
+
+.divider-diamond {
+  color: var(--primary-color, #FFD700);
+  font-size: 0.6rem;
+  opacity: 0.8;
+}
+
+/* Description */
+.about-owner-description {
+  font-size: 1.15rem;
+  line-height: 1.85;
+  color: var(--text-secondary-color, #333333);
+  margin: 0 0 18px 0;
+  font-weight: 400;
+}
+
+.about-owner-description strong {
+  color: var(--text-color, #1A1A1A);
+  font-weight: 700;
+}
+
+/* Values list */
+.about-owner-values {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 28px 0 32px 0;
+}
+
+.value-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.05rem;
+  color: var(--text-secondary-color, #333333);
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.value-item:hover {
+  transform: translateX(-4px);
+  color: var(--text-color, #1A1A1A);
+}
+
+.value-icon {
+  color: var(--primary-color, #FFD700);
+  font-size: 0.75rem;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.value-item:hover .value-icon {
+  transform: rotate(180deg);
+}
+
+.value-text {
+  font-weight: 500;
+}
+
+/* Signature */
+.about-owner-signature {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.signature-line {
+  font-size: 0.95rem;
+  color: var(--text-secondary-color, #333333);
+  font-style: italic;
+}
+
+.signature-name {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text-color, #1A1A1A);
+  font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  letter-spacing: 0.02em;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 900px) {
+  .about-owner-section {
+    padding: 60px 20px;
+  }
+  
+  .about-owner-container {
+    gap: 50px;
+  }
+  
+  .about-owner-title {
+    font-size: 2.2rem;
+  }
+  
+  .about-owner-image-wrapper {
+    max-width: 380px;
+    margin: 0 auto;
+  }
+  
+  .about-owner-content {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .about-owner-section {
+    padding: 40px 16px;
+  }
+  
+  .about-owner-container {
+    gap: 36px;
+  }
+  
+  .about-owner-title {
+    font-size: 1.8rem;
+  }
+  
+  .about-owner-description {
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+  
+  .about-owner-accent-dots {
+    bottom: -20px;
+    left: -20px;
+    grid-template-columns: repeat(4, 6px);
+    gap: 5px;
+  }
+  
+  .about-owner-accent-dots .dot {
+    width: 6px;
+    height: 6px;
+  }
+  
+  .about-owner-image-wrapper {
+    max-width: 300px;
+  }
+  
+  .value-item {
+    font-size: 0.95rem;
+  }
+  
+  .signature-name {
+    font-size: 1.35rem;
+  }
+}
 /* mobile-submenu-overflow-fix */
 @media (max-width: 768px) {
   .navbar .sub-menu.mobile-expanded,
