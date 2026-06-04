@@ -51,6 +51,26 @@ https://star-shoes.zappy5.app/category/:slug
 ### Page
 https://star-shoes.zappy5.app/contact
 
+### המגזין של Star Shoes
+https://star-shoes.zappy5.app/blog
+Star Shoes - המגזין של Star Shoes
+
+### נוחות
+https://star-shoes.zappy5.app/blog/comfortable-stylish-shoes
+מדריך פרקטי לבחירת נעליים נוחות ואופנתיות לשגרה עמוסה, עבודה, סידורים ויציאות.
+
+### ילדים
+https://star-shoes.zappy5.app/blog/kids-shoes-guide
+מדריך ברור להורים על בחירת נעלי ילדים נכונות לפי התאמה, נוחות, עמידות ושגרת שימוש.
+
+### חומרים
+https://star-shoes.zappy5.app/blog/shoe-materials-guide
+סקירה שימושית של חומרי גלם נפוצים בנעליים וההתאמה שלהם לנוחות, אקלים, תחזוקה ושימוש יומיומי.
+
+### תחזוקה
+https://star-shoes.zappy5.app/blog/shoe-care-tips
+טיפים פשוטים ויעילים לניקוי, אחסון ושגרת תחזוקה שתשמור על הנעליים במראה מוקפד לאורך זמן.
+
 ## Legal & Policy
 
 ### Privacy Policy
