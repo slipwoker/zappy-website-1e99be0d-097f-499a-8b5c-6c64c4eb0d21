@@ -112,6 +112,37 @@
   var visitorId = getVisitorId();
   var sessionId = getSessionId();
   
+  // Site Optimization Agent — visual heatmap helpers
+  function getBandAnchor(el) {
+    var node = el;
+    while (node && node !== document.body) {
+      if (node.getAttribute && node.getAttribute('data-band-index') != null) {
+        return { bandIndex: node.getAttribute('data-band-index'), sectionId: node.id || null };
+      }
+      node = node.parentElement;
+    }
+    node = el;
+    while (node && node !== document.body) {
+      if (node.tagName === 'SECTION' && node.id) {
+        return { bandIndex: null, sectionId: node.id };
+      }
+      node = node.parentElement;
+    }
+    return { bandIndex: null, sectionId: null };
+  }
+  function heatmapFields(el, e) {
+    var anchor = getBandAnchor(el);
+    return {
+      x: Math.round((e && e.pageX) || 0),
+      y: Math.round((e && e.pageY) || 0),
+      bandIndex: anchor.bandIndex,
+      sectionId: anchor.sectionId
+    };
+  }
+  function mergeFields(base, extra) {
+    for (var k in extra) { if (Object.prototype.hasOwnProperty.call(extra, k)) base[k] = extra[k]; }
+    return base;
+  }
   // Track an event
   function trackEvent(eventType, data) {
     data = data || {};
@@ -161,26 +192,61 @@
       // Track button clicks (counted as actions)
       if (target.tagName === 'BUTTON' || target.closest('button')) {
         var button = target.tagName === 'BUTTON' ? target : target.closest('button');
-        trackEvent('click', {
+        var clickMeta = {
           element: 'button',
           text: button.textContent.trim().substring(0, 100),
           id: button.id || null,
           class: button.className || null
-        });
+        };
+        mergeFields(clickMeta, heatmapFields(button, e));
+        trackEvent('click', clickMeta);
       }
       
       // Track link clicks (navigation - not counted as actions)
       else if (target.tagName === 'A' || target.closest('a')) {
         var link = target.tagName === 'A' ? target : target.closest('a');
-        trackEvent('navigation', {
+        var navMeta = {
           element: 'link',
           text: link.textContent.trim().substring(0, 100),
           href: link.href,
           external: link.hostname !== window.location.hostname
-        });
+        };
+        mergeFields(navMeta, heatmapFields(link, e));
+        trackEvent('navigation', navMeta);
       }
     }, true);
   }
+  
+  // Track scroll depth milestones (visual heatmap reach signal)
+  (function() {
+    var milestones = [25, 50, 75, 100];
+    var fired = {};
+    var maxDepth = 0;
+    function computeDepth() {
+      var doc = document.documentElement;
+      var scrollable = (doc.scrollHeight - window.innerHeight);
+      if (scrollable <= 0) return 100;
+      return Math.min(100, Math.round(((window.scrollY || window.pageYOffset || 0) / scrollable) * 100));
+    }
+    var ticking = false;
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(function() {
+        var depth = computeDepth();
+        if (depth > maxDepth) maxDepth = depth;
+        for (var i = 0; i < milestones.length; i++) {
+          var m = milestones[i];
+          if (depth >= m && !fired[m]) {
+            fired[m] = true;
+            trackEvent('scroll_depth', { milestone: m, maxDepthPct: maxDepth });
+          }
+        }
+        ticking = false;
+      });
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
   
   // Track form submissions
   if (config.trackFormSubmissions) {
@@ -1315,7 +1381,7 @@
   <main>
     <section class="home-hero-section" data-layout-spec="בית-hero" data-hero-type="fullscreen-card" id="zappy-section-1771769212490-982" style="position: relative; overflow: hidden; background-image: linear-gradient(rgba(12, 30, 76, 0.39), rgba(12, 30, 76, 0.39)), url(&quot;assets/star-shoes-section-בית-hero-home-hero-bg-1771769203857-63oxmp.webp?v=1771769205004&quot;); background-size: cover; background-position: center center; background-repeat: no-repeat; --zappy-bg-overlay: rgba(12, 30, 76, 0.39); --zappy-bg-image: url(&quot;assets/star-shoes-section-בית-hero-home-hero-bg-1771769203857-63oxmp.webp?v=1771769205004&quot;); margin-top: -175px !important; padding-top: 175px !important; " data-zappy-bg-type="image" data-zappy-bg-color="" data-zappy-bg-image="assets/star-shoes-section-בית-hero-home-hero-bg-1771769203857-63oxmp.webp?v=1771769205004" data-zappy-bg-overlay-color="#0c1e4c" data-zappy-bg-overlay-opacity="39" data-zappy-bg-video-type="" data-zappy-bg-video-url="" data-element-id="zappy-hero-bg-zappy-section-1771769212490-982" data-element-type="background-image">
   <!-- Full-bleed background image -->
-  <img data-hero-bg="true" data-context="High-end shoe store interior or lifestyle photography: elegant modern retail space with premium footwear displayed on minimalist shelves, soft natural lighting from large windows, polished floors reflecting warm ambient light, sophisticated color palette with deep blues and warm accents, professional commercial photography style, shallow depth of field, aspirational luxury retail atmosphere" class="home-hero-bg-image" width="1920" height="1080" src="/assets/star-shoes-section-בית-hero-home-hero-bg.webp" alt="חנות נעליים מודרנית ומעוצבת" style="display: none" data-zappy-original-bg="hidden">
+  <img data-hero-bg="true" data-context="High-end shoe store interior or lifestyle photography: elegant modern retail space with premium footwear displayed on minimalist shelves, soft natural lighting from large windows, polished floors reflecting warm ambient light, sophisticated color palette with deep blues and warm accents, professional commercial photography style, shallow depth of field, aspirational luxury retail atmosphere" class="home-hero-bg-image" width="1920" height="1080" src="/assets/star-shoes-section-בית-hero-home-hero-bg-1782829173877-ungbrk.webp?v=1782829173877" alt="חנות נעליים מודרנית ומעוצבת" style="display: none" data-zappy-original-bg="hidden">
   
   <!-- Legibility scrim overlay -->
   <div class="home-hero-scrim" aria-hidden="true" style="display: none" data-zappy-original-bg="hidden"></div>
